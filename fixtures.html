@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Linslade Galaxy FC fixtures and results — all teams, all competitions.">
+  <title>Fixtures &amp; Results | Linslade Galaxy FC</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-img">
+        <img src="images/logo.png" alt="LGFC" onerror="this.parentElement.innerHTML='<span style=\'font-size:10px;color:rgba(255,255,255,0.7);font-weight:700;\'>LGFC</span>'">
+      </div>
+      <span class="nav-logo-text">Linslade Galaxy FC</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="club.html">Club</a>
+      <a href="teams.html">Teams</a>
+      <a href="fixtures.html">Fixtures &amp; Results</a>
+      <a href="news.html">News</a>
+      <a href="media.html">Media</a>
+      <a href="contact.html">Contact</a>
+      <a href="join.html" class="nav-cta">Join the Club</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="container">
+    <nav class="breadcrumb"><a href="index.html">Home</a> › Fixtures &amp; Results</nav>
+    <h1>Fixtures &amp; Results</h1>
+    <p>All teams · 2025/26 season</p>
+  </div>
+</div>
+
+<section class="section section-grey">
+  <div class="container">
+
+    <!-- View toggle -->
+    <div style="display:flex; gap:8px; margin-bottom:20px;">
+      <button class="btn btn-primary btn-sm" onclick="showTab('fixtures', this)">Upcoming Fixtures</button>
+      <button class="btn btn-ghost btn-sm" onclick="showTab('results', this)">Results</button>
+    </div>
+
+    <!-- Filter bar -->
+    <div class="filter-bar">
+      <span class="filter-label">Filter:</span>
+      <select class="filter-select" id="filter-section" onchange="applyFilters()">
+        <option value="">All Sections</option>
+        <option value="boys">Boys</option>
+        <option value="girls">Girls</option>
+      </select>
+      <select class="filter-select" id="filter-team" onchange="applyFilters()">
+        <option value="">All Teams</option>
+        <optgroup label="Boys Teams">
+          <option value="boca-juniors">U17 Boca Juniors</option>
+          <option value="ajax">U16 Ajax</option>
+          <option value="borussia">U15 Borussia</option>
+          <option value="lazio">U15 Lazio</option>
+          <option value="spartak">U15 Spartak</option>
+          <option value="sporting">U15 Sporting</option>
+          <option value="porto">U13 Porto</option>
+          <option value="barca">U12 Barca</option>
+          <option value="bayern">U12 Bayern</option>
+          <option value="juve">U11 Juve</option>
+          <option value="roma">U11 Roma</option>
+          <option value="wanderers">U11 Wanderers</option>
+          <option value="atletico">U10 Atletico</option>
+          <option value="real">U10 Real</option>
+          <option value="titans">U9 Titans</option>
+          <option value="inter">U8 Inter</option>
+        </optgroup>
+        <optgroup label="Girls Teams">
+          <option value="lynxes">U14 Lynxes</option>
+          <option value="jaguars">U13 Jaguars</option>
+          <option value="lions">U13 Lions</option>
+          <option value="panthers">U13 Panthers</option>
+          <option value="lionesses">U12 Lionesses</option>
+          <option value="bobcats">U11 Bobcats</option>
+          <option value="leopards">U10 Leopards</option>
+          <option value="meerkats">U8 Meerkats</option>
+        </optgroup>
+      </select>
+      <select class="filter-select" id="filter-comp" onchange="applyFilters()">
+        <option value="">All Competitions</option>
+        <option value="mkddl">MKDDL League</option>
+        <option value="beds-girls">Beds Girls League</option>
+        <option value="cup">Cup</option>
+      </select>
+    </div>
+
+    <!-- FIXTURES TAB -->
+    <div id="tab-fixtures">
+      <p style="font-size:12px; color:var(--grey-500); margin-bottom:16px;">
+        Fixture data is updated automatically from FA Full-Time once embed codes are configured.
+        <a href="https://fulltime.thefa.com/index.html?league=96486" target="_blank" rel="noopener" style="color:var(--green);">View MKDDL ↗</a> ·
+        <a href="https://fulltime.thefa.com/index.html?league=530158839" target="_blank" rel="noopener" style="color:var(--green);">View Beds Girls League ↗</a>
+      </p>
+
+      <!-- Date group -->
+      <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:2px; color:var(--grey-500); padding:10px 0; border-bottom:1px solid var(--grey-200); margin-bottom:4px;">
+        Sunday 12 April 2026
+      </div>
+      <table class="fixture-table" style="margin-bottom:20px;">
+        <thead>
+          <tr>
+            <th style="width:70px;">Time</th>
+            <th>Team</th>
+            <th style="width:90px; text-align:center;">Score</th>
+            <th>Opponent</th>
+            <th style="width:130px;">Competition</th>
+            <th style="width:80px;"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-weight:600;">10:30</td>
+            <td>
+              <div style="display:flex; align-items:center; gap:10px;">
+                <div class="fixture-team-badge" style="width:28px; height:28px; font-size:8px;">LGFC</div>
+                <div>
+                  <div style="font-weight:700; font-size:13px;">U15 Spartak</div>
+                  <span class="tag tag-grey" style="font-size:10px; padding:1px 6px;">Home</span>
+                </div>
+              </div>
+            </td>
+            <td style="text-align:center;">
+              <span style="background:var(--green); color:white; font-weight:700; padding:3px 10px; border-radius:var(--radius); font-size:12px;">vs</span>
+            </td>
+            <td style="font-size:13px; color:var(--grey-700);">Opponent FC U15</td>
+            <td><span class="tag tag-grey" style="font-size:10px;">MKDDL</span></td>
+            <td><a href="team.html?team=spartak" class="btn btn-ghost btn-sm" style="font-size:11px; padding:4px 10px;">Details →</a></td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;">10:00</td>
+            <td>
+              <div style="display:flex; align-items:center; gap:10px;">
+                <div class="fixture-team-badge" style="width:28px; height:28px; font-size:8px;">LGFC</div>
+                <div>
+                  <div style="font-weight:700; font-size:13px;">Girls U13 Jaguars</div>
+                  <span class="tag tag-grey" style="font-size:10px; padding:1px 6px;">Home</span>
+                </div>
+              </div>
+            </td>
+            <td style="text-align:center;">
+              <span style="background:var(--green); color:white; font-weight:700; padding:3px 10px; border-radius:var(--radius); font-size:12px;">vs</span>
+            </td>
+            <td style="font-size:13px; color:var(--grey-700);">Opponents Girls U13</td>
+            <td><span class="tag tag-grey" style="font-size:10px;">Beds Girls</span></td>
+            <td><a href="team.html?team=jaguars" class="btn btn-ghost btn-sm" style="font-size:11px; padding:4px 10px;">Details →</a></td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;">11:00</td>
+            <td>
+              <div style="display:flex; align-items:center; gap:10px;">
+                <div class="fixture-team-badge" style="width:28px; height:28px; font-size:8px;">LGFC</div>
+                <div>
+                  <div style="font-weight:700; font-size:13px;">U12 Bayern</div>
+                  <span class="tag tag-grey" style="font-size:10px; padding:1px 6px;">Away</span>
+                </div>
+              </div>
+            </td>
+            <td style="text-align:center;">
+              <span style="background:var(--green); color:white; font-weight:700; padding:3px 10px; border-radius:var(--radius); font-size:12px;">vs</span>
+            </td>
+            <td style="font-size:13px; color:var(--grey-700);">Another Club U12</td>
+            <td><span class="tag tag-grey" style="font-size:10px;">MKDDL</span></td>
+            <td><a href="team.html?team=bayern" class="btn btn-ghost btn-sm" style="font-size:11px; padding:4px 10px;">Details →</a></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- FA Full-Time embed placeholder -->
+      <div class="embed-placeholder">
+        <strong>FA Full-Time Live Fixtures Widget</strong>
+        Replace this block with the FA Full-Time JavaScript embed code.<br>
+        Get the embed code from FA Full-Time Admin → Media → Code Snippets.<br>
+        <code>lrcode = '[your-code-here]'</code>
+      </div>
+    </div>
+
+    <!-- RESULTS TAB (hidden by default) -->
+    <div id="tab-results" style="display:none;">
+      <p style="font-size:12px; color:var(--grey-500); margin-bottom:16px;">
+        Results data updated from FA Full-Time.
+      </p>
+
+      <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:2px; color:var(--grey-500); padding:10px 0; border-bottom:1px solid var(--grey-200); margin-bottom:4px;">
+        Saturday 5 April 2026
+      </div>
+      <table class="fixture-table" style="margin-bottom:20px;">
+        <thead>
+          <tr>
+            <th style="width:70px;">Date</th>
+            <th>Home</th>
+            <th style="width:100px; text-align:center;">Score</th>
+            <th>Away</th>
+            <th style="width:80px;">Result</th>
+            <th style="width:80px;"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-size:12px; color:var(--grey-500);">5 Apr</td>
+            <td style="font-weight:700; font-size:13px;">Opponent FC U12</td>
+            <td style="text-align:center;">
+              <span style="font-family:var(--font-display); font-size:18px; font-weight:800; letter-spacing:1px;">1–3</span>
+            </td>
+            <td style="font-weight:700; font-size:13px; color:var(--green);">U12 Bayern ✓</td>
+            <td><span class="tag tag-win">Win</span></td>
+            <td><a href="news.html" class="btn btn-ghost btn-sm" style="font-size:11px; padding:4px 10px;">Report →</a></td>
+          </tr>
+          <tr>
+            <td style="font-size:12px; color:var(--grey-500);">29 Mar</td>
+            <td style="font-weight:700; font-size:13px;">U15 Spartak</td>
+            <td style="text-align:center;">
+              <span style="font-family:var(--font-display); font-size:18px; font-weight:800; letter-spacing:1px;">2–2</span>
+            </td>
+            <td style="font-weight:700; font-size:13px; color:var(--grey-700);">Another FC U15</td>
+            <td><span class="tag tag-draw">Draw</span></td>
+            <td><a href="news.html" class="btn btn-ghost btn-sm" style="font-size:11px; padding:4px 10px;">Report →</a></td>
+          </tr>
+          <tr>
+            <td style="font-size:12px; color:var(--grey-500);">22 Mar</td>
+            <td style="font-weight:700; font-size:13px;">Girls U13 Lions</td>
+            <td style="text-align:center;">
+              <span style="font-family:var(--font-display); font-size:18px; font-weight:800; letter-spacing:1px;">4–0</span>
+            </td>
+            <td style="font-weight:700; font-size:13px; color:var(--grey-700);">Opponents Girls U13</td>
+            <td><span class="tag tag-win">Win</span></td>
+            <td><span style="font-size:11px; color:var(--grey-400);">—</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-brand">
+          <div class="footer-logo"><img src="images/logo.png" alt="LGFC" onerror="this.style.display='none'"></div>
+          <span class="footer-logo-text">Linslade Galaxy FC</span>
+        </div>
+        <p>Greenleas Lower School<br>Derwent Road, Linslade<br>Bedfordshire LU7 2AB</p>
+      </div>
+      <div class="footer-col"><h4>Club</h4><a href="club.html">About Us</a><a href="join.html">Join</a></div>
+      <div class="footer-col"><h4>Football</h4><a href="teams.html">Teams</a><a href="fixtures.html">Fixtures</a><a href="news.html">News</a></div>
+      <div class="footer-col"><h4>Links</h4>
+        <a href="https://fulltime.thefa.com/index.html?league=96486" target="_blank" rel="noopener">MKDDL Leagues</a>
+        <a href="https://fulltime.thefa.com/index.html?league=530158839" target="_blank" rel="noopener">Beds Girls League</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Linslade Galaxy FC.</span>
+      <span><a href="club.html#policies" style="color:rgba(255,255,255,0.4);text-decoration:none;margin-left:16px;">Privacy</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+  function showTab(tab, btn) {
+    document.getElementById('tab-fixtures').style.display = tab === 'fixtures' ? 'block' : 'none';
+    document.getElementById('tab-results').style.display  = tab === 'results'  ? 'block' : 'none';
+    document.querySelectorAll('.btn[onclick^="showTab"]').forEach(b => b.className = 'btn btn-ghost btn-sm');
+    btn.className = 'btn btn-primary btn-sm';
+  }
+  function applyFilters() { /* Wire to FA Full-Time embed when lrcodes are added */ }
+</script>
+</body>
+</html>
