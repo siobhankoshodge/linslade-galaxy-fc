@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Linslade Galaxy FC news — match reports, club announcements and updates from all teams.">
+  <title>News | Linslade Galaxy FC</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .news-list-item {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      background: white;
+      border: 1px solid var(--grey-200);
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      text-decoration: none;
+      color: inherit;
+      transition: box-shadow var(--transition), transform var(--transition);
+    }
+    .news-list-item:hover { box-shadow: var(--shadow-md); transform: translateY(-1px); }
+    .news-list-thumb {
+      background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.2); font-size: 12px; min-height: 120px;
+      overflow: hidden;
+    }
+    .news-list-thumb img { width:100%; height:100%; object-fit:cover; }
+    .news-list-body { padding: 20px; }
+    .sidebar-team-link {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 9px 16px; font-size: 13px; color: var(--grey-700);
+      text-decoration: none; border-bottom: 1px solid var(--grey-100);
+      transition: background var(--transition);
+    }
+    .sidebar-team-link:hover { background: var(--grey-100); color: var(--green); }
+    .sidebar-team-link:last-child { border-bottom: none; }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-img"><img src="images/logo.png" alt="LGFC" onerror="this.parentElement.innerHTML='<span style=\'font-size:10px;color:rgba(255,255,255,0.7);font-weight:700;\'>LGFC</span>'"></div>
+      <span class="nav-logo-text">Linslade Galaxy FC</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a><a href="club.html">Club</a><a href="teams.html">Teams</a>
+      <a href="fixtures.html">Fixtures &amp; Results</a><a href="news.html">News</a>
+      <a href="media.html">Media</a><a href="contact.html">Contact</a>
+      <a href="join.html" class="nav-cta">Join the Club</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="container">
+    <nav class="breadcrumb"><a href="index.html">Home</a> › News</nav>
+    <h1>Club News</h1>
+    <p>Match reports, club announcements and updates from all teams</p>
+  </div>
+</div>
+
+<section class="section section-grey">
+  <div class="container">
+    <div class="grid-sidebar">
+
+      <!-- MAIN CONTENT -->
+      <div>
+
+        <!-- Filter bar -->
+        <div class="filter-bar">
+          <span class="filter-label">Filter:</span>
+          <select class="filter-select">
+            <option>All Teams</option>
+            <optgroup label="Boys Teams">
+              <option>U17 Boca Juniors</option><option>U16 Ajax</option>
+              <option>U15 Borussia</option><option>U15 Lazio</option>
+              <option>U15 Spartak</option><option>U15 Sporting</option>
+              <option>U13 Porto</option><option>U12 Barca</option>
+              <option>U12 Bayern</option><option>U11 Juve</option>
+              <option>U11 Roma</option><option>U11 Wanderers</option>
+              <option>U10 Atletico</option><option>U10 Real</option>
+              <option>U9 Titans</option><option>U8 Inter</option>
+            </optgroup>
+            <optgroup label="Girls Teams">
+              <option>U14 Lynxes</option><option>U13 Jaguars</option>
+              <option>U13 Lions</option><option>U13 Panthers</option>
+              <option>U12 Lionesses</option><option>U11 Bobcats</option>
+              <option>U10 Leopards</option><option>U8 Meerkats</option>
+            </optgroup>
+          </select>
+          <select class="filter-select">
+            <option>All Categories</option>
+            <option>Match Report</option>
+            <option>Club News</option>
+            <option>Tournament</option>
+            <option>Announcement</option>
+          </select>
+        </div>
+
+        <!-- Featured article -->
+        <a href="#" class="news-card" style="margin-bottom:20px; display:block;">
+          <div class="news-card-img" style="height:260px;">
+            <img src="images/news-1.jpg" alt="" onerror="this.style.display='none'">
+            <span>[ Featured photo ]</span>
+          </div>
+          <div class="news-card-body" style="padding:24px;">
+            <div class="news-card-tags">
+              <span class="tag tag-green">U15 Lazio</span>
+              <span class="tag tag-grey">Match Report</span>
+            </div>
+            <div class="news-card-title" style="font-size:20px; line-height:1.3;">U15 Lazio Comeback from the Dead to Snatch a Point</div>
+            <div class="news-card-meta" style="margin-top:8px;">6 days ago · Philip Stanley · 4 min read</div>
+            <p style="font-size:14px; color:var(--grey-700); line-height:1.7; margin-top:12px;">A thrilling second-half comeback saw U15 Lazio rescue a draw in dramatic fashion, with two goals in the final ten minutes...</p>
+          </div>
+        </a>
+
+        <!-- Article list -->
+        <div style="display:flex; flex-direction:column; gap:14px;">
+
+          <a href="#" class="news-list-item">
+            <div class="news-list-thumb"><img src="images/news-2.jpg" alt="" onerror="this.style.display='none'"><span>[ Photo ]</span></div>
+            <div class="news-list-body">
+              <div style="display:flex; gap:6px; margin-bottom:8px; flex-wrap:wrap;">
+                <span class="tag tag-green">U12 Bayern</span>
+                <span class="tag tag-gold">Tournament</span>
+              </div>
+              <div style="font-weight:700; font-size:15px; color:var(--grey-900); line-height:1.4; margin-bottom:6px;">U12 Bayern Reach U12 Shield Final</div>
+              <div style="font-size:12px; color:var(--grey-500);">22 March 2026 · Philip Stanley</div>
+            </div>
+          </a>
+
+          <a href="#" class="news-list-item">
+            <div class="news-list-thumb"><img src="images/news-3.jpg" alt="" onerror="this.style.display='none'"><span>[ Photo ]</span></div>
+            <div class="news-list-body">
+              <div style="display:flex; gap:6px; margin-bottom:8px;">
+                <span class="tag tag-green">U15 Spartak</span>
+                <span class="tag tag-grey">Match Report</span>
+              </div>
+              <div style="font-weight:700; font-size:15px; color:var(--grey-900); line-height:1.4; margin-bottom:6px;">U15 Spartak Progress to League Cup Final</div>
+              <div style="font-size:12px; color:var(--grey-500);">21 March 2026 · Philip Stanley</div>
+            </div>
+          </a>
+
+          <a href="#" class="news-list-item">
+            <div class="news-list-thumb"><span>[ Photo ]</span></div>
+            <div class="news-list-body">
+              <div style="display:flex; gap:6px; margin-bottom:8px;">
+                <span class="tag tag-green">Girls · U13 Jaguars</span>
+                <span class="tag tag-grey">Match Report</span>
+              </div>
+              <div style="font-weight:700; font-size:15px; color:var(--grey-900); line-height:1.4; margin-bottom:6px;">U13 Jaguars Win Bedfordshire Girls League Clash</div>
+              <div style="font-size:12px; color:var(--grey-500);">18 March 2026 · Club Admin</div>
+            </div>
+          </a>
+
+          <a href="#" class="news-list-item">
+            <div class="news-list-thumb"><span>[ Photo ]</span></div>
+            <div class="news-list-body">
+              <div style="display:flex; gap:6px; margin-bottom:8px;">
+                <span class="tag tag-grey">Club News</span>
+              </div>
+              <div style="font-weight:700; font-size:15px; color:var(--grey-900); line-height:1.4; margin-bottom:6px;">Spring Training Schedule — All Teams</div>
+              <div style="font-size:12px; color:var(--grey-500);">10 March 2026 · Philip Stanley</div>
+            </div>
+          </a>
+
+          <a href="#" class="news-list-item">
+            <div class="news-list-thumb"><span>[ Photo ]</span></div>
+            <div class="news-list-body">
+              <div style="display:flex; gap:6px; margin-bottom:8px;">
+                <span class="tag tag-green">Girls · U12 Lionesses</span>
+                <span class="tag tag-grey">Match Report</span>
+              </div>
+              <div style="font-weight:700; font-size:15px; color:var(--grey-900); line-height:1.4; margin-bottom:6px;">Lionesses Secure Top-Half Finish in Beds Girls League</div>
+              <div style="font-size:12px; color:var(--grey-500);">5 March 2026 · Club Admin</div>
+            </div>
+          </a>
+
+          <a href="#" class="news-list-item">
+            <div class="news-list-thumb"><span>[ Photo ]</span></div>
+            <div class="news-list-body">
+              <div style="display:flex; gap:6px; margin-bottom:8px;">
+                <span class="tag tag-gold">Tournament</span>
+                <span class="tag tag-green">U12 Barca</span>
+              </div>
+              <div style="font-weight:700; font-size:15px; color:var(--grey-900); line-height:1.4; margin-bottom:6px;">U12 Barca Impress at Cranfield Tournament</div>
+              <div style="font-size:12px; color:var(--grey-500);">28 February 2026 · Philip Stanley</div>
+            </div>
+          </a>
+
+        </div>
+
+        <!-- Pagination -->
+        <div style="display:flex; justify-content:center; gap:8px; margin-top:32px;">
+          <button class="btn btn-ghost btn-sm" disabled style="opacity:0.4;">← Previous</button>
+          <button class="btn btn-primary btn-sm">1</button>
+          <button class="btn btn-ghost btn-sm">2</button>
+          <button class="btn btn-ghost btn-sm">3</button>
+          <button class="btn btn-ghost btn-sm">Next →</button>
+        </div>
+
+      </div>
+
+      <!-- SIDEBAR -->
+      <div style="display:flex; flex-direction:column; gap:16px;">
+
+        <!-- Browse by team -->
+        <div class="card">
+          <div style="background:var(--green); color:white; padding:12px 16px; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px;">Browse by Team</div>
+          <div style="padding:8px 0;">
+            <div style="padding:6px 16px; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--grey-400); margin-top:4px;">Boys</div>
+            <a class="sidebar-team-link" href="#">U17 Boca Juniors <span class="tag tag-grey" style="font-size:10px;">3</span></a>
+            <a class="sidebar-team-link" href="#">U16 Ajax <span class="tag tag-grey" style="font-size:10px;">2</span></a>
+            <a class="sidebar-team-link" href="#">U15 Borussia <span class="tag tag-grey" style="font-size:10px;">1</span></a>
+            <a class="sidebar-team-link" href="#">U15 Lazio <span class="tag tag-grey" style="font-size:10px;">4</span></a>
+            <a class="sidebar-team-link" href="#">U15 Spartak <span class="tag tag-grey" style="font-size:10px;">5</span></a>
+            <a class="sidebar-team-link" href="#">U12 Bayern <span class="tag tag-grey" style="font-size:10px;">3</span></a>
+            <a class="sidebar-team-link" href="#" style="font-size:12px; color:var(--grey-400);">+ 10 more teams</a>
+            <div style="padding:6px 16px; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--grey-400); margin-top:8px;">Girls</div>
+            <a class="sidebar-team-link" href="#">U14 Lynxes <span class="tag tag-grey" style="font-size:10px;">2</span></a>
+            <a class="sidebar-team-link" href="#">U13 Jaguars <span class="tag tag-grey" style="font-size:10px;">3</span></a>
+            <a class="sidebar-team-link" href="#">U13 Lions <span class="tag tag-grey" style="font-size:10px;">2</span></a>
+            <a class="sidebar-team-link" href="#" style="font-size:12px; color:var(--grey-400);">+ 5 more teams</a>
+          </div>
+        </div>
+
+        <!-- Categories -->
+        <div class="card">
+          <div style="background:var(--grey-900); color:rgba(255,255,255,0.7); padding:12px 16px; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px;">Categories</div>
+          <div style="padding:8px 0;">
+            <a class="sidebar-team-link" href="#">Match Reports <span class="tag tag-grey" style="font-size:10px;">24</span></a>
+            <a class="sidebar-team-link" href="#">Club News <span class="tag tag-grey" style="font-size:10px;">8</span></a>
+            <a class="sidebar-team-link" href="#">Tournaments <span class="tag tag-gold" style="font-size:10px;">6</span></a>
+            <a class="sidebar-team-link" href="#">Announcements <span class="tag tag-grey" style="font-size:10px;">4</span></a>
+          </div>
+        </div>
+
+        <!-- Join CTA -->
+        <div style="background:var(--green); border-radius:6px; padding:24px; text-align:center;">
+          <h3 style="color:white; font-size:20px; margin-bottom:8px;">Want to join?</h3>
+          <p style="color:rgba(255,255,255,0.8); font-size:13px; margin-bottom:16px;">Boys and girls teams from U8 to U17.</p>
+          <a href="join.html" class="btn btn-white" style="width:100%; text-align:center; display:block;">Find Out More</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-brand">
+          <div class="footer-logo"><img src="images/logo.png" alt="LGFC" onerror="this.style.display='none'"></div>
+          <span class="footer-logo-text">Linslade Galaxy FC</span>
+        </div>
+        <p>Greenleas Lower School<br>Derwent Road, Linslade<br>Bedfordshire LU7 2AB</p>
+        <div class="footer-affiliations">
+          <span class="footer-affil-badge">FA Charter Standard</span>
+          <span class="footer-affil-badge">FA Respect</span>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Club</h4><a href="club.html">About Us</a><a href="join.html">Join</a></div>
+      <div class="footer-col"><h4>Football</h4><a href="teams.html">Teams</a><a href="fixtures.html">Fixtures</a><a href="news.html">News</a></div>
+      <div class="footer-col"><h4>Links</h4>
+        <a href="https://fulltime.thefa.com/index.html?league=96486" target="_blank" rel="noopener">MKDDL Leagues</a>
+        <a href="https://fulltime.thefa.com/index.html?league=530158839" target="_blank" rel="noopener">Beds Girls League</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Linslade Galaxy FC.</span>
+      <span><a href="club.html#policies" style="color:rgba(255,255,255,0.4);text-decoration:none;margin-left:16px;">Privacy</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
