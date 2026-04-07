@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Linslade Galaxy FC — photos and videos from across the club.">
+  <title>Media | Linslade Galaxy FC</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 12px;
+    }
+    .media-thumb {
+      aspect-ratio: 4/3;
+      background: var(--grey-100);
+      border-radius: var(--radius);
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+    .media-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .media-thumb:hover img { transform: scale(1.04); }
+    .media-thumb-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--grey-400);
+      font-size: 13px;
+      gap: 8px;
+      border: 2px dashed var(--grey-200);
+      border-radius: var(--radius);
+    }
+    .media-thumb-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.65));
+      color: white;
+      padding: 20px 12px 10px;
+      font-size: 12px;
+      font-weight: 600;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .media-thumb:hover .media-thumb-overlay { opacity: 1; }
+    .album-card {
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      transition: box-shadow 0.2s, transform 0.2s;
+      cursor: pointer;
+    }
+    .album-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+    .album-cover {
+      aspect-ratio: 16/9;
+      background: var(--grey-100);
+      position: relative;
+      overflow: hidden;
+    }
+    .album-cover img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .album-count {
+      position: absolute;
+      bottom: 8px; right: 8px;
+      background: rgba(0,0,0,0.65);
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+    .video-card {
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+    .video-thumb {
+      aspect-ratio: 16/9;
+      background: var(--grey-900);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .video-play {
+      width: 52px; height: 52px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-img"><img src="images/logo.png" alt="LGFC" onerror="this.parentElement.innerHTML='<span style=\'font-size:10px;color:rgba(255,255,255,0.7);font-weight:700;\'>LGFC</span>'"></div>
+      <span class="nav-logo-text">Linslade Galaxy FC</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a><a href="club.html">Club</a><a href="teams.html">Teams</a>
+      <a href="fixtures.html">Fixtures &amp; Results</a><a href="news.html">News</a>
+      <a href="media.html" class="active">Media</a><a href="contact.html">Contact</a>
+      <a href="join.html" class="nav-cta">Join the Club</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="container">
+    <nav class="breadcrumb"><a href="index.html">Home</a> › Media</nav>
+    <h1>Photos &amp; Videos</h1>
+    <p>Matchday galleries, training sessions and club moments</p>
+  </div>
+</div>
+
+<section class="section section-grey">
+  <div class="container">
+
+    <!-- Tab toggle -->
+    <div style="display:flex; gap:8px; margin-bottom:24px;">
+      <button class="btn btn-primary btn-sm" onclick="showMediaTab('photos', this)">Photos</button>
+      <button class="btn btn-ghost btn-sm" onclick="showMediaTab('videos', this)">Videos</button>
+    </div>
+
+    <!-- Filter bar -->
+    <div class="filter-bar" style="margin-bottom:28px;">
+      <span class="filter-label">Filter:</span>
+      <select class="filter-select">
+        <option value="">All Teams</option>
+        <optgroup label="Boys Teams">
+          <option>U17 Boca Juniors</option>
+          <option>U16 Ajax</option>
+          <option>U15 Borussia</option>
+          <option>U15 Lazio</option>
+          <option>U15 Spartak</option>
+          <option>U15 Sporting</option>
+          <option>U13 Porto</option>
+          <option>U12 Barca</option>
+          <option>U12 Bayern</option>
+          <option>U11 Juve</option>
+          <option>U11 Roma</option>
+          <option>U11 Wanderers</option>
+          <option>U10 Atletico</option>
+          <option>U10 Real</option>
+          <option>U9 Titans</option>
+          <option>U8 Inter</option>
+        </optgroup>
+        <optgroup label="Girls Teams">
+          <option>U14 Lynxes</option>
+          <option>U13 Jaguars</option>
+          <option>U13 Lions</option>
+          <option>U13 Panthers</option>
+          <option>U12 Lionesses</option>
+          <option>U11 Bobcats</option>
+          <option>U10 Leopards</option>
+          <option>U8 Meerkats</option>
+        </optgroup>
+      </select>
+      <select class="filter-select">
+        <option value="">All Seasons</option>
+        <option>2025/26</option>
+        <option>2024/25</option>
+      </select>
+    </div>
+
+    <!-- PHOTOS TAB -->
+    <div id="tab-photos">
+
+      <div class="accent-bar"></div>
+      <h2 style="margin-bottom:4px;">Photo Albums</h2>
+      <p style="color:var(--grey-600); font-size:14px; margin-bottom:24px;">Select an album to browse photos from that session.</p>
+
+      <!-- Albums grid -->
+      <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:16px; margin-bottom:40px;">
+
+        <div class="album-card">
+          <div class="album-cover">
+            <div style="width:100%; height:100%; background:var(--grey-200); display:flex; align-items:center; justify-content:center; color:var(--grey-400); font-size:13px;">[ Album cover photo ]</div>
+            <div class="album-count">12 photos</div>
+          </div>
+          <div style="padding:14px 16px;">
+            <div style="font-weight:700; font-size:14px; color:var(--grey-900);">U12 Bayern vs Opponent FC</div>
+            <div style="font-size:12px; color:var(--grey-500); margin-top:3px;">5 April 2026 · MKDDL Match</div>
+          </div>
+        </div>
+
+        <div class="album-card">
+          <div class="album-cover">
+            <div style="width:100%; height:100%; background:var(--grey-200); display:flex; align-items:center; justify-content:center; color:var(--grey-400); font-size:13px;">[ Album cover photo ]</div>
+            <div class="album-count">8 photos</div>
+          </div>
+          <div style="padding:14px 16px;">
+            <div style="font-weight:700; font-size:14px; color:var(--grey-900);">Girls U13 Lions — Training</div>
+            <div style="font-size:12px; color:var(--grey-500); margin-top:3px;">2 April 2026 · Training session</div>
+          </div>
+        </div>
+
+        <div class="album-card">
+          <div class="album-cover">
+            <div style="width:100%; height:100%; background:var(--grey-200); display:flex; align-items:center; justify-content:center; color:var(--grey-400); font-size:13px;">[ Album cover photo ]</div>
+            <div class="album-count">18 photos</div>
+          </div>
+          <div style="padding:14px 16px;">
+            <div style="font-weight:700; font-size:14px; color:var(--grey-900);">End of Season Tournament 2025</div>
+            <div style="font-size:12px; color:var(--grey-500); margin-top:3px;">May 2025 · Tournament</div>
+          </div>
+        </div>
+
+        <div class="album-card">
+          <div class="album-cover">
+            <div style="width:100%; height:100%; background:var(--grey-200); display:flex; align-items:center; justify-content:center; color:var(--grey-400); font-size:13px;">[ Album cover photo ]</div>
+            <div class="album-count">6 photos</div>
+          </div>
+          <div style="padding:14px 16px;">
+            <div style="font-weight:700; font-size:14px; color:var(--grey-900);">U15 Spartak vs Another FC</div>
+            <div style="font-size:12px; color:var(--grey-500); margin-top:3px;">29 March 2026 · MKDDL Match</div>
+          </div>
+        </div>
+
+        <div class="album-card">
+          <div class="album-cover">
+            <div style="width:100%; height:100%; background:var(--grey-200); display:flex; align-items:center; justify-content:center; color:var(--grey-400); font-size:13px;">[ Album cover photo ]</div>
+            <div class="album-count">22 photos</div>
+          </div>
+          <div style="padding:14px 16px;">
+            <div style="font-weight:700; font-size:14px; color:var(--grey-900);">Player of the Month — March 2026</div>
+            <div style="font-size:12px; color:var(--grey-500); margin-top:3px;">March 2026 · Club awards</div>
+          </div>
+        </div>
+
+        <!-- Upload prompt -->
+        <div style="border:2px dashed var(--grey-200); border-radius:var(--radius); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:32px; text-align:center; color:var(--grey-400); min-height:160px;">
+          <div style="font-size:28px; margin-bottom:8px;">📷</div>
+          <div style="font-size:13px; font-weight:600; color:var(--grey-600);">More albums coming</div>
+          <div style="font-size:12px; margin-top:4px;">Upload photos via Pitchero or share with Philip Stanley</div>
+        </div>
+
+      </div>
+
+      <!-- Recent photos strip -->
+      <div class="accent-bar"></div>
+      <h2 style="margin-bottom:4px;">Recent Photos</h2>
+      <p style="color:var(--grey-600); font-size:14px; margin-bottom:20px;">Latest shots from across the club.</p>
+
+      <div class="media-grid">
+        <!-- 8 placeholder thumbnails -->
+        <div class="media-thumb"><div class="media-thumb-placeholder"><span style="font-size:24px;">📷</span><span>Photo</span></div></div>
+        <div class="media-thumb"><div class="media-thumb-placeholder"><span style="font-size:24px;">📷</span><span>Photo</span></div></div>
+        <div class="media-thumb"><div class="media-thumb-placeholder"><span style="font-size:24px;">📷</span><span>Photo</span></div></div>
+        <div class="media-thumb"><div class="media-thumb-placeholder"><span style="font-size:24px;">📷</span><span>Photo</span></div></div>
+        <div class="media-thumb"><div class="media-thumb-placeholder"><span style="font-size:24px;">📷</span><span>Photo</span></div></div>
+        <div class="media-thumb"><div class="media-thumb-placeholder"><span style="font-size:24px;">📷</span><span>Photo</span></div></div>
+        <div class="media-thumb"><div class="media-thumb-placeholder"><span style="font-size:24px;">📷</span><span>Photo</span></div></div>
+        <div class="media-thumb"><div class="media-thumb-placeholder"><span style="font-size:24px;">📷</span><span>Photo</span></div></div>
+      </div>
+
+      <p style="font-size:12px; color:var(--grey-400); margin-top:20px; text-align:center;">Photos are added after each matchday. Share images with the press officer to be featured here.</p>
+    </div>
+
+    <!-- VIDEOS TAB (hidden by default) -->
+    <div id="tab-videos" style="display:none;">
+
+      <div class="accent-bar"></div>
+      <h2 style="margin-bottom:4px;">Videos</h2>
+      <p style="color:var(--grey-600); font-size:14px; margin-bottom:24px;">Match highlights, training clips, and club moments.</p>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(300px, 1fr)); gap:16px;">
+
+        <div class="video-card">
+          <div class="video-thumb">
+            <div class="video-play">▶</div>
+          </div>
+          <div style="padding:14px 16px;">
+            <div style="font-weight:700; font-size:14px; color:var(--grey-900);">U12 Bayern — Match Highlights</div>
+            <div style="font-size:12px; color:var(--grey-500); margin-top:3px;">5 April 2026 · 2 min</div>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-thumb">
+            <div class="video-play">▶</div>
+          </div>
+          <div style="padding:14px 16px;">
+            <div style="font-weight:700; font-size:14px; color:var(--grey-900);">End of Season Tournament Highlights 2025</div>
+            <div style="font-size:12px; color:var(--grey-500); margin-top:3px;">May 2025 · 5 min</div>
+          </div>
+        </div>
+
+        <!-- Placeholder -->
+        <div style="border:2px dashed var(--grey-200); border-radius:var(--radius); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:32px; text-align:center; color:var(--grey-400); min-height:180px;">
+          <div style="font-size:28px; margin-bottom:8px;">🎬</div>
+          <div style="font-size:13px; font-weight:600; color:var(--grey-600);">More videos coming</div>
+          <div style="font-size:12px; margin-top:4px;">Share clips with the press officer or upload to the club YouTube channel</div>
+        </div>
+
+      </div>
+
+      <p style="font-size:12px; color:var(--grey-400); margin-top:24px; text-align:center;">Videos hosted on YouTube. Add the YouTube embed iframe in place of the video-thumb placeholders.</p>
+    </div>
+
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-brand">
+          <div class="footer-logo"><img src="images/logo.png" alt="LGFC" onerror="this.style.display='none'"></div>
+          <span class="footer-logo-text">Linslade Galaxy FC</span>
+        </div>
+        <p>Greenleas Lower School<br>Derwent Road, Linslade<br>Bedfordshire LU7 2AB</p>
+      </div>
+      <div class="footer-col"><h4>Club</h4><a href="club.html">About Us</a><a href="join.html">Join</a></div>
+      <div class="footer-col"><h4>Football</h4><a href="teams.html">Teams</a><a href="fixtures.html">Fixtures</a><a href="news.html">News</a></div>
+      <div class="footer-col"><h4>Links</h4>
+        <a href="https://fulltime.thefa.com/index.html?league=96486" target="_blank" rel="noopener">MKDDL Leagues</a>
+        <a href="https://fulltime.thefa.com/index.html?league=530158839" target="_blank" rel="noopener">Beds Girls League</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Linslade Galaxy FC.</span>
+      <span><a href="club.html#policies" style="color:rgba(255,255,255,0.4);text-decoration:none;margin-left:16px;">Privacy</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+  function showMediaTab(tab, btn) {
+    document.getElementById('tab-photos').style.display = tab === 'photos' ? 'block' : 'none';
+    document.getElementById('tab-videos').style.display  = tab === 'videos'  ? 'block' : 'none';
+    document.querySelectorAll('.btn[onclick^="showMediaTab"]').forEach(b => b.className = 'btn btn-ghost btn-sm');
+    btn.className = 'btn btn-primary btn-sm';
+  }
+</script>
+</body>
+</html>

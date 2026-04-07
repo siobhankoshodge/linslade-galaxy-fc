@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Linslade Galaxy FC — team page.">
+  <title>Team | Linslade Galaxy FC</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .team-tab-nav {
+      display: flex;
+      gap: 4px;
+      border-bottom: 2px solid var(--grey-200);
+      margin-bottom: 28px;
+      overflow-x: auto;
+    }
+    .team-tab-btn {
+      padding: 10px 18px;
+      font-size: 13px;
+      font-weight: 700;
+      border: none;
+      background: none;
+      cursor: pointer;
+      color: var(--grey-500);
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      white-space: nowrap;
+      transition: color 0.15s;
+    }
+    .team-tab-btn:hover { color: var(--grey-900); }
+    .team-tab-btn.active {
+      color: var(--green);
+      border-bottom-color: var(--green);
+    }
+    .stat-pill {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      background: var(--grey-100);
+      border-radius: var(--radius);
+      padding: 12px 20px;
+      min-width: 80px;
+    }
+    .stat-pill-num {
+      font-family: var(--font-display);
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--green);
+      line-height: 1;
+    }
+    .stat-pill-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--grey-500);
+      margin-top: 4px;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-img"><img src="images/logo.png" alt="LGFC" onerror="this.parentElement.innerHTML='<span style=\'font-size:10px;color:rgba(255,255,255,0.7);font-weight:700;\'>LGFC</span>'"></div>
+      <span class="nav-logo-text">Linslade Galaxy FC</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a><a href="club.html">Club</a><a href="teams.html" class="active">Teams</a>
+      <a href="fixtures.html">Fixtures &amp; Results</a><a href="news.html">News</a>
+      <a href="media.html">Media</a><a href="contact.html">Contact</a>
+      <a href="join.html" class="nav-cta">Join the Club</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- Page header — populated by JS from team data -->
+<div class="page-header" id="team-header">
+  <div class="container">
+    <nav class="breadcrumb"><a href="index.html">Home</a> › <a href="teams.html">Teams</a> › <span id="breadcrumb-team">Team</span></nav>
+    <div style="display:flex; align-items:center; gap:20px; flex-wrap:wrap;">
+      <div class="fixture-team-badge" style="width:64px; height:64px; font-size:12px; flex-shrink:0;">LGFC</div>
+      <div>
+        <h1 id="team-name" style="margin-bottom:4px;">Team Name</h1>
+        <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
+          <span id="team-section-tag" class="tag tag-green" style="font-size:11px;"></span>
+          <span id="team-league-tag" class="tag tag-grey" style="font-size:11px;"></span>
+          <span id="team-division-tag" class="tag tag-grey" style="font-size:11px;"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Season stats bar -->
+<div style="background:white; border-bottom:1px solid var(--grey-200); padding:16px 0;" id="stats-bar">
+  <div class="container">
+    <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
+      <div class="stat-pill"><span class="stat-pill-num" id="stat-p">—</span><span class="stat-pill-label">Played</span></div>
+      <div class="stat-pill"><span class="stat-pill-num" id="stat-w">—</span><span class="stat-pill-label">Won</span></div>
+      <div class="stat-pill"><span class="stat-pill-num" id="stat-d">—</span><span class="stat-pill-label">Drawn</span></div>
+      <div class="stat-pill"><span class="stat-pill-num" id="stat-l">—</span><span class="stat-pill-label">Lost</span></div>
+      <div class="stat-pill"><span class="stat-pill-num" id="stat-gf">—</span><span class="stat-pill-label">Goals For</span></div>
+      <div class="stat-pill"><span class="stat-pill-num" id="stat-ga">—</span><span class="stat-pill-label">Against</span></div>
+      <div style="margin-left:auto; font-size:12px; color:var(--grey-400);">2025/26 season · Stats from FA Full-Time when configured</div>
+    </div>
+  </div>
+</div>
+
+<section class="section section-grey">
+  <div class="container">
+
+    <!-- Tab nav -->
+    <div class="team-tab-nav">
+      <button class="team-tab-btn active" onclick="showTeamTab('overview', this)">Overview</button>
+      <button class="team-tab-btn" onclick="showTeamTab('fixtures', this)">Fixtures</button>
+      <button class="team-tab-btn" onclick="showTeamTab('table', this)">League Table</button>
+      <button class="team-tab-btn" onclick="showTeamTab('reports', this)">Match Reports</button>
+      <button class="team-tab-btn" onclick="showTeamTab('gallery', this)">Gallery</button>
+    </div>
+
+    <!-- OVERVIEW TAB -->
+    <div id="tab-overview">
+      <div class="grid-2" style="gap:32px; align-items:start;">
+
+        <div style="display:flex; flex-direction:column; gap:16px;">
+
+          <!-- About this team -->
+          <div class="card" style="padding:24px;">
+            <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--green); margin-bottom:12px;">About This Team</div>
+            <p id="team-description" style="font-size:14px; color:var(--grey-700); line-height:1.8; margin:0;">
+              Team description will appear here. Add team-specific information such as training times, manager name, and any other relevant details.
+            </p>
+          </div>
+
+          <!-- Manager / Coach -->
+          <div class="card" style="padding:20px;">
+            <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--green); margin-bottom:14px;">Staff</div>
+            <div style="display:flex; flex-direction:column; gap:12px;">
+              <div style="display:flex; align-items:center; gap:12px;">
+                <div style="width:36px; height:36px; border-radius:50%; background:var(--green-light); display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0;">👤</div>
+                <div>
+                  <div id="team-manager" style="font-weight:700; font-size:14px; color:var(--grey-900);">Manager TBC</div>
+                  <div style="font-size:12px; color:var(--grey-500);">Manager</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Training -->
+          <div class="card" style="padding:20px;">
+            <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--green); margin-bottom:12px;">Training</div>
+            <div id="team-training" style="font-size:14px; color:var(--grey-700); line-height:1.7;">Training details TBC — contact the club for current schedule.</div>
+          </div>
+
+        </div>
+
+        <!-- Next fixture + latest result -->
+        <div style="display:flex; flex-direction:column; gap:16px;">
+
+          <div class="card" style="overflow:hidden;">
+            <div style="background:var(--green); padding:12px 16px;">
+              <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:rgba(255,255,255,0.7);">Next Fixture</div>
+            </div>
+            <div style="padding:16px;" id="next-fixture">
+              <div style="font-size:13px; color:var(--grey-500); text-align:center; padding:12px 0;">No upcoming fixture scheduled</div>
+            </div>
+          </div>
+
+          <div class="card" style="overflow:hidden;">
+            <div style="background:var(--grey-900); padding:12px 16px;">
+              <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:rgba(255,255,255,0.7);">Last Result</div>
+            </div>
+            <div style="padding:16px;" id="last-result">
+              <div style="font-size:13px; color:var(--grey-500); text-align:center; padding:12px 0;">No results yet this season</div>
+            </div>
+          </div>
+
+          <!-- Photo -->
+          <div style="background:var(--grey-100); border-radius:var(--radius); height:180px; display:flex; align-items:center; justify-content:center; color:var(--grey-400); font-size:13px; border:2px dashed var(--grey-200);">
+            [ Team photo ]
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- FIXTURES TAB -->
+    <div id="tab-fixtures" style="display:none;">
+      <p style="font-size:12px; color:var(--grey-500); margin-bottom:16px;">
+        Fixture data is updated automatically from FA Full-Time once embed codes are configured.
+      </p>
+
+      <!-- FA Full-Time embed placeholder -->
+      <div class="embed-placeholder">
+        <strong>FA Full-Time Fixtures Widget — this team</strong><br>
+        Replace this block with the FA Full-Time JavaScript embed code for this team's division.<br>
+        Get the embed code from FA Full-Time Admin → Media → Code Snippets.<br>
+        <code>lrcode = '[team-specific-code]'</code>
+      </div>
+
+      <!-- Static sample (remove once embed is live) -->
+      <table class="fixture-table" style="margin-top:20px;">
+        <thead>
+          <tr>
+            <th style="width:70px;">Time</th>
+            <th>Home</th>
+            <th style="width:80px; text-align:center;"></th>
+            <th>Away</th>
+            <th style="width:130px;">Competition</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-weight:600; color:var(--grey-500);">—</td>
+            <td style="color:var(--grey-500); font-size:13px;" colspan="4">No upcoming fixtures — check back soon or view on FA Full-Time.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- LEAGUE TABLE TAB -->
+    <div id="tab-table" style="display:none;">
+      <p style="font-size:12px; color:var(--grey-500); margin-bottom:16px;">
+        League table from FA Full-Time. Configure embed codes to show live data.
+      </p>
+
+      <!-- FA Full-Time table embed placeholder -->
+      <div class="embed-placeholder">
+        <strong>FA Full-Time League Table Widget — this team's division</strong><br>
+        Replace this block with the FA Full-Time table embed code.<br>
+        <code>lrcode = '[division-table-code]'</code>
+      </div>
+
+      <!-- Static placeholder table -->
+      <table class="fixture-table" style="margin-top:20px;">
+        <thead>
+          <tr>
+            <th style="width:30px;">#</th>
+            <th>Club</th>
+            <th style="width:40px; text-align:center;">P</th>
+            <th style="width:40px; text-align:center;">W</th>
+            <th style="width:40px; text-align:center;">D</th>
+            <th style="width:40px; text-align:center;">L</th>
+            <th style="width:50px; text-align:center;">GD</th>
+            <th style="width:50px; text-align:center;">Pts</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background:var(--green-light);">
+            <td style="font-weight:700;">—</td>
+            <td style="font-weight:700; color:var(--green);">Linslade Galaxy</td>
+            <td style="text-align:center;">—</td>
+            <td style="text-align:center;">—</td>
+            <td style="text-align:center;">—</td>
+            <td style="text-align:center;">—</td>
+            <td style="text-align:center;">—</td>
+            <td style="text-align:center; font-weight:700;">—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- MATCH REPORTS TAB -->
+    <div id="tab-reports" style="display:none;">
+      <p style="font-size:12px; color:var(--grey-500); margin-bottom:20px;">Match reports for this team.</p>
+      <div style="display:flex; flex-direction:column; gap:12px;" id="team-reports">
+        <div class="card" style="padding:20px; text-align:center; color:var(--grey-400); font-size:14px;">
+          No match reports yet — check the <a href="news.html" style="color:var(--green);">news section</a> for the latest.
+        </div>
+      </div>
+    </div>
+
+    <!-- GALLERY TAB -->
+    <div id="tab-gallery" style="display:none;">
+      <p style="font-size:12px; color:var(--grey-500); margin-bottom:20px;">Photos from this team's matches and training sessions.</p>
+      <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:10px;">
+        <div style="aspect-ratio:4/3; background:var(--grey-100); border-radius:var(--radius); display:flex; align-items:center; justify-content:center; color:var(--grey-400); font-size:13px; border:2px dashed var(--grey-200);">📷</div>
+        <div style="aspect-ratio:4/3; background:var(--grey-100); border-radius:var(--radius); display:flex; align-items:center; justify-content:center; color:var(--grey-400); font-size:13px; border:2px dashed var(--grey-200);">📷</div>
+        <div style="aspect-ratio:4/3; background:var(--grey-100); border-radius:var(--radius); display:flex; align-items:center; justify-content:center; color:var(--grey-400); font-size:13px; border:2px dashed var(--grey-200);">📷</div>
+        <div style="aspect-ratio:4/3; background:var(--grey-100); border-radius:var(--radius); display:flex; align-items:center; justify-content:center; color:var(--grey-400); font-size:13px; border:2px dashed var(--grey-200); opacity:0.4;">📷</div>
+      </div>
+      <p style="font-size:12px; color:var(--grey-400); margin-top:16px;">Photos added as they are submitted. <a href="contact.html" style="color:var(--green);">Send photos to the press officer →</a></p>
+    </div>
+
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-brand">
+          <div class="footer-logo"><img src="images/logo.png" alt="LGFC" onerror="this.style.display='none'"></div>
+          <span class="footer-logo-text">Linslade Galaxy FC</span>
+        </div>
+        <p>Greenleas Lower School<br>Derwent Road, Linslade<br>Bedfordshire LU7 2AB</p>
+      </div>
+      <div class="footer-col"><h4>Club</h4><a href="club.html">About Us</a><a href="join.html">Join</a></div>
+      <div class="footer-col"><h4>Football</h4><a href="teams.html">Teams</a><a href="fixtures.html">Fixtures</a><a href="news.html">News</a></div>
+      <div class="footer-col"><h4>Links</h4>
+        <a href="https://fulltime.thefa.com/index.html?league=96486" target="_blank" rel="noopener">MKDDL Leagues</a>
+        <a href="https://fulltime.thefa.com/index.html?league=530158839" target="_blank" rel="noopener">Beds Girls League</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Linslade Galaxy FC.</span>
+      <span><a href="club.html#policies" style="color:rgba(255,255,255,0.4);text-decoration:none;margin-left:16px;">Privacy</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+  // Team data — add manager/training/description per team as club provides details
+  const teams = {
+    'boca-juniors': { name:'U17 Boca Juniors', section:'Boys', league:'MKDDL', division:'TBC' },
+    'ajax':         { name:'U16 Ajax',         section:'Boys', league:'MKDDL', division:'TBC' },
+    'borussia':     { name:'U15 Borussia',     section:'Boys', league:'MKDDL', division:'TBC' },
+    'lazio':        { name:'U15 Lazio',        section:'Boys', league:'MKDDL', division:'TBC' },
+    'spartak':      { name:'U15 Spartak',      section:'Boys', league:'MKDDL', division:'TBC' },
+    'sporting':     { name:'U15 Sporting',     section:'Boys', league:'MKDDL', division:'TBC' },
+    'porto':        { name:'U13 Porto',        section:'Boys', league:'MKDDL', division:'TBC' },
+    'barca':        { name:'U12 Barca',        section:'Boys', league:'MKDDL', division:'TBC' },
+    'bayern':       { name:'U12 Bayern',       section:'Boys', league:'MKDDL', division:'TBC' },
+    'juve':         { name:'U11 Juve',         section:'Boys', league:'MKDDL', division:'Development' },
+    'roma':         { name:'U11 Roma',         section:'Boys', league:'MKDDL', division:'Development' },
+    'wanderers':    { name:'U11 Wanderers',    section:'Boys', league:'MKDDL', division:'Development' },
+    'atletico':     { name:'U10 Atletico',     section:'Boys', league:'MKDDL', division:'Development' },
+    'real':         { name:'U10 Real',         section:'Boys', league:'MKDDL', division:'Development' },
+    'titans':       { name:'U9 Titans',        section:'Boys', league:'MKDDL', division:'Development' },
+    'inter':        { name:'U8 Inter',         section:'Boys', league:'MKDDL', division:'Development' },
+    'lynxes':       { name:'U14 Lynxes',       section:'Girls', league:'Beds Girls League', division:'Division 2' },
+    'jaguars':      { name:'U13 Jaguars',      section:'Girls', league:'Beds Girls League', division:'Division 1' },
+    'lions':        { name:'U13 Lions',        section:'Girls', league:'Beds Girls League', division:'Division 1' },
+    'panthers':     { name:'U13 Panthers',     section:'Girls', league:'Beds Girls League', division:'Division 3' },
+    'lionesses':    { name:'U12 Lionesses',    section:'Girls', league:'Beds Girls League', division:'Division 3' },
+    'bobcats':      { name:'U11 Bobcats',      section:'Girls', league:'Beds Girls League', division:'Development' },
+    'leopards':     { name:'U10 Leopards',     section:'Girls', league:'Beds Girls League', division:'Development' },
+    'meerkats':     { name:'U8 Meerkats',      section:'Girls', league:'Beds Girls League', division:'Development' },
+  };
+
+  function getParam(key) {
+    return new URLSearchParams(window.location.search).get(key);
+  }
+
+  function showTeamTab(tab, btn) {
+    ['overview','fixtures','table','reports','gallery'].forEach(t => {
+      document.getElementById('tab-' + t).style.display = t === tab ? 'block' : 'none';
+    });
+    document.querySelectorAll('.team-tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+
+  // Populate page from URL param
+  const slug = getParam('team');
+  const team = teams[slug];
+  if (team) {
+    document.title = team.name + ' | Linslade Galaxy FC';
+    document.getElementById('team-name').textContent = team.name;
+    document.getElementById('breadcrumb-team').textContent = team.name;
+    document.getElementById('team-section-tag').textContent = team.section;
+    document.getElementById('team-league-tag').textContent = team.league;
+    document.getElementById('team-division-tag').textContent = team.division;
+    document.getElementById('team-description').textContent =
+      team.name + ' compete in the ' + team.league + (team.division !== 'Development' ? ' ' + team.division : ' development section') +
+      '. Contact the club for training times and manager details.';
+  } else {
+    document.getElementById('team-name').textContent = 'Team Not Found';
+    document.getElementById('breadcrumb-team').textContent = 'Unknown';
+  }
+</script>
+</body>
+</html>
