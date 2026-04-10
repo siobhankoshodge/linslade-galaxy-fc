@@ -986,9 +986,21 @@ h3 { font-size: 24px; }
    RESPONSIVE
    ============================================= */
 @media (max-width: 1024px) {
-  .hero { grid-template-columns: 1fr; }
-  .hero-image { display: none; }
-  .hero-content { padding: 56px 0; }
+  .hero { grid-template-columns: 1fr; position: relative; }
+  .hero-image {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .hero-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.62);
+    z-index: 1;
+  }
+  .hero-image img { opacity: 1; z-index: 0; }
+  .hero-content { padding: 56px 0; position: relative; z-index: 2; }
   .hero-title { font-size: 48px; }
   .grid-4 { grid-template-columns: 1fr 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
