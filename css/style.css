@@ -619,8 +619,19 @@ h3 { font-size: 24px; }
 /* --- PAGE HEADER --- */
 .page-header {
   background: var(--grey-900);
+  background-image: url('../images/herokit.png');
+  background-size: cover;
+  background-position: center 30%;
   padding: 48px 0;
+  position: relative;
 }
+.page-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.72);
+}
+.page-header .container { position: relative; z-index: 1; }
 
 .page-header h1 {
   color: white;

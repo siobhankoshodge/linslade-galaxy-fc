@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Not Found | Linslade Galaxy FC</title>
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .error-section {
+      min-height: calc(100vh - 64px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--grey-900);
+      background-image: url('images/herokit.png');
+      background-size: cover;
+      background-position: center 30%;
+      position: relative;
+    }
+    .error-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.78);
+    }
+    .error-inner {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 40px 24px;
+    }
+    .error-number {
+      font-family: var(--font-display);
+      font-size: 120px;
+      font-weight: 800;
+      color: var(--green);
+      line-height: 1;
+      margin-bottom: 0;
+    }
+    .error-title {
+      font-family: var(--font-display);
+      font-size: 36px;
+      font-weight: 800;
+      color: white;
+      text-transform: uppercase;
+      margin: 8px 0 16px;
+    }
+    .error-sub {
+      font-size: 15px;
+      color: rgba(255,255,255,0.65);
+      max-width: 400px;
+      margin: 0 auto 32px;
+      line-height: 1.7;
+    }
+    .error-links {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-img"><img src="images/logo.png" alt="LGFC" onerror="this.parentElement.innerHTML='<span style=\'font-size:10px;color:rgba(255,255,255,0.7);font-weight:700;\'>LGFC</span>'"></div>
+      <span class="nav-logo-text">Linslade Galaxy FC</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="club.html">Club</a>
+      <a href="teams.html">Teams</a>
+      <a href="fixtures.html">Fixtures &amp; Results</a>
+      <a href="news.html">News</a>
+      <a href="media.html">Media</a>
+      <a href="contact.html">Contact</a>
+      <a href="join.html" class="nav-cta">Join the Club</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="error-section">
+  <div class="error-inner">
+    <div class="error-number">404</div>
+    <h1 class="error-title">Page Not Found</h1>
+    <p class="error-sub">Looks like this one went out of play. The page you're looking for doesn't exist or may have moved.</p>
+    <div class="error-links">
+      <a href="index.html" class="btn btn-primary btn-lg">Back to Home</a>
+      <a href="teams.html" class="btn btn-glass btn-lg">View Teams</a>
+      <a href="contact.html" class="btn btn-glass btn-lg">Contact Us</a>
+    </div>
+  </div>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>

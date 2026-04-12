@@ -5,6 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Linslade Galaxy FC fixtures and results — all teams, all competitions.">
   <title>Fixtures &amp; Results | Linslade Galaxy FC</title>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Linslade Galaxy FC">
+  <meta property="og:title" content="Fixtures and Results | Linslade Galaxy FC">
+  <meta property="og:description" content="Upcoming fixtures and latest results for all Linslade Galaxy FC teams.">
+  <meta property="og:image" content="https://siobhankoshodge.github.io/linslade-galaxy-fc/images/herokit.png">
+  <meta property="og:url" content="https://siobhankoshodge.github.io/linslade-galaxy-fc/fixtures.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Fixtures and Results | Linslade Galaxy FC">
+  <meta name="twitter:description" content="Upcoming fixtures and latest results for all Linslade Galaxy FC teams.">
+  <meta name="twitter:image" content="https://siobhankoshodge.github.io/linslade-galaxy-fc/images/herokit.png">
   <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -120,11 +130,11 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr data-section="boys" data-team="spartak" data-comp="mkddl">
             <td style="font-weight:600;">10:30</td>
             <td>
               <div style="display:flex; align-items:center; gap:10px;">
-                <div class="fixture-team-badge" style="width:28px; height:28px; font-size:8px;">LGFC</div>
+                <div class="fixture-team-badge" style="width:28px; height:28px; font-size:8px;"><img src="images/logo.png" alt="LGFC"/div>
                 <div>
                   <div style="font-weight:700; font-size:13px;">U15 Spartak</div>
                   <span class="tag tag-grey" style="font-size:10px; padding:1px 6px;">Home</span>
@@ -138,11 +148,11 @@
             <td><span class="tag tag-grey" style="font-size:10px;">MKDDL</span></td>
             <td><a href="team.html?team=spartak" class="btn btn-ghost btn-sm" style="font-size:11px; padding:4px 10px;">Details →</a></td>
           </tr>
-          <tr>
+          <tr data-section="girls" data-team="jaguars" data-comp="beds-girls">
             <td style="font-weight:600;">10:00</td>
             <td>
               <div style="display:flex; align-items:center; gap:10px;">
-                <div class="fixture-team-badge" style="width:28px; height:28px; font-size:8px;">LGFC</div>
+                <div class="fixture-team-badge" style="width:28px; height:28px; font-size:8px;"><img src="images/logo.png" alt="LGFC"/div>
                 <div>
                   <div style="font-weight:700; font-size:13px;">Girls U13 Jaguars</div>
                   <span class="tag tag-grey" style="font-size:10px; padding:1px 6px;">Home</span>
@@ -156,11 +166,11 @@
             <td><span class="tag tag-grey" style="font-size:10px;">Beds Girls</span></td>
             <td><a href="team.html?team=jaguars" class="btn btn-ghost btn-sm" style="font-size:11px; padding:4px 10px;">Details →</a></td>
           </tr>
-          <tr>
+          <tr data-section="boys" data-team="bayern" data-comp="mkddl">
             <td style="font-weight:600;">11:00</td>
             <td>
               <div style="display:flex; align-items:center; gap:10px;">
-                <div class="fixture-team-badge" style="width:28px; height:28px; font-size:8px;">LGFC</div>
+                <div class="fixture-team-badge" style="width:28px; height:28px; font-size:8px;"><img src="images/logo.png" alt="LGFC"/div>
                 <div>
                   <div style="font-weight:700; font-size:13px;">U12 Bayern</div>
                   <span class="tag tag-grey" style="font-size:10px; padding:1px 6px;">Away</span>
@@ -207,7 +217,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr data-section="boys" data-team="bayern" data-comp="mkddl">
             <td style="font-size:12px; color:var(--grey-500);">5 Apr</td>
             <td style="font-weight:700; font-size:13px;">Opponent FC U12</td>
             <td style="text-align:center;">
@@ -217,7 +227,7 @@
             <td><span class="tag tag-win">Win</span></td>
             <td><a href="news.html" class="btn btn-ghost btn-sm" style="font-size:11px; padding:4px 10px;">Report →</a></td>
           </tr>
-          <tr>
+          <tr data-section="boys" data-team="spartak" data-comp="mkddl">
             <td style="font-size:12px; color:var(--grey-500);">29 Mar</td>
             <td style="font-weight:700; font-size:13px;">U15 Spartak</td>
             <td style="text-align:center;">
@@ -227,7 +237,7 @@
             <td><span class="tag tag-draw">Draw</span></td>
             <td><a href="news.html" class="btn btn-ghost btn-sm" style="font-size:11px; padding:4px 10px;">Report →</a></td>
           </tr>
-          <tr>
+          <tr data-section="girls" data-team="lions" data-comp="beds-girls">
             <td style="font-size:12px; color:var(--grey-500);">22 Mar</td>
             <td style="font-weight:700; font-size:13px;">Girls U13 Lions</td>
             <td style="text-align:center;">
@@ -277,7 +287,37 @@
     document.querySelectorAll('.btn[onclick^="showTab"]').forEach(b => b.className = 'btn btn-ghost btn-sm');
     btn.className = 'btn btn-primary btn-sm';
   }
-  function applyFilters() { /* Wire to FA Full-Time embed when lrcodes are added */ }
+</script>
+<script>
+  function applyFilters() {
+    var section = document.getElementById('filter-section').value;
+    var team    = document.getElementById('filter-team').value;
+    var comp    = document.getElementById('filter-comp').value;
+
+    // Find every fixture/result table in both tabs
+    var tables = document.querySelectorAll('.fixture-table');
+    tables.forEach(function(table) {
+      var rows = table.querySelectorAll('tbody tr');
+      var anyVisible = false;
+      rows.forEach(function(row) {
+        var matchSection = !section || row.dataset.section === section;
+        var matchTeam    = !team    || row.dataset.team    === team;
+        var matchComp    = !comp    || row.dataset.comp    === comp;
+        var show = matchSection && matchTeam && matchComp;
+        row.style.display = show ? '' : 'none';
+        if (show) anyVisible = true;
+      });
+
+      // Hide the date-group header div that immediately precedes this table
+      var header = table.previousElementSibling;
+      while (header && header.tagName === 'TABLE') {
+        header = header.previousElementSibling;
+      }
+      if (header && header.tagName !== 'TABLE' && header.tagName !== 'P') {
+        header.style.display = anyVisible ? '' : 'none';
+      }
+    });
+  }
 </script>
 </body>
 </html>

@@ -5,6 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Linslade Galaxy FC news — match reports, club announcements and updates from all teams.">
   <title>News | Linslade Galaxy FC</title>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Linslade Galaxy FC">
+  <meta property="og:title" content="News | Linslade Galaxy FC">
+  <meta property="og:description" content="Latest news, match reports and club updates from Linslade Galaxy FC.">
+  <meta property="og:image" content="https://siobhankoshodge.github.io/linslade-galaxy-fc/images/herokit.png">
+  <meta property="og:url" content="https://siobhankoshodge.github.io/linslade-galaxy-fc/news.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="News | Linslade Galaxy FC">
+  <meta name="twitter:description" content="Latest news, match reports and club updates from Linslade Galaxy FC.">
+  <meta name="twitter:image" content="https://siobhankoshodge.github.io/linslade-galaxy-fc/images/herokit.png">
   <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
   <link rel="stylesheet" href="css/style.css">
   <style>
@@ -75,31 +85,31 @@
         <!-- Filter bar -->
         <div class="filter-bar">
           <span class="filter-label">Filter:</span>
-          <select class="filter-select">
-            <option>All Teams</option>
+          <select class="filter-select" id="filter-news-team" onchange="applyNewsFilters()">
+            <option value="">All Teams</option>
             <optgroup label="Boys Teams">
-              <option>U17 Boca Juniors</option><option>U16 Ajax</option>
-              <option>U15 Borussia</option><option>U15 Lazio</option>
-              <option>U15 Spartak</option><option>U15 Sporting</option>
-              <option>U13 Porto</option><option>U12 Barca</option>
-              <option>U12 Bayern</option><option>U11 Juve</option>
-              <option>U11 Roma</option><option>U11 Wanderers</option>
-              <option>U10 Atletico</option><option>U10 Real</option>
-              <option>U9 Titans</option><option>U8 Inter</option>
+              <option value="boca-juniors">U17 Boca Juniors</option><option value="ajax">U16 Ajax</option>
+              <option value="borussia">U15 Borussia</option><option value="lazio">U15 Lazio</option>
+              <option value="spartak">U15 Spartak</option><option value="sporting">U15 Sporting</option>
+              <option value="porto">U13 Porto</option><option value="barca">U12 Barca</option>
+              <option value="bayern">U12 Bayern</option><option value="juve">U11 Juve</option>
+              <option value="roma">U11 Roma</option><option value="wanderers">U11 Wanderers</option>
+              <option value="atletico">U10 Atletico</option><option value="real">U10 Real</option>
+              <option value="titans">U9 Titans</option><option value="inter">U8 Inter</option>
             </optgroup>
             <optgroup label="Girls Teams">
-              <option>U14 Lynxes</option><option>U13 Jaguars</option>
-              <option>U13 Lions</option><option>U13 Panthers</option>
-              <option>U12 Lionesses</option><option>U11 Bobcats</option>
-              <option>U10 Leopards</option><option>U8 Meerkats</option>
+              <option value="lynxes">U14 Lynxes</option><option value="jaguars">U13 Jaguars</option>
+              <option value="lions">U13 Lions</option><option value="panthers">U13 Panthers</option>
+              <option value="lionesses">U12 Lionesses</option><option value="bobcats">U11 Bobcats</option>
+              <option value="leopards">U10 Leopards</option><option value="meerkats">U8 Meerkats</option>
             </optgroup>
           </select>
-          <select class="filter-select">
-            <option>All Categories</option>
-            <option>Match Report</option>
-            <option>Club News</option>
-            <option>Tournament</option>
-            <option>Announcement</option>
+          <select class="filter-select" id="filter-news-cat" onchange="applyNewsFilters()">
+            <option value="">All Categories</option>
+            <option value="match-report">Match Report</option>
+            <option value="club-news">Club News</option>
+            <option value="tournament">Tournament</option>
+            <option value="announcement">Announcement</option>
           </select>
         </div>
 
@@ -123,7 +133,7 @@
         <!-- Article list -->
         <div style="display:flex; flex-direction:column; gap:14px;">
 
-          <a href="#" class="news-list-item">
+          <a href="#" class="news-list-item" data-team="bayern" data-cat="tournament">
             <div class="news-list-thumb"><img src="images/news-2.jpg" alt="" onerror="this.style.display='none'"><span>[ Photo ]</span></div>
             <div class="news-list-body">
               <div style="display:flex; gap:6px; margin-bottom:8px; flex-wrap:wrap;">
@@ -135,7 +145,7 @@
             </div>
           </a>
 
-          <a href="#" class="news-list-item">
+          <a href="#" class="news-list-item" data-team="spartak" data-cat="match-report">
             <div class="news-list-thumb"><img src="images/news-3.jpg" alt="" onerror="this.style.display='none'"><span>[ Photo ]</span></div>
             <div class="news-list-body">
               <div style="display:flex; gap:6px; margin-bottom:8px;">
@@ -147,7 +157,7 @@
             </div>
           </a>
 
-          <a href="#" class="news-list-item">
+          <a href="#" class="news-list-item" data-team="jaguars" data-cat="match-report">
             <div class="news-list-thumb"><span>[ Photo ]</span></div>
             <div class="news-list-body">
               <div style="display:flex; gap:6px; margin-bottom:8px;">
@@ -159,7 +169,7 @@
             </div>
           </a>
 
-          <a href="#" class="news-list-item">
+          <a href="#" class="news-list-item" data-team="" data-cat="club-news">
             <div class="news-list-thumb"><span>[ Photo ]</span></div>
             <div class="news-list-body">
               <div style="display:flex; gap:6px; margin-bottom:8px;">
@@ -170,7 +180,7 @@
             </div>
           </a>
 
-          <a href="#" class="news-list-item">
+          <a href="#" class="news-list-item" data-team="lionesses" data-cat="match-report">
             <div class="news-list-thumb"><span>[ Photo ]</span></div>
             <div class="news-list-body">
               <div style="display:flex; gap:6px; margin-bottom:8px;">
@@ -182,7 +192,7 @@
             </div>
           </a>
 
-          <a href="#" class="news-list-item">
+          <a href="#" class="news-list-item" data-team="barca" data-cat="tournament">
             <div class="news-list-thumb"><span>[ Photo ]</span></div>
             <div class="news-list-body">
               <div style="display:flex; gap:6px; margin-bottom:8px;">
@@ -283,5 +293,17 @@
 </footer>
 
 <script src="js/main.js"></script>
+<script>
+  function applyNewsFilters() {
+    var team = document.getElementById('filter-news-team').value;
+    var cat  = document.getElementById('filter-news-cat').value;
+    var items = document.querySelectorAll('.news-list-item');
+    items.forEach(function(item) {
+      var matchTeam = !team || item.dataset.team === team;
+      var matchCat  = !cat  || item.dataset.cat  === cat;
+      item.style.display = (matchTeam && matchCat) ? '' : 'none';
+    });
+  }
+</script>
 </body>
 </html>
