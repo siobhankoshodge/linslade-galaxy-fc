@@ -375,9 +375,17 @@
     document.getElementById('breadcrumb-team').textContent = team.name;
     document.getElementById('team-section-tag').textContent = team.section;
     document.getElementById('team-league-tag').textContent = team.league;
-    document.getElementById('team-division-tag').textContent = team.division;
+    var divTag = document.getElementById('team-division-tag');
+    if (team.division) {
+      divTag.textContent = team.division;
+    } else {
+      divTag.style.display = 'none';
+    }
+    var divDesc = team.division === 'Development' ? ' development section'
+                : team.division ? ' ' + team.division
+                : '';
     document.getElementById('team-description').textContent =
-      team.name + ' compete in the ' + team.league + (team.division !== 'Development' ? ' ' + team.division : ' development section') +
+      team.name + ' compete in the ' + team.league + divDesc +
       '. Contact the club for training times and manager details.';
   } else {
     document.getElementById('team-name').textContent = 'Team Not Found';
