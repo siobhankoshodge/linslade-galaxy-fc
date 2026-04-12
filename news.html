@@ -88,7 +88,7 @@
           <select class="filter-select" id="filter-news-team" onchange="applyNewsFilters()">
             <option value="">All Teams</option>
             <optgroup label="Boys Teams">
-              <option value="boca-juniors">U17 Boca Juniors</option><option value="ajax">U16 Ajax</option>
+              <option value="ajax">U16 Ajax</option>
               <option value="borussia">U15 Borussia</option><option value="lazio">U15 Lazio</option>
               <option value="spartak">U15 Spartak</option><option value="sporting">U15 Sporting</option>
               <option value="porto">U13 Porto</option><option value="barca">U12 Barca</option>
@@ -114,7 +114,7 @@
         </div>
 
         <!-- Featured article -->
-        <a href="#" class="news-card" style="margin-bottom:20px; display:block;">
+        <a href="#" class="news-card news-filterable" data-team="lazio" data-cat="match-report" style="margin-bottom:20px; display:block;">
           <div class="news-card-img" style="height:260px;">
             <img src="images/news-1.jpg" alt="" onerror="this.style.display='none'">
             <span>[ Featured photo ]</span>
@@ -133,7 +133,7 @@
         <!-- Article list -->
         <div style="display:flex; flex-direction:column; gap:14px;">
 
-          <a href="#" class="news-list-item" data-team="bayern" data-cat="tournament">
+          <a href="#" class="news-list-item news-filterable" data-team="bayern" data-cat="tournament">
             <div class="news-list-thumb"><img src="images/news-2.jpg" alt="" onerror="this.style.display='none'"><span>[ Photo ]</span></div>
             <div class="news-list-body">
               <div style="display:flex; gap:6px; margin-bottom:8px; flex-wrap:wrap;">
@@ -145,7 +145,7 @@
             </div>
           </a>
 
-          <a href="#" class="news-list-item" data-team="spartak" data-cat="match-report">
+          <a href="#" class="news-list-item news-filterable" data-team="spartak" data-cat="match-report">
             <div class="news-list-thumb"><img src="images/news-3.jpg" alt="" onerror="this.style.display='none'"><span>[ Photo ]</span></div>
             <div class="news-list-body">
               <div style="display:flex; gap:6px; margin-bottom:8px;">
@@ -157,7 +157,7 @@
             </div>
           </a>
 
-          <a href="#" class="news-list-item" data-team="jaguars" data-cat="match-report">
+          <a href="#" class="news-list-item news-filterable" data-team="jaguars" data-cat="match-report">
             <div class="news-list-thumb"><span>[ Photo ]</span></div>
             <div class="news-list-body">
               <div style="display:flex; gap:6px; margin-bottom:8px;">
@@ -169,7 +169,7 @@
             </div>
           </a>
 
-          <a href="#" class="news-list-item" data-team="" data-cat="club-news">
+          <a href="#" class="news-list-item news-filterable" data-team="" data-cat="club-news">
             <div class="news-list-thumb"><span>[ Photo ]</span></div>
             <div class="news-list-body">
               <div style="display:flex; gap:6px; margin-bottom:8px;">
@@ -180,7 +180,7 @@
             </div>
           </a>
 
-          <a href="#" class="news-list-item" data-team="lionesses" data-cat="match-report">
+          <a href="#" class="news-list-item news-filterable" data-team="lionesses" data-cat="match-report">
             <div class="news-list-thumb"><span>[ Photo ]</span></div>
             <div class="news-list-body">
               <div style="display:flex; gap:6px; margin-bottom:8px;">
@@ -192,7 +192,7 @@
             </div>
           </a>
 
-          <a href="#" class="news-list-item" data-team="barca" data-cat="tournament">
+          <a href="#" class="news-list-item news-filterable" data-team="barca" data-cat="tournament">
             <div class="news-list-thumb"><span>[ Photo ]</span></div>
             <div class="news-list-body">
               <div style="display:flex; gap:6px; margin-bottom:8px;">
@@ -206,8 +206,16 @@
 
         </div>
 
+        <!-- Empty state -->
+        <div id="news-empty" style="display:none; text-align:center; padding:48px 24px; color:var(--grey-500);">
+          <div style="font-size:36px; margin-bottom:12px;">⚽</div>
+          <div style="font-weight:700; color:var(--grey-700); margin-bottom:6px;">No articles found</div>
+          <div style="font-size:14px;">Try a different team or category filter.</div>
+          <button onclick="clearNewsFilters()" class="btn btn-outline btn-sm" style="margin-top:16px;">Clear filters</button>
+        </div>
+
         <!-- Pagination -->
-        <div style="display:flex; justify-content:center; gap:8px; margin-top:32px;">
+        <div class="news-pagination" style="display:flex; justify-content:center; gap:8px; margin-top:32px;">
           <button class="btn btn-ghost btn-sm" disabled style="opacity:0.4;">← Previous</button>
           <button class="btn btn-primary btn-sm">1</button>
           <button class="btn btn-ghost btn-sm">2</button>
@@ -225,18 +233,17 @@
           <div style="background:var(--green); color:white; padding:12px 16px; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px;">Browse by Team</div>
           <div style="padding:8px 0;">
             <div style="padding:6px 16px; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--grey-400); margin-top:4px;">Boys</div>
-            <a class="sidebar-team-link" href="#">U17 Boca Juniors <span class="tag tag-grey" style="font-size:10px;">3</span></a>
-            <a class="sidebar-team-link" href="#">U16 Ajax <span class="tag tag-grey" style="font-size:10px;">2</span></a>
-            <a class="sidebar-team-link" href="#">U15 Borussia <span class="tag tag-grey" style="font-size:10px;">1</span></a>
-            <a class="sidebar-team-link" href="#">U15 Lazio <span class="tag tag-grey" style="font-size:10px;">4</span></a>
-            <a class="sidebar-team-link" href="#">U15 Spartak <span class="tag tag-grey" style="font-size:10px;">5</span></a>
-            <a class="sidebar-team-link" href="#">U12 Bayern <span class="tag tag-grey" style="font-size:10px;">3</span></a>
-            <a class="sidebar-team-link" href="#" style="font-size:12px; color:var(--grey-400);">+ 10 more teams</a>
+            <a class="sidebar-team-link" href="#" onclick="setNewsTeam('ajax');return false;">U16 Ajax <span class="tag tag-grey" style="font-size:10px;">2</span></a>
+            <a class="sidebar-team-link" href="#" onclick="setNewsTeam('borussia');return false;">U15 Borussia <span class="tag tag-grey" style="font-size:10px;">1</span></a>
+            <a class="sidebar-team-link" href="#" onclick="setNewsTeam('lazio');return false;">U15 Lazio <span class="tag tag-grey" style="font-size:10px;">4</span></a>
+            <a class="sidebar-team-link" href="#" onclick="setNewsTeam('spartak');return false;">U15 Spartak <span class="tag tag-grey" style="font-size:10px;">5</span></a>
+            <a class="sidebar-team-link" href="#" onclick="setNewsTeam('bayern');return false;">U12 Bayern <span class="tag tag-grey" style="font-size:10px;">3</span></a>
+            <a class="sidebar-team-link" href="#" onclick="clearNewsFilters();return false;" style="font-size:12px; color:var(--grey-400);">+ more teams (clear filter)</a>
             <div style="padding:6px 16px; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--grey-400); margin-top:8px;">Girls</div>
-            <a class="sidebar-team-link" href="#">U14 Lynxes <span class="tag tag-grey" style="font-size:10px;">2</span></a>
-            <a class="sidebar-team-link" href="#">U13 Jaguars <span class="tag tag-grey" style="font-size:10px;">3</span></a>
-            <a class="sidebar-team-link" href="#">U13 Lions <span class="tag tag-grey" style="font-size:10px;">2</span></a>
-            <a class="sidebar-team-link" href="#" style="font-size:12px; color:var(--grey-400);">+ 5 more teams</a>
+            <a class="sidebar-team-link" href="#" onclick="setNewsTeam('lynxes');return false;">U14 Lynxes <span class="tag tag-grey" style="font-size:10px;">2</span></a>
+            <a class="sidebar-team-link" href="#" onclick="setNewsTeam('jaguars');return false;">U13 Jaguars <span class="tag tag-grey" style="font-size:10px;">3</span></a>
+            <a class="sidebar-team-link" href="#" onclick="setNewsTeam('lions');return false;">U13 Lions <span class="tag tag-grey" style="font-size:10px;">2</span></a>
+            <a class="sidebar-team-link" href="#" onclick="clearNewsFilters();return false;" style="font-size:12px; color:var(--grey-400);">+ more teams (clear filter)</a>
           </div>
         </div>
 
@@ -244,17 +251,17 @@
         <div class="card">
           <div style="background:var(--grey-900); color:rgba(255,255,255,0.7); padding:12px 16px; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px;">Categories</div>
           <div style="padding:8px 0;">
-            <a class="sidebar-team-link" href="#">Match Reports <span class="tag tag-grey" style="font-size:10px;">24</span></a>
-            <a class="sidebar-team-link" href="#">Club News <span class="tag tag-grey" style="font-size:10px;">8</span></a>
-            <a class="sidebar-team-link" href="#">Tournaments <span class="tag tag-gold" style="font-size:10px;">6</span></a>
-            <a class="sidebar-team-link" href="#">Announcements <span class="tag tag-grey" style="font-size:10px;">4</span></a>
+            <a class="sidebar-team-link" href="#" onclick="setNewsCat('match-report');return false;">Match Reports <span class="tag tag-grey" style="font-size:10px;">24</span></a>
+            <a class="sidebar-team-link" href="#" onclick="setNewsCat('club-news');return false;">Club News <span class="tag tag-grey" style="font-size:10px;">8</span></a>
+            <a class="sidebar-team-link" href="#" onclick="setNewsCat('tournament');return false;">Tournaments <span class="tag tag-gold" style="font-size:10px;">6</span></a>
+            <a class="sidebar-team-link" href="#" onclick="setNewsCat('announcement');return false;">Announcements <span class="tag tag-grey" style="font-size:10px;">4</span></a>
           </div>
         </div>
 
         <!-- Join CTA -->
         <div style="background:var(--green); border-radius:6px; padding:24px; text-align:center;">
           <h3 style="color:white; font-size:20px; margin-bottom:8px;">Want to join?</h3>
-          <p style="color:rgba(255,255,255,0.8); font-size:13px; margin-bottom:16px;">Boys and girls teams from U8 to U17.</p>
+          <p style="color:rgba(255,255,255,0.8); font-size:13px; margin-bottom:16px;">Boys and girls teams from U8 to U16.</p>
           <a href="join.html" class="btn btn-white" style="width:100%; text-align:center; display:block;">Find Out More</a>
         </div>
 
@@ -295,14 +302,44 @@
 <script src="js/main.js"></script>
 <script>
   function applyNewsFilters() {
-    var team = document.getElementById('filter-news-team').value;
-    var cat  = document.getElementById('filter-news-cat').value;
-    var items = document.querySelectorAll('.news-list-item');
+    var team  = document.getElementById('filter-news-team').value;
+    var cat   = document.getElementById('filter-news-cat').value;
+    var items = document.querySelectorAll('.news-filterable');
+    var visibleCount = 0;
+
     items.forEach(function(item) {
       var matchTeam = !team || item.dataset.team === team;
       var matchCat  = !cat  || item.dataset.cat  === cat;
-      item.style.display = (matchTeam && matchCat) ? '' : 'none';
+      var show = matchTeam && matchCat;
+      item.style.display = show ? '' : 'none';
+      if (show) visibleCount++;
     });
+
+    // Show/hide empty state and pagination
+    var empty = document.getElementById('news-empty');
+    var pagination = document.querySelector('.news-pagination');
+    if (empty)      empty.style.display      = visibleCount === 0 ? '' : 'none';
+    if (pagination) pagination.style.display = visibleCount === 0 ? 'none' : '';
+  }
+
+  function setNewsTeam(val) {
+    document.getElementById('filter-news-team').value = val;
+    document.getElementById('filter-news-cat').value  = '';
+    applyNewsFilters();
+    document.querySelector('.filter-bar').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function setNewsCat(val) {
+    document.getElementById('filter-news-cat').value  = val;
+    document.getElementById('filter-news-team').value = '';
+    applyNewsFilters();
+    document.querySelector('.filter-bar').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function clearNewsFilters() {
+    document.getElementById('filter-news-team').value = '';
+    document.getElementById('filter-news-cat').value  = '';
+    applyNewsFilters();
   }
 </script>
 </body>
