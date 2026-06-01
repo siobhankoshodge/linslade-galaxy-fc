@@ -1,1 +1,13 @@
-[]
+[
+  {
+    "id": "fix-meerkats-test",
+    "team": "meerkats",
+    "section": "girls",
+    "date": "2026-06-25",
+    "time": "13:00",
+    "competition": "mkddl",
+    "home": true,
+    "opponent": "Test Club",
+    "venue": "Vandyke"
+  }
+]
