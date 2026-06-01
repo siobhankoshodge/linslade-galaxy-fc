@@ -1232,7 +1232,26 @@ function resultModal(result = null) {
               </select>
             </div>
           </div>
-          <div class="form-group"><label>Report URL <span style="font-weight:400;color:var(--grey-500);">(optional)</span></label><input type="url" id="rm-report" value="${escAttr(r.reportUrl||'')}"></div>
+          <div class="form-group">
+            <label>Match report <span style="font-weight:400;color:var(--grey-500);">(optional)</span></label>
+            ${(() => {
+              const articleOpts = newsData.slice()
+                .sort((a,b) => b.date.localeCompare(a.date))
+                .map(a => {
+                  const val = 'article.html?id=' + a.id;
+                  const sel = r.reportUrl === val ? ' selected' : '';
+                  const lbl = a.date + ' · ' + (a.title.length > 52 ? a.title.slice(0,52)+'…' : a.title);
+                  return `<option value="${escAttr(val)}"${sel}>${escHtml(lbl)}</option>`;
+                }).join('');
+              const isCustom = r.reportUrl && !r.reportUrl.startsWith('article.html?id=');
+              return `<select id="rm-report-select">
+                <option value="">— No report —</option>
+                ${articleOpts}
+                <option value="__custom__"${isCustom ? ' selected' : ''}>External URL…</option>
+              </select>
+              <input type="url" id="rm-report-url" value="${isCustom ? escAttr(r.reportUrl) : ''}" placeholder="https://…" style="margin-top:8px; display:${isCustom ? 'block' : 'none'};">`;
+            })()}
+          </div>
         </div>
         <div class="modal-footer">
           <button class="btn btn-ghost" onclick="closeModal('result-modal')">Cancel</button>
@@ -1245,6 +1264,9 @@ function resultModal(result = null) {
   document.getElementById('rm-home').value    = String(r.home);
   document.getElementById('rm-comp').value    = r.competition;
   document.getElementById('rm-outcome').value = r.outcome;
+  document.getElementById('rm-report-select').addEventListener('change', function() {
+    document.getElementById('rm-report-url').style.display = this.value === '__custom__' ? 'block' : 'none';
+  });
   document.getElementById('rm-save-btn').addEventListener('click', () => saveResultModal(isNew));
 }
 
@@ -1268,7 +1290,10 @@ async function saveResultModal(isNew) {
       goalsFor:     parseInt(document.getElementById('rm-gf').value, 10) || 0,
       goalsAgainst: parseInt(document.getElementById('rm-ga').value, 10) || 0,
       outcome:     document.getElementById('rm-outcome').value,
-      reportUrl:   document.getElementById('rm-report').value.trim()
+      reportUrl:   (() => {
+        const sel = document.getElementById('rm-report-select').value;
+        return sel === '__custom__' ? document.getElementById('rm-report-url').value.trim() : sel;
+      })()
     };
     let arr = [...resultsData];
     if (isNew) {
