@@ -877,8 +877,11 @@ function newsModal(article = null) {
           <div class="form-group"><label>Summary</label><textarea id="nm-summary" rows="2">${escHtml(a.summary)}</textarea></div>
           <div class="form-group"><label>Body</label><textarea id="nm-body" rows="6">${escHtml(a.body)}</textarea></div>
           <div class="form-group">
-            <label>Image filename <span style="font-weight:400;color:var(--grey-500);">(in /images/)</span></label>
-            <input type="text" id="nm-image" value="${escAttr(a.image)}" placeholder="news-team-month.jpg">
+            <label>Article image</label>
+            ${a.image ? `<div id="nm-img-preview" style="margin-bottom:8px;"><img src="../images/${escAttr(a.image)}" alt="" style="max-height:140px;border-radius:4px;border:1px solid var(--grey-200);" onerror="this.style.display='none'"></div>` : '<div id="nm-img-preview"></div>'}
+            <input type="file" id="nm-img-file" accept="image/jpeg,image/png,image/webp,image/gif" style="width:100%;padding:8px 0;font-size:13px;cursor:pointer;">
+            <input type="hidden" id="nm-image" value="${escAttr(a.image)}">
+            <div class="form-hint">${a.image ? `Current: <strong>${escHtml(a.image)}</strong> — upload a new file to replace it.` : 'JPG, PNG or WebP. Keep under 1 MB for fast page loads.'}</div>
           </div>
           <div class="form-group" style="display:flex;align-items:center;gap:8px;">
             <input type="checkbox" id="nm-featured" style="width:auto;" ${a.featured?'checked':''}>
@@ -895,6 +898,23 @@ function newsModal(article = null) {
   document.getElementById('nm-team').value   = a.team;
   document.getElementById('nm-cat').value    = a.category;
   document.getElementById('nm-save-btn').addEventListener('click', () => saveNewsModal(isNew));
+
+  // Live preview when a file is chosen
+  document.getElementById('nm-img-file').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    if (file.size > 5 * 1024 * 1024) {
+      showToast('Image is over 5 MB — please resize it first', 'error');
+      e.target.value = '';
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = ev => {
+      document.getElementById('nm-img-preview').innerHTML =
+        `<img src="${ev.target.result}" alt="" style="max-height:140px;border-radius:4px;border:1px solid var(--grey-200);margin-bottom:8px;">`;
+    };
+    reader.readAsDataURL(file);
+  });
 }
 
 async function saveNewsModal(isNew) {
@@ -907,6 +927,14 @@ async function saveNewsModal(isNew) {
     if (!id)    { showToast('ID is required', 'error'); btn.disabled=false; btn.textContent='Save article'; return; }
     if (!title) { showToast('Title is required', 'error'); btn.disabled=false; btn.textContent='Save article'; return; }
 
+    // Upload image if one was selected
+    let imageName = document.getElementById('nm-image').value.trim();
+    const imgFile = document.getElementById('nm-img-file').files[0];
+    if (imgFile) {
+      btn.textContent = 'Uploading image…';
+      imageName = await uploadImage(imgFile);
+    }
+
     const updated = {
       id,
       title,
@@ -916,7 +944,7 @@ async function saveNewsModal(isNew) {
       author:   document.getElementById('nm-author').value.trim(),
       summary:  document.getElementById('nm-summary').value.trim(),
       body:     document.getElementById('nm-body').value.trim(),
-      image:    document.getElementById('nm-image').value.trim(),
+      image:    imageName,
       featured
     };
 
@@ -1515,6 +1543,54 @@ document.getElementById('embeds-save-btn').addEventListener('click', async () =>
   } catch(e) { showToast(e.message,'error'); }
   btn.disabled = false; btn.textContent = 'Save all';
 });
+
+// ==============================================================
+// IMAGE UPLOAD
+// ==============================================================
+async function uploadImage(file) {
+  // Sanitise filename: lowercase, non-alphanumeric → hyphens, keep extension
+  const ext      = file.name.split('.').pop().toLowerCase().replace('jpg','jpg') ;
+  const base     = file.name.replace(/\.[^.]+$/, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+  const safeName = base + '.' + ext;
+
+  // Read as base64 (strip the data:image/...;base64, prefix)
+  const base64 = await new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload  = e => resolve(e.target.result.split(',')[1]);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+
+  // Check if file already exists in /images/ (need SHA to update)
+  let sha;
+  try {
+    const r = await fetch(`https://api.github.com/repos/${REPO}/contents/images/${safeName}`, {
+      headers: { Authorization: 'token ' + getPAT(), Accept: 'application/vnd.github.v3+json' }
+    });
+    if (r.ok) { const d = await r.json(); sha = d.sha; }
+  } catch(_) { /* new file — no SHA needed */ }
+
+  // Upload
+  const body = { message: `Upload image: ${safeName}`, content: base64, branch: BRANCH };
+  if (sha) body.sha = sha;
+
+  const r = await fetch(`https://api.github.com/repos/${REPO}/contents/images/${safeName}`, {
+    method: 'PUT',
+    headers: {
+      Authorization: 'token ' + getPAT(),
+      Accept: 'application/vnd.github.v3+json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(body)
+  });
+
+  if (!r.ok) {
+    const err = await r.json().catch(() => ({}));
+    throw new Error(err.message || 'Image upload failed: ' + r.status);
+  }
+
+  return safeName;
+}
 
 // ==============================================================
 // HELPERS
