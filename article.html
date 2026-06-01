@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News | Linslade Galaxy FC</title>
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Linslade Galaxy FC">
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .article-body {
+      font-size: 15px;
+      line-height: 1.85;
+      color: var(--grey-700);
+    }
+    .article-body p {
+      margin-bottom: 1.2em;
+    }
+    .article-hero {
+      width: 100%;
+      max-height: 420px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 28px;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-img"><img src="images/logo.png" alt="LGFC" onerror="this.parentElement.innerHTML='<span style=\'font-size:10px;color:rgba(255,255,255,0.7);font-weight:700;\'>LGFC</span>'"></div>
+      <span class="nav-logo-text">Linslade Galaxy FC</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a><a href="club.html">Club</a><a href="teams.html">Teams</a>
+      <a href="fixtures.html">Fixtures &amp; Results</a><a href="news.html" class="active">News</a>
+      <a href="media.html">Media</a><a href="contact.html">Contact</a>
+      <a href="join.html" class="nav-cta">Join the Club</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="page-header" id="article-header">
+  <div class="container">
+    <nav class="breadcrumb"><a href="index.html">Home</a> › <a href="news.html">News</a> › <span id="breadcrumb-title">Article</span></nav>
+    <div id="header-tags" style="display:flex; gap:8px; margin-bottom:10px; flex-wrap:wrap;"></div>
+    <h1 id="article-title" style="margin-bottom:6px;">Loading…</h1>
+    <div id="article-meta" style="font-size:13px; opacity:0.75;"></div>
+  </div>
+</div>
+
+<section class="section" style="background:white;">
+  <div class="container">
+
+    <!-- Loading / error state -->
+    <div id="article-loading" style="text-align:center; padding:60px 0; color:var(--grey-500);">Loading article…</div>
+
+    <!-- Article content (hidden until loaded) -->
+    <div id="article-content" style="display:none;">
+      <div style="max-width:740px; margin:0 auto;">
+        <img id="article-hero" class="article-hero" src="" alt="" style="display:none;">
+        <div id="article-body" class="article-body"></div>
+        <hr style="border:none; border-top:1px solid var(--grey-200); margin:36px 0;">
+        <a href="news.html" style="color:var(--green); font-weight:700; font-size:14px; text-decoration:none;">← Back to all news</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-brand">
+          <div class="footer-logo"><img src="images/logo.png" alt="LGFC" onerror="this.style.display='none'"></div>
+          <span class="footer-logo-text">Linslade Galaxy FC</span>
+        </div>
+        <p>Greenleas Lower School<br>Derwent Road, Linslade<br>Bedfordshire LU7 2AB</p>
+        <div class="footer-affiliations">
+          <span class="footer-affil-badge">FA Charter Standard</span>
+          <span class="footer-affil-badge">FA Respect</span>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Club</h4><a href="club.html">About Us</a><a href="join.html">Join</a></div>
+      <div class="footer-col"><h4>Football</h4><a href="teams.html">Teams</a><a href="fixtures.html">Fixtures</a><a href="news.html">News</a></div>
+      <div class="footer-col"><h4>Links</h4>
+        <a href="https://fulltime.thefa.com/index.html?league=96486" target="_blank" rel="noopener">MKDDL Leagues</a>
+        <a href="https://fulltime.thefa.com/index.html?league=530158839" target="_blank" rel="noopener">Beds Girls League</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Linslade Galaxy FC.</span>
+      <span><a href="club.html#policies" style="color:rgba(255,255,255,0.4);text-decoration:none;margin-left:16px;">Privacy</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+  var TEAM_NAMES = {
+    ajax:'U16 Ajax', borussia:'U15 Borussia', lazio:'U15 Lazio', spartak:'U15 Spartak',
+    sporting:'U15 Sporting', porto:'U13 Porto', barca:'U12 Barca', bayern:'U12 Bayern',
+    juve:'U11 Juve', roma:'U11 Roma', wanderers:'U11 Wanderers', atletico:'U10 Atletico',
+    real:'U10 Real', titans:'U9 Titans', inter:'U8 Inter',
+    lynxes:'U14 Lynxes', jaguars:'U13 Jaguars', lions:'U13 Lions', panthers:'U13 Panthers',
+    lionesses:'U12 Lionesses', bobcats:'U11 Bobcats', leopards:'U10 Leopards', meerkats:'U8 Meerkats'
+  };
+  var GIRLS = ['lynxes','jaguars','lions','panthers','lionesses','bobcats','leopards','meerkats'];
+  var CAT_LABELS = { 'match-report':'Match Report','club-news':'Club News','tournament':'Tournament','announcement':'Announcement' };
+  var CAT_TAGS   = { 'match-report':'tag-grey','club-news':'tag-grey','tournament':'tag-gold','announcement':'tag-grey' };
+
+  function escHtml(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  function fmtDate(d) {
+    return new Date(d + 'T00:00:00').toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' });
+  }
+
+  // Body: split on double newlines to create <p> tags
+  function renderBody(text) {
+    if (!text) return '';
+    return text.split(/\n\n+/).map(function(p) {
+      return '<p>' + escHtml(p.trim()).replace(/\n/g, '<br>') + '</p>';
+    }).join('');
+  }
+
+  var id = new URLSearchParams(window.location.search).get('id');
+
+  if (!id) {
+    document.getElementById('article-loading').innerHTML =
+      '<p>No article specified. <a href="news.html" style="color:var(--green);">Back to news →</a></p>';
+  } else {
+    fetch('data/news.json')
+      .then(function(r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(function(articles) {
+        var a = articles.find(function(x) { return x.id === id; });
+
+        if (!a) {
+          document.getElementById('article-loading').innerHTML =
+            '<p>Article not found. <a href="news.html" style="color:var(--green);">Back to news →</a></p>';
+          return;
+        }
+
+        // Meta tags
+        document.title = a.title + ' | Linslade Galaxy FC';
+
+        // Header
+        document.getElementById('breadcrumb-title').textContent = a.title;
+        document.getElementById('article-title').textContent    = a.title;
+
+        var metaParts = [];
+        if (a.date)   metaParts.push(fmtDate(a.date));
+        if (a.author) metaParts.push(a.author);
+        document.getElementById('article-meta').textContent = metaParts.join(' · ');
+
+        var tags = '';
+        if (a.team) {
+          var prefix = GIRLS.includes(a.team) ? 'Girls · ' : '';
+          tags += '<span class="tag tag-green">' + prefix + escHtml(TEAM_NAMES[a.team]||a.team) + '</span>';
+        }
+        if (a.category) {
+          tags += '<span class="tag ' + (CAT_TAGS[a.category]||'tag-grey') + '">' + escHtml(CAT_LABELS[a.category]||a.category) + '</span>';
+        }
+        document.getElementById('header-tags').innerHTML = tags;
+
+        // Hero image
+        if (a.image) {
+          var hero = document.getElementById('article-hero');
+          hero.src   = 'images/' + a.image;
+          hero.alt   = a.title;
+          hero.style.display = 'block';
+        }
+
+        // Body
+        document.getElementById('article-body').innerHTML = renderBody(a.body || a.summary || '');
+
+        // Show content
+        document.getElementById('article-loading').style.display = 'none';
+        document.getElementById('article-content').style.display = 'block';
+      })
+      .catch(function(e) {
+        document.getElementById('article-loading').innerHTML =
+          '<p style="color:#c0392b;">Could not load article: ' + e.message + '</p>';
+      });
+  }
+</script>
+</body>
+</html>

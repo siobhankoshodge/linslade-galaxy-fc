@@ -333,7 +333,7 @@
         var teamTag  = a.team ? '<span class="tag tag-green">' + (GIRLS.includes(a.team) ? 'Girls · ' : '') + (TEAM_NAMES[a.team]||a.team) + '</span>' : '';
         var catTag   = a.category ? '<span class="tag ' + (CAT_TAGS[a.category]||'tag-grey') + '">' + (CAT_LABELS[a.category]||a.category) + '</span>' : '';
         var imgHtml  = a.image ? '<img src="images/' + escHtml(a.image) + '" alt="' + escHtml(a.title) + '" onerror="this.style.display=\'none\'">' : '';
-        return '<a href="news.html" class="news-card">'
+        return '<a href="article.html?id=' + encodeURIComponent(a.id) + '" class="news-card">'
           + '<div class="news-card-img">' + imgHtml + '<span>' + (a.image ? '' : '[ No photo ]') + '</span></div>'
           + '<div class="news-card-body">'
           + '<div class="news-card-tags">' + teamTag + catTag + '</div>'

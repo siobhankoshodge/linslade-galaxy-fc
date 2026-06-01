@@ -241,7 +241,7 @@
     var img     = a.image
       ? '<img src="images/' + a.image + '" alt="' + a.title + '" onerror="this.style.display=\'none\'">'
       : '';
-    return '<a href="#" class="news-card news-filterable" data-team="' + (a.team||'') + '" data-cat="' + (a.category||'') + '" style="margin-bottom:20px; display:block;">'
+    return '<a href="article.html?id=' + encodeURIComponent(a.id) + '" class="news-card news-filterable" data-team="' + (a.team||'') + '" data-cat="' + (a.category||'') + '" style="margin-bottom:20px; display:block;">'
       + '<div class="news-card-img" style="height:260px;">' + img + '<span>' + (a.image ? '' : '[ No photo ]') + '</span></div>'
       + '<div class="news-card-body" style="padding:24px;">'
       + '<div class="news-card-tags">' + teamTag + catTag + '</div>'
@@ -257,7 +257,7 @@
     var img     = a.image
       ? '<img src="images/' + a.image + '" alt="' + a.title + '" onerror="this.style.display=\'none\'">'
       : '';
-    return '<a href="#" class="news-list-item news-filterable" data-team="' + (a.team||'') + '" data-cat="' + (a.category||'') + '">'
+    return '<a href="article.html?id=' + encodeURIComponent(a.id) + '" class="news-list-item news-filterable" data-team="' + (a.team||'') + '" data-cat="' + (a.category||'') + '">'
       + '<div class="news-list-thumb">' + img + (a.image ? '' : '<span></span>') + '</div>'
       + '<div class="news-list-body">'
       + '<div style="display:flex; gap:6px; margin-bottom:8px; flex-wrap:wrap;">' + teamTag + catTag + '</div>'
