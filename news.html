@@ -113,97 +113,13 @@
           </select>
         </div>
 
-        <!-- Featured article -->
-        <a href="#" class="news-card news-filterable" data-team="lazio" data-cat="match-report" style="margin-bottom:20px; display:block;">
-          <div class="news-card-img" style="height:260px;">
-            <img src="images/news-1.jpg" alt="" onerror="this.style.display='none'">
-            <span>[ Featured photo ]</span>
-          </div>
-          <div class="news-card-body" style="padding:24px;">
-            <div class="news-card-tags">
-              <span class="tag tag-green">U15 Lazio</span>
-              <span class="tag tag-grey">Match Report</span>
-            </div>
-            <div class="news-card-title" style="font-size:20px; line-height:1.3;">U15 Lazio Comeback from the Dead to Snatch a Point</div>
-            <div class="news-card-meta" style="margin-top:8px;">6 days ago · Philip Stanley · 4 min read</div>
-            <p style="font-size:14px; color:var(--grey-700); line-height:1.7; margin-top:12px;">A thrilling second-half comeback saw U15 Lazio rescue a draw in dramatic fashion, with two goals in the final ten minutes...</p>
-          </div>
-        </a>
+        <!-- Dynamic content rendered by JS -->
+        <div id="news-featured"></div>
+        <div id="news-list" style="display:flex; flex-direction:column; gap:14px;"></div>
 
-        <!-- Article list -->
-        <div style="display:flex; flex-direction:column; gap:14px;">
-
-          <a href="#" class="news-list-item news-filterable" data-team="bayern" data-cat="tournament">
-            <div class="news-list-thumb"><img src="images/news-2.jpg" alt="" onerror="this.style.display='none'"><span>[ Photo ]</span></div>
-            <div class="news-list-body">
-              <div style="display:flex; gap:6px; margin-bottom:8px; flex-wrap:wrap;">
-                <span class="tag tag-green">U12 Bayern</span>
-                <span class="tag tag-gold">Tournament</span>
-              </div>
-              <div style="font-weight:700; font-size:15px; color:var(--grey-900); line-height:1.4; margin-bottom:6px;">U12 Bayern Reach U12 Shield Final</div>
-              <div style="font-size:12px; color:var(--grey-500);">22 March 2026 · Philip Stanley</div>
-            </div>
-          </a>
-
-          <a href="#" class="news-list-item news-filterable" data-team="spartak" data-cat="match-report">
-            <div class="news-list-thumb"><img src="images/news-3.jpg" alt="" onerror="this.style.display='none'"><span>[ Photo ]</span></div>
-            <div class="news-list-body">
-              <div style="display:flex; gap:6px; margin-bottom:8px;">
-                <span class="tag tag-green">U15 Spartak</span>
-                <span class="tag tag-grey">Match Report</span>
-              </div>
-              <div style="font-weight:700; font-size:15px; color:var(--grey-900); line-height:1.4; margin-bottom:6px;">U15 Spartak Progress to League Cup Final</div>
-              <div style="font-size:12px; color:var(--grey-500);">21 March 2026 · Philip Stanley</div>
-            </div>
-          </a>
-
-          <a href="#" class="news-list-item news-filterable" data-team="jaguars" data-cat="match-report">
-            <div class="news-list-thumb"><span>[ Photo ]</span></div>
-            <div class="news-list-body">
-              <div style="display:flex; gap:6px; margin-bottom:8px;">
-                <span class="tag tag-green">Girls · U13 Jaguars</span>
-                <span class="tag tag-grey">Match Report</span>
-              </div>
-              <div style="font-weight:700; font-size:15px; color:var(--grey-900); line-height:1.4; margin-bottom:6px;">U13 Jaguars Win Bedfordshire Girls League Clash</div>
-              <div style="font-size:12px; color:var(--grey-500);">18 March 2026 · Club Admin</div>
-            </div>
-          </a>
-
-          <a href="#" class="news-list-item news-filterable" data-team="" data-cat="club-news">
-            <div class="news-list-thumb"><span>[ Photo ]</span></div>
-            <div class="news-list-body">
-              <div style="display:flex; gap:6px; margin-bottom:8px;">
-                <span class="tag tag-grey">Club News</span>
-              </div>
-              <div style="font-weight:700; font-size:15px; color:var(--grey-900); line-height:1.4; margin-bottom:6px;">Spring Training Schedule — All Teams</div>
-              <div style="font-size:12px; color:var(--grey-500);">10 March 2026 · Philip Stanley</div>
-            </div>
-          </a>
-
-          <a href="#" class="news-list-item news-filterable" data-team="lionesses" data-cat="match-report">
-            <div class="news-list-thumb"><span>[ Photo ]</span></div>
-            <div class="news-list-body">
-              <div style="display:flex; gap:6px; margin-bottom:8px;">
-                <span class="tag tag-green">Girls · U12 Lionesses</span>
-                <span class="tag tag-grey">Match Report</span>
-              </div>
-              <div style="font-weight:700; font-size:15px; color:var(--grey-900); line-height:1.4; margin-bottom:6px;">Lionesses Secure Top-Half Finish in Beds Girls League</div>
-              <div style="font-size:12px; color:var(--grey-500);">5 March 2026 · Club Admin</div>
-            </div>
-          </a>
-
-          <a href="#" class="news-list-item news-filterable" data-team="barca" data-cat="tournament">
-            <div class="news-list-thumb"><span>[ Photo ]</span></div>
-            <div class="news-list-body">
-              <div style="display:flex; gap:6px; margin-bottom:8px;">
-                <span class="tag tag-gold">Tournament</span>
-                <span class="tag tag-green">U12 Barca</span>
-              </div>
-              <div style="font-weight:700; font-size:15px; color:var(--grey-900); line-height:1.4; margin-bottom:6px;">U12 Barca Impress at Cranfield Tournament</div>
-              <div style="font-size:12px; color:var(--grey-500);">28 February 2026 · Philip Stanley</div>
-            </div>
-          </a>
-
+        <!-- Loading state -->
+        <div id="news-loading" style="text-align:center; padding:48px 24px; color:var(--grey-500);">
+          <div style="font-size:14px;">Loading articles…</div>
         </div>
 
         <!-- Empty state -->
@@ -214,47 +130,24 @@
           <button onclick="clearNewsFilters()" class="btn btn-outline btn-sm" style="margin-top:16px;">Clear filters</button>
         </div>
 
-        <!-- Pagination -->
-        <div class="news-pagination" style="display:flex; justify-content:center; gap:8px; margin-top:32px;">
-          <button class="btn btn-ghost btn-sm" disabled style="opacity:0.4;">← Previous</button>
-          <button class="btn btn-primary btn-sm">1</button>
-          <button class="btn btn-ghost btn-sm">2</button>
-          <button class="btn btn-ghost btn-sm">3</button>
-          <button class="btn btn-ghost btn-sm">Next →</button>
-        </div>
-
       </div>
 
       <!-- SIDEBAR -->
       <div style="display:flex; flex-direction:column; gap:16px;">
 
-        <!-- Browse by team -->
+        <!-- Browse by team (populated by JS) -->
         <div class="card">
           <div style="background:var(--green); color:white; padding:12px 16px; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px;">Browse by Team</div>
-          <div style="padding:8px 0;">
-            <div style="padding:6px 16px; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--grey-400); margin-top:4px;">Boys</div>
-            <a class="sidebar-team-link" href="#" onclick="setNewsTeam('ajax');return false;">U16 Ajax <span class="tag tag-grey" style="font-size:10px;">2</span></a>
-            <a class="sidebar-team-link" href="#" onclick="setNewsTeam('borussia');return false;">U15 Borussia <span class="tag tag-grey" style="font-size:10px;">1</span></a>
-            <a class="sidebar-team-link" href="#" onclick="setNewsTeam('lazio');return false;">U15 Lazio <span class="tag tag-grey" style="font-size:10px;">4</span></a>
-            <a class="sidebar-team-link" href="#" onclick="setNewsTeam('spartak');return false;">U15 Spartak <span class="tag tag-grey" style="font-size:10px;">5</span></a>
-            <a class="sidebar-team-link" href="#" onclick="setNewsTeam('bayern');return false;">U12 Bayern <span class="tag tag-grey" style="font-size:10px;">3</span></a>
-            <a class="sidebar-team-link" href="#" onclick="clearNewsFilters();return false;" style="font-size:12px; color:var(--grey-400);">+ more teams (clear filter)</a>
-            <div style="padding:6px 16px; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--grey-400); margin-top:8px;">Girls</div>
-            <a class="sidebar-team-link" href="#" onclick="setNewsTeam('lynxes');return false;">U14 Lynxes <span class="tag tag-grey" style="font-size:10px;">2</span></a>
-            <a class="sidebar-team-link" href="#" onclick="setNewsTeam('jaguars');return false;">U13 Jaguars <span class="tag tag-grey" style="font-size:10px;">3</span></a>
-            <a class="sidebar-team-link" href="#" onclick="setNewsTeam('lions');return false;">U13 Lions <span class="tag tag-grey" style="font-size:10px;">2</span></a>
-            <a class="sidebar-team-link" href="#" onclick="clearNewsFilters();return false;" style="font-size:12px; color:var(--grey-400);">+ more teams (clear filter)</a>
+          <div id="sidebar-teams" style="padding:8px 0;">
+            <div style="padding:12px 16px; font-size:13px; color:var(--grey-400);">Loading…</div>
           </div>
         </div>
 
-        <!-- Categories -->
+        <!-- Categories (populated by JS) -->
         <div class="card">
           <div style="background:var(--grey-900); color:rgba(255,255,255,0.7); padding:12px 16px; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px;">Categories</div>
-          <div style="padding:8px 0;">
-            <a class="sidebar-team-link" href="#" onclick="setNewsCat('match-report');return false;">Match Reports <span class="tag tag-grey" style="font-size:10px;">24</span></a>
-            <a class="sidebar-team-link" href="#" onclick="setNewsCat('club-news');return false;">Club News <span class="tag tag-grey" style="font-size:10px;">8</span></a>
-            <a class="sidebar-team-link" href="#" onclick="setNewsCat('tournament');return false;">Tournaments <span class="tag tag-gold" style="font-size:10px;">6</span></a>
-            <a class="sidebar-team-link" href="#" onclick="setNewsCat('announcement');return false;">Announcements <span class="tag tag-grey" style="font-size:10px;">4</span></a>
+          <div id="sidebar-cats" style="padding:8px 0;">
+            <div style="padding:12px 16px; font-size:13px; color:var(--grey-400);">Loading…</div>
           </div>
         </div>
 
@@ -301,6 +194,158 @@
 
 <script src="js/main.js"></script>
 <script>
+  var TEAMS = {
+    boys: {
+      ajax:'U16 Ajax', borussia:'U15 Borussia', lazio:'U15 Lazio', spartak:'U15 Spartak',
+      sporting:'U15 Sporting', porto:'U13 Porto', barca:'U12 Barca', bayern:'U12 Bayern',
+      juve:'U11 Juve', roma:'U11 Roma', wanderers:'U11 Wanderers', atletico:'U10 Atletico',
+      real:'U10 Real', titans:'U9 Titans', inter:'U8 Inter'
+    },
+    girls: {
+      lynxes:'U14 Lynxes', jaguars:'U13 Jaguars', lions:'U13 Lions', panthers:'U13 Panthers',
+      lionesses:'U12 Lionesses', bobcats:'U11 Bobcats', leopards:'U10 Leopards', meerkats:'U8 Meerkats'
+    }
+  };
+
+  var CAT_LABELS = {
+    'match-report':'Match Reports', 'club-news':'Club News',
+    'tournament':'Tournaments', 'announcement':'Announcements'
+  };
+
+  var CAT_TAGS = {
+    'match-report':'tag-grey', 'club-news':'tag-grey',
+    'tournament':'tag-gold', 'announcement':'tag-grey'
+  };
+
+  function teamLabel(slug) {
+    return TEAMS.boys[slug] || TEAMS.girls[slug] || '';
+  }
+
+  function isGirls(slug) { return !!TEAMS.girls[slug]; }
+
+  function relativeDate(dateStr) {
+    var d    = new Date(dateStr);
+    var now  = new Date();
+    var diff = Math.floor((now - d) / 86400000);
+    if (diff === 0) return 'Today';
+    if (diff === 1) return 'Yesterday';
+    if (diff < 7)  return diff + ' days ago';
+    if (diff < 14) return '1 week ago';
+    if (diff < 30) return Math.floor(diff/7) + ' weeks ago';
+    return d.toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' });
+  }
+
+  function renderFeatured(a) {
+    var teamTag = a.team ? '<span class="tag tag-green">' + (isGirls(a.team) ? 'Girls · ' : '') + teamLabel(a.team) + '</span>' : '';
+    var catTag  = a.category ? '<span class="tag ' + (CAT_TAGS[a.category]||'tag-grey') + '">' + (CAT_LABELS[a.category]||a.category) + '</span>' : '';
+    var img     = a.image
+      ? '<img src="images/' + a.image + '" alt="' + a.title + '" onerror="this.style.display=\'none\'">'
+      : '';
+    return '<a href="#" class="news-card news-filterable" data-team="' + (a.team||'') + '" data-cat="' + (a.category||'') + '" style="margin-bottom:20px; display:block;">'
+      + '<div class="news-card-img" style="height:260px;">' + img + '<span>' + (a.image ? '' : '[ No photo ]') + '</span></div>'
+      + '<div class="news-card-body" style="padding:24px;">'
+      + '<div class="news-card-tags">' + teamTag + catTag + '</div>'
+      + '<div class="news-card-title" style="font-size:20px; line-height:1.3;">' + a.title + '</div>'
+      + '<div class="news-card-meta" style="margin-top:8px;">' + relativeDate(a.date) + (a.author ? ' · ' + a.author : '') + '</div>'
+      + (a.summary ? '<p style="font-size:14px; color:var(--grey-700); line-height:1.7; margin-top:12px;">' + a.summary + '</p>' : '')
+      + '</div></a>';
+  }
+
+  function renderListItem(a) {
+    var teamTag = a.team ? '<span class="tag tag-green">' + (isGirls(a.team) ? 'Girls · ' : '') + teamLabel(a.team) + '</span>' : '';
+    var catTag  = a.category ? '<span class="tag ' + (CAT_TAGS[a.category]||'tag-grey') + '">' + (CAT_LABELS[a.category]||a.category) + '</span>' : '';
+    var img     = a.image
+      ? '<img src="images/' + a.image + '" alt="' + a.title + '" onerror="this.style.display=\'none\'">'
+      : '';
+    return '<a href="#" class="news-list-item news-filterable" data-team="' + (a.team||'') + '" data-cat="' + (a.category||'') + '">'
+      + '<div class="news-list-thumb">' + img + (a.image ? '' : '<span></span>') + '</div>'
+      + '<div class="news-list-body">'
+      + '<div style="display:flex; gap:6px; margin-bottom:8px; flex-wrap:wrap;">' + teamTag + catTag + '</div>'
+      + '<div style="font-weight:700; font-size:15px; color:var(--grey-900); line-height:1.4; margin-bottom:6px;">' + a.title + '</div>'
+      + '<div style="font-size:12px; color:var(--grey-500);">' + relativeDate(a.date) + (a.author ? ' · ' + a.author : '') + '</div>'
+      + '</div></a>';
+  }
+
+  function renderSidebar(articles) {
+    // Team counts
+    var teamCounts = {};
+    articles.forEach(function(a) { if (a.team) teamCounts[a.team] = (teamCounts[a.team]||0) + 1; });
+
+    var boysHtml  = '';
+    var girlsHtml = '';
+
+    Object.keys(TEAMS.boys).forEach(function(slug) {
+      var n = teamCounts[slug];
+      if (!n) return;
+      boysHtml += '<a class="sidebar-team-link" href="#" onclick="setNewsTeam(\'' + slug + '\');return false;">'
+        + TEAMS.boys[slug] + ' <span class="tag tag-grey" style="font-size:10px;">' + n + '</span></a>';
+    });
+
+    Object.keys(TEAMS.girls).forEach(function(slug) {
+      var n = teamCounts[slug];
+      if (!n) return;
+      girlsHtml += '<a class="sidebar-team-link" href="#" onclick="setNewsTeam(\'' + slug + '\');return false;">'
+        + TEAMS.girls[slug] + ' <span class="tag tag-grey" style="font-size:10px;">' + n + '</span></a>';
+    });
+
+    var html = '';
+    if (boysHtml) html += '<div style="padding:6px 16px; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--grey-400); margin-top:4px;">Boys</div>' + boysHtml;
+    if (girlsHtml) html += '<div style="padding:6px 16px; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--grey-400); margin-top:8px;">Girls</div>' + girlsHtml;
+    if (!html) html = '<div style="padding:12px 16px; font-size:13px; color:var(--grey-400);">No articles yet</div>';
+
+    document.getElementById('sidebar-teams').innerHTML = html;
+
+    // Category counts
+    var catCounts = {};
+    articles.forEach(function(a) { if (a.category) catCounts[a.category] = (catCounts[a.category]||0) + 1; });
+
+    var catHtml = '';
+    Object.keys(CAT_LABELS).forEach(function(key) {
+      var n = catCounts[key];
+      if (!n) return;
+      catHtml += '<a class="sidebar-team-link" href="#" onclick="setNewsCat(\'' + key + '\');return false;">'
+        + CAT_LABELS[key] + ' <span class="tag ' + (CAT_TAGS[key]||'tag-grey') + '" style="font-size:10px;">' + n + '</span></a>';
+    });
+    if (!catHtml) catHtml = '<div style="padding:12px 16px; font-size:13px; color:var(--grey-400);">No articles yet</div>';
+    document.getElementById('sidebar-cats').innerHTML = catHtml;
+  }
+
+  fetch('data/news.json')
+    .then(function(r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    })
+    .then(function(articles) {
+      document.getElementById('news-loading').style.display = 'none';
+
+      // Sort by date descending
+      articles = articles.slice().sort(function(a, b) { return b.date.localeCompare(a.date); });
+
+      if (!articles.length) {
+        document.getElementById('news-empty').style.display = '';
+        renderSidebar([]);
+        return;
+      }
+
+      // Split featured vs list
+      var featuredIdx = articles.findIndex(function(a) { return a.featured; });
+      if (featuredIdx === -1) featuredIdx = 0;
+
+      var featured  = articles[featuredIdx];
+      var listItems = articles.filter(function(_, i) { return i !== featuredIdx; });
+
+      document.getElementById('news-featured').innerHTML = renderFeatured(featured);
+      document.getElementById('news-list').innerHTML     = listItems.map(renderListItem).join('');
+
+      renderSidebar(articles);
+    })
+    .catch(function(err) {
+      document.getElementById('news-loading').innerHTML =
+        '<div style="text-align:center; padding:48px 24px; color:var(--grey-500);">'
+        + '<div style="font-size:14px; color:#c0392b;">Could not load articles: ' + err.message + '</div>'
+        + '</div>';
+    });
+
   function applyNewsFilters() {
     var team  = document.getElementById('filter-news-team').value;
     var cat   = document.getElementById('filter-news-cat').value;
@@ -315,11 +360,7 @@
       if (show) visibleCount++;
     });
 
-    // Show/hide empty state and pagination
-    var empty = document.getElementById('news-empty');
-    var pagination = document.querySelector('.news-pagination');
-    if (empty)      empty.style.display      = visibleCount === 0 ? '' : 'none';
-    if (pagination) pagination.style.display = visibleCount === 0 ? 'none' : '';
+    document.getElementById('news-empty').style.display = visibleCount === 0 ? '' : 'none';
   }
 
   function setNewsTeam(val) {

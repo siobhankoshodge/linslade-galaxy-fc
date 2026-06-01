@@ -97,29 +97,14 @@
       <div>
         <span class="section-eyebrow">Coming Up</span>
         <h2 class="section-heading" style="margin-bottom:20px;">Next Fixture</h2>
-        <div class="fixture-card">
-          <div class="fixture-card-header upcoming">
-            <span>U15 Spartak · Sunday 12 April 2026</span>
-            <span class="tag" style="background:rgba(255,255,255,0.2); color:white; font-size:10px;">MKDDL</span>
-          </div>
-          <div class="fixture-card-body">
-            <div class="fixture-team">
-              <div class="fixture-team-badge"><img src="images/logo.png" alt="LGFC"></div>
-              <div class="fixture-team-name">Linslade Galaxy<br>U15 Spartak</div>
-              <span class="fixture-team-side">Home</span>
+        <div id="next-fixture-card">
+          <div class="fixture-card">
+            <div class="fixture-card-header upcoming">
+              <span>Loading…</span>
             </div>
-            <div class="fixture-centre-upcoming">
-              <div class="fixture-time">10:30</div>
-              <div class="fixture-vs-label">Kick Off</div>
+            <div class="fixture-card-body" style="justify-content:center; padding:24px; color:var(--grey-400); font-size:13px;">
+              Loading next fixture…
             </div>
-            <div class="fixture-team">
-              <div class="fixture-team-badge" style="background:var(--grey-200); color:var(--grey-500);">OPP</div>
-              <div class="fixture-team-name">Opponent FC<br>U15</div>
-              <span class="fixture-team-side">Away</span>
-            </div>
-          </div>
-          <div class="fixture-card-footer">
-            <span>📍 Greenleas Lower School, Derwent Road, Linslade LU7 2AB</span>
           </div>
         </div>
         <div style="margin-top:12px;">
@@ -131,28 +116,14 @@
       <div>
         <span class="section-eyebrow">Most Recent</span>
         <h2 class="section-heading" style="margin-bottom:20px;">Latest Result</h2>
-        <div class="fixture-card">
-          <div class="fixture-card-header result" style="display:flex;justify-content:space-between;align-items:center;">
-            <span>U12 Bayern · Sat 5 April 2026</span>
-            <span class="tag tag-win">Win</span>
-          </div>
-          <div class="fixture-card-body">
-            <div class="fixture-team">
-              <div class="fixture-team-badge"><img src="images/logo.png" alt="LGFC"></div>
-              <div class="fixture-team-name">Linslade Galaxy<br>U12 Bayern</div>
+        <div id="latest-result-card">
+          <div class="fixture-card">
+            <div class="fixture-card-header result" style="display:flex;justify-content:space-between;align-items:center;">
+              <span>Loading…</span>
             </div>
-            <div style="text-align:center;">
-              <div class="score">3–1</div>
-              <div class="score-label">Full Time</div>
+            <div class="fixture-card-body" style="justify-content:center; padding:24px; color:var(--grey-400); font-size:13px;">
+              Loading latest result…
             </div>
-            <div class="fixture-team">
-              <div class="fixture-team-badge" style="background:var(--grey-200); color:var(--grey-500);">OPP</div>
-              <div class="fixture-team-name">Opponent FC<br>U12</div>
-            </div>
-          </div>
-          <div class="fixture-card-footer">
-            <span>📍 Away · Opponent Ground</span>
-            <a href="news.html" style="color:var(--green); font-weight:700; font-size:12px; text-decoration:none;">Match report →</a>
           </div>
         </div>
         <div style="margin-top:12px;">
@@ -180,53 +151,8 @@
       <a href="news.html" class="btn btn-ghost btn-sm">All News →</a>
     </div>
 
-    <div class="grid-3">
-
-      <a href="news.html" class="news-card">
-        <div class="news-card-img">
-          <img src="images/news-1.jpg" alt="" onerror="this.style.display='none'">
-          <span>[ Match photo ]</span>
-        </div>
-        <div class="news-card-body">
-          <div class="news-card-tags">
-            <span class="tag tag-green">U15 Lazio</span>
-            <span class="tag tag-grey">Match Report</span>
-          </div>
-          <div class="news-card-title">U15 Lazio Comeback from the Dead to Snatch a Point</div>
-          <div class="news-card-meta">6 days ago · Philip Stanley</div>
-        </div>
-      </a>
-
-      <a href="news.html" class="news-card">
-        <div class="news-card-img">
-          <img src="images/news-2.jpg" alt="" onerror="this.style.display='none'">
-          <span>[ Match photo ]</span>
-        </div>
-        <div class="news-card-body">
-          <div class="news-card-tags">
-            <span class="tag tag-green">U12 Bayern</span>
-            <span class="tag tag-gold">Tournament</span>
-          </div>
-          <div class="news-card-title">U12 Bayern Reach U12 Shield Final</div>
-          <div class="news-card-meta">22 March 2026 · Philip Stanley</div>
-        </div>
-      </a>
-
-      <a href="news.html" class="news-card">
-        <div class="news-card-img">
-          <img src="images/news-3.jpg" alt="" onerror="this.style.display='none'">
-          <span>[ Match photo ]</span>
-        </div>
-        <div class="news-card-body">
-          <div class="news-card-tags">
-            <span class="tag tag-green">U15 Spartak</span>
-            <span class="tag tag-grey">Match Report</span>
-          </div>
-          <div class="news-card-title">U15 Spartak Progress to League Cup Final</div>
-          <div class="news-card-meta">21 March 2026 · Philip Stanley</div>
-        </div>
-      </a>
-
+    <div class="grid-3" id="homepage-news">
+      <div style="grid-column:1/-1; text-align:center; padding:24px; color:var(--grey-400); font-size:13px;">Loading news…</div>
     </div>
   </div>
 </section>
@@ -251,20 +177,7 @@
 <div class="sponsors-bar">
   <div class="container">
     <p class="sponsors-label">Club Sponsors</p>
-    <div class="sponsors-logos">
-      <div class="sponsor-logo">
-        <img src="images/calibrE.jpg" alt="Calibre One" onerror="this.outerHTML='<span style=\'font-size:15px;font-weight:700;color:var(--grey-500);\'>Calibre One</span>'">
-      </div>
-      <div class="sponsor-logo">
-        <img src="images/freeflow.jpg" alt="FreeFlow" onerror="this.outerHTML='<span style=\'font-size:14px;font-weight:700;color:var(--grey-500);\'>FreeFlow</span>'">
-      </div>
-      <div class="sponsor-logo">
-        <img src="images/stangate.jpg" alt="Stangate HR" onerror="this.outerHTML='<span style=\'font-size:14px;font-weight:700;color:var(--grey-500);\'>Stangate HR</span>'">
-      </div>
-      <div class="sponsor-logo">
-        <img src="images/gartec.jpg" alt="Gartec" onerror="this.outerHTML='<span style=\'font-size:14px;font-weight:700;color:var(--grey-500);\'>Gartec</span>'">
-      </div>
-    </div>
+    <div class="sponsors-logos" id="sponsors-bar-logos"></div>
   </div>
 </div>
 
@@ -322,5 +235,129 @@
 </footer>
 
 <script src="js/main.js"></script>
+<script>
+(function() {
+  var TEAM_NAMES = {
+    ajax:'U16 Ajax', borussia:'U15 Borussia', lazio:'U15 Lazio', spartak:'U15 Spartak',
+    sporting:'U15 Sporting', porto:'U13 Porto', barca:'U12 Barca', bayern:'U12 Bayern',
+    juve:'U11 Juve', roma:'U11 Roma', wanderers:'U11 Wanderers', atletico:'U10 Atletico',
+    real:'U10 Real', titans:'U9 Titans', inter:'U8 Inter',
+    lynxes:'U14 Lynxes', jaguars:'U13 Jaguars', lions:'U13 Lions', panthers:'U13 Panthers',
+    lionesses:'U12 Lionesses', bobcats:'U11 Bobcats', leopards:'U10 Leopards', meerkats:'U8 Meerkats'
+  };
+  var GIRLS = ['lynxes','jaguars','lions','panthers','lionesses','bobcats','leopards','meerkats'];
+  var CAT_TAGS = { 'match-report':'tag-grey','club-news':'tag-grey','tournament':'tag-gold','announcement':'tag-grey' };
+  var CAT_LABELS = { 'match-report':'Match Report','club-news':'Club News','tournament':'Tournament','announcement':'Announcement' };
+  var COMP = { mkddl:'MKDDL', chiltern:'Chiltern', 'beds-girls':'Beds Girls', cup:'Cup', friendly:'Friendly' };
+
+  function escHtml(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  function fmtDateFull(d) { return new Date(d+'T00:00:00').toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'long',year:'numeric'}); }
+  function relDate(d) {
+    var diff = Math.floor((new Date() - new Date(d+'T00:00:00')) / 86400000);
+    if (diff === 0) return 'Today';
+    if (diff === 1) return 'Yesterday';
+    if (diff < 7)  return diff + ' days ago';
+    return new Date(d+'T00:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
+  }
+
+  var today = new Date().toISOString().slice(0, 10);
+
+  Promise.all([
+    fetch('data/fixtures.json').then(function(r) { return r.json(); }),
+    fetch('data/results.json').then(function(r) { return r.json(); }),
+    fetch('data/news.json').then(function(r) { return r.json(); }),
+    fetch('data/sponsors.json').then(function(r) { return r.json(); })
+  ]).then(function(data) {
+    var fixtures = data[0], results = data[1], news = data[2], sponsors = data[3];
+
+    // --- Next fixture ---
+    var next = fixtures.filter(function(f) { return f.date >= today; })
+      .sort(function(a,b) { return a.date.localeCompare(b.date); })[0];
+    var nfEl = document.getElementById('next-fixture-card');
+    if (next) {
+      var teamName = TEAM_NAMES[next.team] || next.team;
+      nfEl.innerHTML =
+        '<div class="fixture-card">'
+        + '<div class="fixture-card-header upcoming">'
+        + '<span>' + escHtml(teamName) + ' · ' + fmtDateFull(next.date) + '</span>'
+        + '<span class="tag" style="background:rgba(255,255,255,0.2);color:white;font-size:10px;">' + escHtml(COMP[next.competition]||next.competition) + '</span>'
+        + '</div>'
+        + '<div class="fixture-card-body">'
+        + '<div class="fixture-team"><div class="fixture-team-badge"><img src="images/logo.png" alt="LGFC"></div>'
+        + '<div class="fixture-team-name">Linslade Galaxy<br>' + escHtml(teamName) + '</div>'
+        + '<span class="fixture-team-side">' + (next.home ? 'Home' : 'Away') + '</span></div>'
+        + '<div class="fixture-centre-upcoming"><div class="fixture-time">' + (next.time||'TBC') + '</div><div class="fixture-vs-label">Kick Off</div></div>'
+        + '<div class="fixture-team"><div class="fixture-team-badge" style="background:var(--grey-200);color:var(--grey-500);">OPP</div>'
+        + '<div class="fixture-team-name">' + escHtml(next.opponent) + '</div>'
+        + '<span class="fixture-team-side">' + (next.home ? 'Away' : 'Home') + '</span></div>'
+        + '</div>'
+        + (next.venue ? '<div class="fixture-card-footer"><span>📍 ' + escHtml(next.venue) + '</span></div>' : '')
+        + '</div>';
+    } else {
+      nfEl.innerHTML = '<div class="fixture-card"><div class="fixture-card-header upcoming"><span>No fixtures scheduled</span></div>'
+        + '<div class="fixture-card-body" style="justify-content:center;padding:24px;color:var(--grey-400);font-size:13px;">No upcoming fixtures. Check back soon.</div></div>';
+    }
+
+    // --- Latest result ---
+    var last = results.slice().sort(function(a,b) { return b.date.localeCompare(a.date); })[0];
+    var lrEl = document.getElementById('latest-result-card');
+    if (last) {
+      var rTeam = TEAM_NAMES[last.team] || last.team;
+      var rTag  = last.outcome === 'win' ? 'tag-win' : last.outcome === 'draw' ? 'tag-draw' : 'tag-loss';
+      var rLabel = last.outcome.charAt(0).toUpperCase() + last.outcome.slice(1);
+      lrEl.innerHTML =
+        '<div class="fixture-card">'
+        + '<div class="fixture-card-header result" style="display:flex;justify-content:space-between;align-items:center;">'
+        + '<span>' + escHtml(rTeam) + ' · ' + fmtDateFull(last.date) + '</span>'
+        + '<span class="tag ' + rTag + '">' + rLabel + '</span></div>'
+        + '<div class="fixture-card-body">'
+        + '<div class="fixture-team"><div class="fixture-team-badge"><img src="images/logo.png" alt="LGFC"></div>'
+        + '<div class="fixture-team-name">Linslade Galaxy<br>' + escHtml(rTeam) + '</div></div>'
+        + '<div style="text-align:center;"><div class="score">' + last.goalsFor + '–' + last.goalsAgainst + '</div><div class="score-label">Full Time</div></div>'
+        + '<div class="fixture-team"><div class="fixture-team-badge" style="background:var(--grey-200);color:var(--grey-500);">OPP</div>'
+        + '<div class="fixture-team-name">' + escHtml(last.opponent) + '</div></div>'
+        + '</div>'
+        + '<div class="fixture-card-footer"><span>📍 ' + (last.home ? 'Home' : 'Away') + '</span>'
+        + (last.reportUrl ? '<a href="' + escHtml(last.reportUrl) + '" style="color:var(--green);font-weight:700;font-size:12px;text-decoration:none;">Match report →</a>' : '')
+        + '</div></div>';
+    } else {
+      lrEl.innerHTML = '<div class="fixture-card"><div class="fixture-card-header result" style="display:flex;justify-content:space-between;align-items:center;"><span>No results yet</span></div>'
+        + '<div class="fixture-card-body" style="justify-content:center;padding:24px;color:var(--grey-400);font-size:13px;">No results recorded yet this season.</div></div>';
+    }
+
+    // --- Latest 3 news ---
+    var sorted = news.slice().sort(function(a,b) { return b.date.localeCompare(a.date); }).slice(0, 3);
+    var newsEl = document.getElementById('homepage-news');
+    if (sorted.length) {
+      newsEl.innerHTML = sorted.map(function(a) {
+        var teamTag  = a.team ? '<span class="tag tag-green">' + (GIRLS.includes(a.team) ? 'Girls · ' : '') + (TEAM_NAMES[a.team]||a.team) + '</span>' : '';
+        var catTag   = a.category ? '<span class="tag ' + (CAT_TAGS[a.category]||'tag-grey') + '">' + (CAT_LABELS[a.category]||a.category) + '</span>' : '';
+        var imgHtml  = a.image ? '<img src="images/' + escHtml(a.image) + '" alt="' + escHtml(a.title) + '" onerror="this.style.display=\'none\'">' : '';
+        return '<a href="news.html" class="news-card">'
+          + '<div class="news-card-img">' + imgHtml + '<span>' + (a.image ? '' : '[ No photo ]') + '</span></div>'
+          + '<div class="news-card-body">'
+          + '<div class="news-card-tags">' + teamTag + catTag + '</div>'
+          + '<div class="news-card-title">' + escHtml(a.title) + '</div>'
+          + '<div class="news-card-meta">' + relDate(a.date) + (a.author ? ' · ' + escHtml(a.author) : '') + '</div>'
+          + '</div></a>';
+      }).join('');
+    } else {
+      newsEl.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:24px; color:var(--grey-400); font-size:13px;">No news articles yet.</div>';
+    }
+
+    // --- Sponsors bar ---
+    var barEl = document.getElementById('sponsors-bar-logos');
+    if (sponsors.length) {
+      barEl.innerHTML = sponsors.map(function(s) {
+        return '<div class="sponsor-logo">'
+          + (s.url ? '<a href="' + escHtml(s.url) + '" target="_blank" rel="noopener">' : '')
+          + '<img src="' + escHtml(s.logo) + '" alt="' + escHtml(s.name) + '" onerror="this.outerHTML=\'<span style=\\\'font-size:14px;font-weight:700;color:var(--grey-500);\\\'>' + escHtml(s.name) + '</span>\'">'
+          + (s.url ? '</a>' : '')
+          + '</div>';
+      }).join('');
+    }
+  }).catch(function(e) { console.warn('Homepage data error:', e.message); });
+})();
+</script>
 </body>
 </html>

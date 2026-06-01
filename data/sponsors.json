@@ -1,0 +1,6 @@
+[
+  { "id": "calibre-one", "name": "Calibre One", "logo": "images/calibrE.jpg", "url": "" },
+  { "id": "freeflow",    "name": "FreeFlow",    "logo": "images/freeflow.jpg", "url": "" },
+  { "id": "stangate",    "name": "Stangate HR", "logo": "images/stangate.jpg", "url": "" },
+  { "id": "gartec",      "name": "Gartec",      "logo": "images/gartec.jpg",   "url": "" }
+]

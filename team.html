@@ -366,9 +366,12 @@
     btn.classList.add('active');
   }
 
+  function escHtml(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  function fmtDate(d) { return new Date(d+'T00:00:00').toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short',year:'numeric'}); }
+
   // Populate page from URL param
-  const slug = getParam('team');
-  const team = teams[slug];
+  var slug = getParam('team');
+  var team = teams[slug];
   if (team) {
     document.title = team.name + ' | Linslade Galaxy FC';
     document.getElementById('team-name').textContent = team.name;
@@ -376,17 +379,94 @@
     document.getElementById('team-section-tag').textContent = team.section;
     document.getElementById('team-league-tag').textContent = team.league;
     var divTag = document.getElementById('team-division-tag');
-    if (team.division) {
-      divTag.textContent = team.division;
-    } else {
-      divTag.style.display = 'none';
-    }
-    var divDesc = team.division === 'Development' ? ' development section'
-                : team.division ? ' ' + team.division
-                : '';
-    document.getElementById('team-description').textContent =
-      team.name + ' compete in the ' + team.league + divDesc +
-      '. Contact the club for training times and manager details.';
+    if (team.division) { divTag.textContent = team.division; } else { divTag.style.display = 'none'; }
+
+    var today = new Date().toISOString().slice(0, 10);
+
+    // Fetch teams.json, embeds.json, fixtures.json, results.json in parallel
+    Promise.all([
+      fetch('data/teams.json').then(function(r) { return r.json(); }),
+      fetch('data/embeds.json').then(function(r) { return r.json(); }),
+      fetch('data/fixtures.json').then(function(r) { return r.json(); }),
+      fetch('data/results.json').then(function(r) { return r.json(); })
+    ]).then(function(data) {
+      var teamsData  = data[0];
+      var embedsData = data[1];
+      var fixtures   = data[2];
+      var results    = data[3];
+
+      // --- Teams: description, manager, training ---
+      var td = teamsData[slug] || {};
+      var divDesc = team.division === 'Development' ? ' development section'
+                  : team.division ? ' ' + team.division : '';
+      document.getElementById('team-description').textContent =
+        td.description || (team.name + ' compete in the ' + team.league + divDesc + '.');
+      document.getElementById('team-manager').textContent = td.manager || 'TBC';
+      document.getElementById('team-training').textContent = td.training || 'TBC — contact the club for current schedule.';
+
+      // --- Next fixture sidebar ---
+      var upcoming = fixtures.filter(function(f) { return f.team === slug && f.date >= today; })
+        .sort(function(a,b) { return a.date.localeCompare(b.date); });
+      if (upcoming.length) {
+        var f = upcoming[0];
+        var COMP = { mkddl:'MKDDL', chiltern:'Chiltern Youth Sunday', 'beds-girls':'Beds Girls', cup:'Cup', friendly:'Friendly' };
+        document.getElementById('next-fixture').innerHTML =
+          '<div style="font-size:12px;color:var(--grey-500);margin-bottom:8px;">' + fmtDate(f.date) + (f.time ? ' · ' + f.time : '') + '</div>'
+          + '<div style="font-weight:700;font-size:14px;color:var(--grey-900);margin-bottom:4px;">' + escHtml(f.opponent) + '</div>'
+          + '<div style="font-size:12px;color:var(--grey-500);">'
+          + (f.home ? 'Home' : 'Away') + ' · ' + (COMP[f.competition] || f.competition)
+          + (f.venue ? '<br><span style="font-size:11px;">📍 ' + escHtml(f.venue) + '</span>' : '')
+          + '</div>';
+      }
+
+      // --- Last result sidebar ---
+      var pastResults = results.filter(function(r) { return r.team === slug; })
+        .sort(function(a,b) { return b.date.localeCompare(a.date); });
+      if (pastResults.length) {
+        var r = pastResults[0];
+        var outcomeColor = r.outcome === 'win' ? 'var(--green)' : r.outcome === 'draw' ? 'var(--gold-dark,#8a6800)' : '#c0392b';
+        document.getElementById('last-result').innerHTML =
+          '<div style="font-size:12px;color:var(--grey-500);margin-bottom:8px;">' + fmtDate(r.date) + '</div>'
+          + '<div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">'
+          + '<div style="font-size:13px;color:var(--grey-700);">' + escHtml(r.opponent) + '</div>'
+          + '<div style="font-family:var(--font-display);font-size:22px;font-weight:800;">' + r.goalsFor + '–' + r.goalsAgainst + '</div>'
+          + '</div>'
+          + '<div style="margin-top:6px;"><span style="font-size:12px;font-weight:700;color:' + outcomeColor + ';">'
+          + r.outcome.charAt(0).toUpperCase() + r.outcome.slice(1) + '</span>'
+          + ' <span style="font-size:11px;color:var(--grey-500);">· ' + (r.home ? 'Home' : 'Away') + '</span></div>';
+      }
+
+      // --- FA embeds (fixtures tab, table tab) ---
+      var emb = embedsData[slug] || {};
+      var fxEl  = document.querySelector('#tab-fixtures .embed-placeholder');
+      var tbEl  = document.querySelector('#tab-table .embed-placeholder');
+
+      if (fxEl) {
+        if (emb.fixtures) {
+          fxEl.innerHTML = '<strong>FA Full-Time Fixtures Widget</strong><br>'
+            + '<a href="https://fulltime.thefa.com/divisionFixtures.html?division=' + encodeURIComponent(emb.fixtures) + '" target="_blank" rel="noopener" style="color:var(--green);">View fixtures on FA Full-Time ↗</a>'
+            + '<br><span style="font-size:12px;color:var(--grey-500);">lrcode: ' + escHtml(emb.fixtures) + '</span>';
+        } else {
+          fxEl.innerHTML = '<strong>FA Full-Time Fixtures Widget</strong> — code pending from league secretary.';
+        }
+      }
+      if (tbEl) {
+        if (emb.table) {
+          tbEl.innerHTML = '<strong>FA Full-Time League Table Widget</strong><br>'
+            + '<a href="https://fulltime.thefa.com/divisionStandings.html?division=' + encodeURIComponent(emb.table) + '" target="_blank" rel="noopener" style="color:var(--green);">View table on FA Full-Time ↗</a>'
+            + '<br><span style="font-size:12px;color:var(--grey-500);">lrcode: ' + escHtml(emb.table) + '</span>';
+        } else {
+          tbEl.innerHTML = '<strong>FA Full-Time League Table Widget</strong> — code pending from league secretary.';
+        }
+      }
+    }).catch(function(e) {
+      console.warn('Team data load error:', e.message);
+      // Fall back to generic description if fetch fails
+      var divDesc = team.division === 'Development' ? ' development section'
+                  : team.division ? ' ' + team.division : '';
+      document.getElementById('team-description').textContent =
+        team.name + ' compete in the ' + team.league + divDesc + '.';
+    });
   } else {
     document.getElementById('team-name').textContent = 'Team Not Found';
     document.getElementById('breadcrumb-team').textContent = 'Unknown';

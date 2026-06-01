@@ -1,0 +1,1563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin | Linslade Galaxy FC</title>
+  <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green:       #267C37;
+      --green-dark:  #1a5726;
+      --green-light: #E8F5EC;
+      --gold:        #F5C800;
+      --black:       #0D0D0D;
+      --grey-900:    #1A1A1A;
+      --grey-700:    #444444;
+      --grey-500:    #888888;
+      --grey-300:    #CCCCCC;
+      --grey-200:    #E8E8E8;
+      --grey-100:    #F5F5F5;
+      --white:       #FFFFFF;
+      --red:         #c0392b;
+      --red-light:   #fdf0ee;
+      --font-display:'Barlow Condensed', Arial Narrow, sans-serif;
+      --font-body:   'Inter', Arial, sans-serif;
+      --radius:      4px;
+      --shadow-sm:   0 1px 4px rgba(0,0,0,0.08);
+      --shadow-md:   0 4px 16px rgba(0,0,0,0.12);
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--grey-700);
+      background: var(--grey-100);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ---- LOGIN ---- */
+    #login-screen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--green-dark);
+      padding: 24px;
+    }
+
+    .login-card {
+      background: var(--white);
+      border-radius: 8px;
+      box-shadow: var(--shadow-md);
+      padding: 40px;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .login-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .login-brand img {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+    }
+
+    .login-brand-text {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--grey-900);
+      line-height: 1.2;
+    }
+
+    .login-brand-sub {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--grey-500);
+    }
+
+    .login-title {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--grey-900);
+      margin-bottom: 6px;
+    }
+
+    .login-subtitle {
+      font-size: 13px;
+      color: var(--grey-500);
+      margin-bottom: 24px;
+    }
+
+    /* ---- FORM ELEMENTS ---- */
+    label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--grey-700);
+      margin-bottom: 6px;
+    }
+
+    input[type="password"],
+    input[type="text"],
+    input[type="date"],
+    input[type="time"],
+    input[type="url"],
+    input[type="email"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 9px 12px;
+      border: 1.5px solid var(--grey-300);
+      border-radius: var(--radius);
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: var(--grey-900);
+      background: var(--white);
+      transition: border-color 0.15s;
+      outline: none;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--green);
+    }
+
+    textarea { resize: vertical; min-height: 80px; }
+
+    .form-group { margin-bottom: 16px; }
+
+    .form-hint {
+      font-size: 11px;
+      color: var(--grey-500);
+      margin-top: 4px;
+    }
+
+    /* ---- BUTTONS ---- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 18px;
+      border: none;
+      border-radius: var(--radius);
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity 0.15s, background 0.15s;
+      text-decoration: none;
+    }
+
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .btn-primary  { background: var(--green); color: var(--white); }
+    .btn-primary:hover:not(:disabled)  { background: var(--green-dark); }
+    .btn-danger   { background: var(--red);   color: var(--white); }
+    .btn-danger:hover:not(:disabled)   { opacity: 0.85; }
+    .btn-ghost    { background: transparent; color: var(--grey-700); border: 1.5px solid var(--grey-300); }
+    .btn-ghost:hover:not(:disabled)   { background: var(--grey-100); }
+    .btn-sm { padding: 5px 12px; font-size: 12px; }
+    .btn-full { width: 100%; justify-content: center; }
+
+    /* ---- ERROR / INFO ---- */
+    .alert {
+      padding: 10px 14px;
+      border-radius: var(--radius);
+      font-size: 13px;
+      margin-bottom: 16px;
+    }
+    .alert-error { background: var(--red-light); color: var(--red); border: 1px solid #f5c6c1; }
+    .alert-info  { background: var(--green-light); color: var(--green-dark); border: 1px solid #b6dfc0; }
+
+    /* ---- ADMIN SHELL ---- */
+    #admin-shell { min-height: 100vh; display: flex; flex-direction: column; }
+
+    .admin-header {
+      background: var(--green-dark);
+      color: var(--white);
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 52px;
+      flex-shrink: 0;
+    }
+
+    .admin-header-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .admin-header-brand img { width: 30px; height: 30px; object-fit: contain; }
+
+    .admin-header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .btn-logout {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: var(--white);
+      padding: 5px 12px;
+      border-radius: var(--radius);
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn-logout:hover { background: rgba(255,255,255,0.2); }
+
+    /* ---- TABS ---- */
+    .tab-bar {
+      background: var(--white);
+      border-bottom: 2px solid var(--grey-200);
+      padding: 0 24px;
+      display: flex;
+      gap: 2px;
+      overflow-x: auto;
+      flex-shrink: 0;
+    }
+
+    .tab-btn {
+      padding: 12px 18px;
+      font-size: 13px;
+      font-weight: 700;
+      border: none;
+      background: none;
+      cursor: pointer;
+      color: var(--grey-500);
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      white-space: nowrap;
+      transition: color 0.15s;
+    }
+
+    .tab-btn:hover { color: var(--grey-900); }
+
+    .tab-btn.active {
+      color: var(--green);
+      border-bottom-color: var(--green);
+    }
+
+    /* ---- TAB CONTENT ---- */
+    .tab-content { flex: 1; padding: 28px 24px; max-width: 1000px; margin: 0 auto; width: 100%; }
+
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* ---- PANEL HEADER ---- */
+    .panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .panel-title {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--grey-900);
+    }
+
+    /* ---- CARD ---- */
+    .card {
+      background: var(--white);
+      border-radius: 6px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--grey-200);
+    }
+
+    .card-body { padding: 20px; }
+
+    /* ---- TABLE ---- */
+    .data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .data-table th {
+      text-align: left;
+      padding: 10px 14px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--grey-500);
+      border-bottom: 1.5px solid var(--grey-200);
+    }
+    .data-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--grey-200);
+      color: var(--grey-700);
+      vertical-align: middle;
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:hover td { background: var(--grey-100); }
+
+    /* ---- BADGE ---- */
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+    .badge-green { background: var(--green-light); color: var(--green-dark); }
+    .badge-gold  { background: #fff9cc; color: #7a6000; }
+    .badge-grey  { background: var(--grey-200); color: var(--grey-700); }
+
+    /* ---- MODAL ---- */
+    .modal-backdrop {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.5);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 1000;
+      padding: 24px;
+    }
+
+    .modal {
+      background: var(--white);
+      border-radius: 8px;
+      box-shadow: var(--shadow-md);
+      width: 100%;
+      max-width: 560px;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--grey-200);
+    }
+
+    .modal-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--grey-900);
+    }
+
+    .modal-close {
+      background: none; border: none; cursor: pointer;
+      color: var(--grey-500); font-size: 20px; line-height: 1;
+      padding: 4px;
+    }
+    .modal-close:hover { color: var(--grey-900); }
+
+    .modal-body { padding: 20px; }
+
+    .modal-footer {
+      padding: 14px 20px;
+      border-top: 1px solid var(--grey-200);
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    /* ---- TOAST ---- */
+    #toast {
+      position: fixed;
+      bottom: 24px; right: 24px;
+      background: var(--grey-900);
+      color: var(--white);
+      padding: 12px 18px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: var(--shadow-md);
+      z-index: 9999;
+      transform: translateY(80px);
+      opacity: 0;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+      pointer-events: none;
+    }
+    #toast.show { transform: translateY(0); opacity: 1; }
+    #toast.toast-error { background: var(--red); }
+    #toast.toast-success { background: var(--green); }
+
+    /* ---- EMPTY STATE ---- */
+    .empty-state {
+      text-align: center;
+      padding: 48px 20px;
+      color: var(--grey-500);
+    }
+    .empty-state-icon { font-size: 36px; margin-bottom: 12px; }
+    .empty-state-text { font-size: 14px; margin-bottom: 16px; }
+
+    /* ---- DIVIDER ---- */
+    .divider { border: none; border-top: 1px solid var(--grey-200); margin: 20px 0; }
+
+    /* ---- ROW / COLS ---- */
+    .row { display: flex; gap: 16px; }
+    .col { flex: 1; min-width: 0; }
+    .col-auto { flex: 0 0 auto; }
+
+    /* ---- PAT STEP ---- */
+    #pat-step { display: none; }
+  </style>
+</head>
+<body>
+
+<!-- ==================== LOGIN ==================== -->
+<div id="login-screen">
+  <div class="login-card">
+    <div class="login-brand">
+      <img src="../images/logo.png" alt="LGFC" onerror="this.style.display='none'">
+      <div>
+        <div class="login-brand-text">Linslade Galaxy FC</div>
+        <div class="login-brand-sub">Admin Panel</div>
+      </div>
+    </div>
+
+    <!-- Step 1: password -->
+    <div id="password-step">
+      <div class="login-title">Sign in</div>
+      <p class="login-subtitle">Enter the admin password to continue.</p>
+      <div id="login-error" class="alert alert-error" style="display:none;"></div>
+      <div class="form-group">
+        <label for="login-password">Password</label>
+        <input type="password" id="login-password" placeholder="Admin password" autocomplete="current-password">
+      </div>
+      <button class="btn btn-primary btn-full" id="login-btn">Continue</button>
+    </div>
+
+    <!-- Step 2: GitHub PAT -->
+    <div id="pat-step">
+      <div class="login-title">GitHub token</div>
+      <p class="login-subtitle">Enter your GitHub Personal Access Token. This is used to save changes to the site and is kept only in your browser session.</p>
+      <div id="pat-error" class="alert alert-error" style="display:none;"></div>
+      <div class="form-group">
+        <label for="login-pat">Personal Access Token</label>
+        <input type="password" id="login-pat" placeholder="github_pat_...">
+        <div class="form-hint">Needs <strong>Contents: Read &amp; write</strong> permission on the linslade-galaxy-fc repo.</div>
+      </div>
+      <button class="btn btn-primary btn-full" id="pat-btn">Enter admin</button>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== ADMIN SHELL ==================== -->
+<div id="admin-shell" style="display:none;">
+
+  <header class="admin-header">
+    <div class="admin-header-brand">
+      <img src="../images/logo.png" alt="LGFC" onerror="this.style.display='none'">
+      Linslade Galaxy FC — Admin
+    </div>
+    <div class="admin-header-right">
+      <span id="admin-user-label"></span>
+      <button class="btn-logout" id="logout-btn">Sign out</button>
+    </div>
+  </header>
+
+  <nav class="tab-bar">
+    <button class="tab-btn active" data-tab="news">News</button>
+    <button class="tab-btn" data-tab="fixtures">Fixtures</button>
+    <button class="tab-btn" data-tab="results">Results</button>
+    <button class="tab-btn" data-tab="teams">Teams</button>
+    <button class="tab-btn" data-tab="sponsors">Sponsors</button>
+    <button class="tab-btn" data-tab="embeds">FA Embeds</button>
+    <button class="tab-btn" data-tab="settings">Settings</button>
+  </nav>
+
+  <div class="tab-content">
+
+    <!-- NEWS -->
+    <div class="tab-panel active" id="tab-news">
+      <div class="panel-header">
+        <div class="panel-title">News</div>
+        <button class="btn btn-primary" id="news-add-btn">+ Add article</button>
+      </div>
+      <div class="card">
+        <div id="news-list-wrap">
+          <div class="empty-state">
+            <div class="empty-state-icon">📰</div>
+            <div class="empty-state-text">Loading articles…</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FIXTURES -->
+    <div class="tab-panel" id="tab-fixtures">
+      <div class="panel-header">
+        <div class="panel-title">Fixtures</div>
+        <button class="btn btn-primary" id="fixtures-add-btn">+ Add fixture</button>
+      </div>
+      <div class="card">
+        <div id="fixtures-list-wrap">
+          <div class="empty-state">
+            <div class="empty-state-icon">📅</div>
+            <div class="empty-state-text">Loading fixtures…</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESULTS -->
+    <div class="tab-panel" id="tab-results">
+      <div class="panel-header">
+        <div class="panel-title">Results</div>
+        <button class="btn btn-primary" id="results-add-btn">+ Add result</button>
+      </div>
+      <div class="card">
+        <div id="results-list-wrap">
+          <div class="empty-state">
+            <div class="empty-state-icon">🏆</div>
+            <div class="empty-state-text">Loading results…</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TEAMS -->
+    <div class="tab-panel" id="tab-teams">
+      <div class="panel-header">
+        <div class="panel-title">Teams</div>
+      </div>
+      <div class="card">
+        <div id="teams-list-wrap">
+          <div class="empty-state">
+            <div class="empty-state-icon">👕</div>
+            <div class="empty-state-text">Loading teams…</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SPONSORS -->
+    <div class="tab-panel" id="tab-sponsors">
+      <div class="panel-header">
+        <div class="panel-title">Sponsors</div>
+        <button class="btn btn-primary" id="sponsors-add-btn">+ Add sponsor</button>
+      </div>
+      <div class="card">
+        <div id="sponsors-list-wrap">
+          <div class="empty-state">
+            <div class="empty-state-icon">🤝</div>
+            <div class="empty-state-text">Loading sponsors…</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FA EMBEDS -->
+    <div class="tab-panel" id="tab-embeds">
+      <div class="panel-header">
+        <div class="panel-title">FA Embeds</div>
+        <button class="btn btn-primary" id="embeds-save-btn">Save all</button>
+      </div>
+      <div class="alert alert-info" style="margin-bottom:20px;">
+        Enter the FA Full-Time <strong>lrcode</strong> for each team's fixtures, results, and league table widgets. Leave blank if not yet provided by the league secretary.
+      </div>
+      <div class="card">
+        <div id="embeds-list-wrap">
+          <div class="empty-state">
+            <div class="empty-state-icon">📋</div>
+            <div class="empty-state-text">Loading embed codes…</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SETTINGS -->
+    <div class="tab-panel" id="tab-settings">
+      <div class="panel-header">
+        <div class="panel-title">Settings</div>
+      </div>
+
+      <!-- Change password -->
+      <div class="card card-body" style="margin-bottom:20px;">
+        <div style="font-size:15px; font-weight:700; color:var(--grey-900); margin-bottom:4px;">Change admin password</div>
+        <p style="font-size:13px; color:var(--grey-500); margin-bottom:16px;">
+          This updates the password used to log in to this admin panel. The new hash is saved to <code>data/admin-config.json</code> in the repository.
+        </p>
+        <div class="form-group">
+          <label>New password</label>
+          <input type="password" id="pw-new" placeholder="Enter new password">
+        </div>
+        <div class="form-group">
+          <label>Confirm new password</label>
+          <input type="password" id="pw-confirm" placeholder="Confirm new password">
+        </div>
+        <button class="btn btn-primary" id="pw-save-btn">Save new password</button>
+      </div>
+
+      <!-- PAT info -->
+      <div class="card card-body">
+        <div style="font-size:15px; font-weight:700; color:var(--grey-900); margin-bottom:4px;">GitHub token</div>
+        <p style="font-size:13px; color:var(--grey-500); margin-bottom:0;">
+          Your GitHub Personal Access Token is stored only in this browser session and is never saved to the repo.
+          It is cleared automatically when you sign out or close the browser tab.
+          If you need a new token, sign out and enter one at the login screen.
+        </p>
+      </div>
+    </div>
+
+  </div><!-- /tab-content -->
+</div><!-- /admin-shell -->
+
+<!-- ==================== TOAST ==================== -->
+<div id="toast"></div>
+
+<script>
+'use strict';
+
+// ---- CONFIG ----
+const REPO   = 'siobhankoshodge/linslade-galaxy-fc';
+const BRANCH = 'main';
+const API    = `https://api.github.com/repos/${REPO}/contents/data/`;
+
+// ---- UTILS ----
+async function sha256(str) {
+  const buf  = new TextEncoder().encode(str);
+  const hash = await crypto.subtle.digest('SHA-256', buf);
+  return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2,'0')).join('');
+}
+
+function b64encode(str) {
+  return btoa(unescape(encodeURIComponent(str)));
+}
+
+function showToast(msg, type = 'success') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'show toast-' + type;
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => { t.className = ''; }, 3200);
+}
+
+function getPAT() { return sessionStorage.getItem('lgfc_pat') || ''; }
+
+async function githubGet(file) {
+  const r = await fetch(API + file, {
+    headers: { Authorization: 'token ' + getPAT(), Accept: 'application/vnd.github.v3+json' }
+  });
+  if (!r.ok) throw new Error(`GET ${file} failed: ${r.status}`);
+  return r.json();
+}
+
+async function githubPut(file, data, sha, message) {
+  const body = JSON.stringify({
+    message,
+    content: b64encode(JSON.stringify(data, null, 2)),
+    sha,
+    branch: BRANCH
+  });
+  const r = await fetch(API + file, {
+    method: 'PUT',
+    headers: {
+      Authorization: 'token ' + getPAT(),
+      Accept: 'application/vnd.github.v3+json',
+      'Content-Type': 'application/json'
+    },
+    body
+  });
+  if (!r.ok) {
+    const err = await r.json().catch(() => ({}));
+    throw new Error(err.message || `PUT ${file} failed: ${r.status}`);
+  }
+  return r.json();
+}
+
+// ---- LOGIN ----
+const loginScreen = document.getElementById('login-screen');
+const adminShell  = document.getElementById('admin-shell');
+
+document.getElementById('login-btn').addEventListener('click', async () => {
+  const pw  = document.getElementById('login-password').value.trim();
+  const err = document.getElementById('login-error');
+  err.style.display = 'none';
+
+  if (!pw) { err.textContent = 'Please enter the admin password.'; err.style.display = 'block'; return; }
+
+  try {
+    const cfgResp = await fetch('../data/admin-config.json');
+    if (!cfgResp.ok) throw new Error('Could not load admin config.');
+    const cfg  = await cfgResp.json();
+    const hash = await sha256(pw);
+
+    if (hash !== cfg.passwordHash) {
+      err.textContent = 'Incorrect password.';
+      err.style.display = 'block';
+      return;
+    }
+
+    document.getElementById('password-step').style.display = 'none';
+    document.getElementById('pat-step').style.display = 'block';
+  } catch (e) {
+    err.textContent = e.message;
+    err.style.display = 'block';
+  }
+});
+
+document.getElementById('login-password').addEventListener('keydown', e => {
+  if (e.key === 'Enter') document.getElementById('login-btn').click();
+});
+
+document.getElementById('pat-btn').addEventListener('click', async () => {
+  const pat = document.getElementById('login-pat').value.trim();
+  const err = document.getElementById('pat-error');
+  err.style.display = 'none';
+
+  if (!pat) { err.textContent = 'Please enter your GitHub token.'; err.style.display = 'block'; return; }
+
+  // Quick PAT validation — try to read a data file
+  try {
+    const r = await fetch(API + 'news.json', {
+      headers: { Authorization: 'token ' + pat, Accept: 'application/vnd.github.v3+json' }
+    });
+    if (r.status === 401) { err.textContent = 'Invalid token — check it and try again.'; err.style.display = 'block'; return; }
+    if (r.status === 403) { err.textContent = 'Token lacks permission. It needs Contents: Read & write.'; err.style.display = 'block'; return; }
+    if (!r.ok && r.status !== 404) throw new Error('GitHub API error: ' + r.status);
+  } catch (e) {
+    err.textContent = 'Could not reach GitHub API. Check your connection.';
+    err.style.display = 'block';
+    return;
+  }
+
+  sessionStorage.setItem('lgfc_pat', pat);
+  loginScreen.style.display = 'none';
+  adminShell.style.display  = 'flex';
+  initAdmin();
+});
+
+document.getElementById('login-pat').addEventListener('keydown', e => {
+  if (e.key === 'Enter') document.getElementById('pat-btn').click();
+});
+
+document.getElementById('logout-btn').addEventListener('click', () => {
+  sessionStorage.removeItem('lgfc_pat');
+  location.reload();
+});
+
+// ---- TABS ----
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+  });
+});
+
+// ---- TEAM LABELS ----
+const TEAMS = {
+  ajax:'U16 Ajax', borussia:'U15 Borussia', lazio:'U15 Lazio', spartak:'U15 Spartak',
+  sporting:'U15 Sporting', porto:'U13 Porto', barca:'U12 Barca', bayern:'U12 Bayern',
+  juve:'U11 Juve', roma:'U11 Roma', wanderers:'U11 Wanderers', atletico:'U10 Atletico',
+  real:'U10 Real', titans:'U9 Titans', inter:'U8 Inter',
+  lynxes:'U14 Lynxes', jaguars:'U13 Jaguars', lions:'U13 Lions', panthers:'U13 Panthers',
+  lionesses:'U12 Lionesses', bobcats:'U11 Bobcats', leopards:'U10 Leopards', meerkats:'U8 Meerkats'
+};
+
+const TEAM_OPTS = Object.entries(TEAMS).map(([v,l]) => `<option value="${v}">${l}</option>`).join('');
+const SECTION_BOYS  = ['ajax','borussia','lazio','spartak','sporting','porto','barca','bayern','juve','roma','wanderers','atletico','real','titans','inter'];
+const SECTION_GIRLS = ['lynxes','jaguars','lions','panthers','lionesses','bobcats','leopards','meerkats'];
+
+function teamLabel(slug) { return TEAMS[slug] || slug; }
+function sectionOf(slug) { return SECTION_GIRLS.includes(slug) ? 'girls' : 'boys'; }
+
+// ---- INIT ----
+function initAdmin() {
+  loadNews();
+  loadFixtures();
+  loadResults();
+  loadTeams();
+  loadSponsors();
+  loadEmbeds();
+}
+
+// ==============================================================
+// NEWS
+// ==============================================================
+let newsData = [], newsSha = '';
+
+async function loadNews() {
+  try {
+    const r = await githubGet('news.json');
+    newsSha  = r.sha;
+    newsData = JSON.parse(atob(r.content.replace(/\n/g,'')));
+    renderNewsList();
+  } catch(e) {
+    document.getElementById('news-list-wrap').innerHTML =
+      `<div class="empty-state"><div class="empty-state-text" style="color:var(--red);">Failed to load: ${e.message}</div></div>`;
+  }
+}
+
+function renderNewsList() {
+  const wrap = document.getElementById('news-list-wrap');
+  if (!newsData.length) {
+    wrap.innerHTML = `<div class="empty-state"><div class="empty-state-icon">📰</div><div class="empty-state-text">No articles yet. Click <strong>+ Add article</strong> to create one.</div></div>`;
+    return;
+  }
+  const rows = [...newsData].sort((a,b) => b.date.localeCompare(a.date)).map(a => `
+    <tr>
+      <td>
+        <div style="font-weight:600;color:var(--grey-900);">${escHtml(a.title)}</div>
+        <div style="font-size:11px;color:var(--grey-500);margin-top:2px;">${a.id}</div>
+      </td>
+      <td>${a.team ? teamLabel(a.team) : '<span style="color:var(--grey-400);">—</span>'}</td>
+      <td><span class="badge badge-grey">${escHtml(a.category)}</span></td>
+      <td>${a.date}</td>
+      <td>${a.featured ? '<span class="badge badge-gold">Featured</span>' : ''}</td>
+      <td style="text-align:right;white-space:nowrap;">
+        <button class="btn btn-ghost btn-sm" onclick="editNews('${escAttr(a.id)}')">Edit</button>
+        <button class="btn btn-danger btn-sm" style="margin-left:4px;" onclick="deleteNews('${escAttr(a.id)}')">Delete</button>
+      </td>
+    </tr>`).join('');
+  wrap.innerHTML = `<table class="data-table">
+    <thead><tr><th>Title</th><th>Team</th><th>Category</th><th>Date</th><th>Featured</th><th></th></tr></thead>
+    <tbody>${rows}</tbody>
+  </table>`;
+}
+
+function newsModal(article = null) {
+  const isNew = !article;
+  const a = article || { id:'', title:'', team:'', category:'match-report', date:'', author:'Philip Stanley', summary:'', body:'', image:'', featured:false };
+  const html = `
+    <div class="modal-backdrop" id="news-modal">
+      <div class="modal">
+        <div class="modal-header">
+          <div class="modal-title">${isNew ? 'Add article' : 'Edit article'}</div>
+          <button class="modal-close" onclick="closeModal('news-modal')">✕</button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label>ID <span style="font-weight:400;color:var(--grey-500);">(URL-safe slug)</span></label>
+            <input type="text" id="nm-id" value="${escAttr(a.id)}" placeholder="2026-06-team-title" ${isNew?'':'readonly'}>
+          </div>
+          <div class="form-group"><label>Title</label><input type="text" id="nm-title" value="${escAttr(a.title)}"></div>
+          <div class="row">
+            <div class="col form-group">
+              <label>Team</label>
+              <select id="nm-team"><option value="">— All / Club —</option>${TEAM_OPTS}</select>
+            </div>
+            <div class="col form-group">
+              <label>Category</label>
+              <select id="nm-cat">
+                <option value="match-report">Match Report</option>
+                <option value="club-news">Club News</option>
+                <option value="tournament">Tournament</option>
+                <option value="announcement">Announcement</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col form-group"><label>Date</label><input type="date" id="nm-date" value="${escAttr(a.date)}"></div>
+            <div class="col form-group"><label>Author</label><input type="text" id="nm-author" value="${escAttr(a.author)}"></div>
+          </div>
+          <div class="form-group"><label>Summary</label><textarea id="nm-summary" rows="2">${escHtml(a.summary)}</textarea></div>
+          <div class="form-group"><label>Body</label><textarea id="nm-body" rows="6">${escHtml(a.body)}</textarea></div>
+          <div class="form-group">
+            <label>Image filename <span style="font-weight:400;color:var(--grey-500);">(in /images/)</span></label>
+            <input type="text" id="nm-image" value="${escAttr(a.image)}" placeholder="news-team-month.jpg">
+          </div>
+          <div class="form-group" style="display:flex;align-items:center;gap:8px;">
+            <input type="checkbox" id="nm-featured" style="width:auto;" ${a.featured?'checked':''}>
+            <label for="nm-featured" style="margin-bottom:0;text-transform:none;letter-spacing:0;font-weight:600;font-size:13px;">Set as featured article</label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-ghost" onclick="closeModal('news-modal')">Cancel</button>
+          <button class="btn btn-primary" id="nm-save-btn">Save article</button>
+        </div>
+      </div>
+    </div>`;
+  document.body.insertAdjacentHTML('beforeend', html);
+  document.getElementById('nm-team').value   = a.team;
+  document.getElementById('nm-cat').value    = a.category;
+  document.getElementById('nm-save-btn').addEventListener('click', () => saveNewsModal(isNew));
+}
+
+async function saveNewsModal(isNew) {
+  const btn = document.getElementById('nm-save-btn');
+  btn.disabled = true; btn.textContent = 'Saving…';
+  try {
+    const id      = document.getElementById('nm-id').value.trim();
+    const title   = document.getElementById('nm-title').value.trim();
+    const featured= document.getElementById('nm-featured').checked;
+    if (!id)    { showToast('ID is required', 'error'); btn.disabled=false; btn.textContent='Save article'; return; }
+    if (!title) { showToast('Title is required', 'error'); btn.disabled=false; btn.textContent='Save article'; return; }
+
+    const updated = {
+      id,
+      title,
+      team:     document.getElementById('nm-team').value,
+      category: document.getElementById('nm-cat').value,
+      date:     document.getElementById('nm-date').value,
+      author:   document.getElementById('nm-author').value.trim(),
+      summary:  document.getElementById('nm-summary').value.trim(),
+      body:     document.getElementById('nm-body').value.trim(),
+      image:    document.getElementById('nm-image').value.trim(),
+      featured
+    };
+
+    let arr = [...newsData];
+    if (featured) arr = arr.map(a => ({...a, featured: false}));
+    if (isNew) {
+      if (arr.find(a => a.id === id)) { showToast('An article with this ID already exists', 'error'); btn.disabled=false; btn.textContent='Save article'; return; }
+      arr.push(updated);
+    } else {
+      arr = arr.map(a => a.id === id ? updated : a);
+    }
+
+    const res = await githubPut('news.json', arr, newsSha, `${isNew?'Add':'Update'} article: ${title}`);
+    newsSha  = res.content.sha;
+    newsData = arr;
+    closeModal('news-modal');
+    renderNewsList();
+    showToast('Article saved ✓');
+  } catch(e) {
+    showToast(e.message, 'error');
+    btn.disabled=false; btn.textContent='Save article';
+  }
+}
+
+function editNews(id) {
+  const a = newsData.find(x => x.id === id);
+  if (a) newsModal(a);
+}
+
+async function deleteNews(id) {
+  if (!confirm('Delete this article?')) return;
+  try {
+    const arr = newsData.filter(a => a.id !== id);
+    const res = await githubPut('news.json', arr, newsSha, `Delete article: ${id}`);
+    newsSha  = res.content.sha;
+    newsData = arr;
+    renderNewsList();
+    showToast('Article deleted');
+  } catch(e) { showToast(e.message, 'error'); }
+}
+
+document.getElementById('news-add-btn').addEventListener('click', () => newsModal());
+
+// ==============================================================
+// FIXTURES
+// ==============================================================
+let fixturesData = [], fixturesSha = '';
+
+async function loadFixtures() {
+  try {
+    const r = await githubGet('fixtures.json');
+    fixturesSha  = r.sha;
+    fixturesData = JSON.parse(atob(r.content.replace(/\n/g,'')));
+    renderFixturesList();
+  } catch(e) {
+    document.getElementById('fixtures-list-wrap').innerHTML =
+      `<div class="empty-state"><div class="empty-state-text" style="color:var(--red);">Failed to load: ${e.message}</div></div>`;
+  }
+}
+
+function renderFixturesList() {
+  const wrap = document.getElementById('fixtures-list-wrap');
+  if (!fixturesData.length) {
+    wrap.innerHTML = `<div class="empty-state"><div class="empty-state-icon">📅</div><div class="empty-state-text">No fixtures yet. Click <strong>+ Add fixture</strong> to create one.</div></div>`;
+    return;
+  }
+  const rows = [...fixturesData].sort((a,b) => a.date.localeCompare(b.date)).map(f => `
+    <tr>
+      <td>${f.date}${f.time ? ' '+f.time : ''}</td>
+      <td>${teamLabel(f.team)}</td>
+      <td>${f.home ? '<span class="badge badge-green">Home</span>' : '<span class="badge badge-grey">Away</span>'}</td>
+      <td style="font-weight:600;color:var(--grey-900);">${escHtml(f.opponent)}</td>
+      <td style="font-size:12px;color:var(--grey-500);">${escHtml(f.venue||'')}</td>
+      <td style="text-align:right;white-space:nowrap;">
+        <button class="btn btn-ghost btn-sm" onclick="editFixture('${escAttr(f.id)}')">Edit</button>
+        <button class="btn btn-danger btn-sm" style="margin-left:4px;" onclick="deleteFixture('${escAttr(f.id)}')">Delete</button>
+      </td>
+    </tr>`).join('');
+  wrap.innerHTML = `<table class="data-table">
+    <thead><tr><th>Date / Time</th><th>Team</th><th>H/A</th><th>Opponent</th><th>Venue</th><th></th></tr></thead>
+    <tbody>${rows}</tbody>
+  </table>`;
+}
+
+function fixtureModal(fixture = null) {
+  const isNew = !fixture;
+  const f = fixture || { id:'', date:'', time:'', team:'', section:'boys', competition:'mkddl', home:true, opponent:'', venue:'' };
+  const html = `
+    <div class="modal-backdrop" id="fixture-modal">
+      <div class="modal">
+        <div class="modal-header">
+          <div class="modal-title">${isNew ? 'Add fixture' : 'Edit fixture'}</div>
+          <button class="modal-close" onclick="closeModal('fixture-modal')">✕</button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label>ID</label>
+            <input type="text" id="fm-id" value="${escAttr(f.id)}" placeholder="fix-spartak-20260412" ${isNew?'':'readonly'}>
+          </div>
+          <div class="row">
+            <div class="col form-group"><label>Date</label><input type="date" id="fm-date" value="${escAttr(f.date)}"></div>
+            <div class="col form-group"><label>Kick-off time</label><input type="time" id="fm-time" value="${escAttr(f.time)}"></div>
+          </div>
+          <div class="row">
+            <div class="col form-group">
+              <label>Team</label>
+              <select id="fm-team"><option value="">Select…</option>${TEAM_OPTS}</select>
+            </div>
+            <div class="col form-group">
+              <label>Home / Away</label>
+              <select id="fm-home"><option value="true">Home</option><option value="false">Away</option></select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col form-group">
+              <label>Competition</label>
+              <select id="fm-comp">
+                <option value="mkddl">MKDDL</option>
+                <option value="chiltern">Chiltern Youth Sunday</option>
+                <option value="beds-girls">Beds Girls League</option>
+                <option value="cup">Cup</option>
+                <option value="friendly">Friendly</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group"><label>Opponent</label><input type="text" id="fm-opponent" value="${escAttr(f.opponent)}"></div>
+          <div class="form-group"><label>Venue</label><input type="text" id="fm-venue" value="${escAttr(f.venue||'')}"></div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-ghost" onclick="closeModal('fixture-modal')">Cancel</button>
+          <button class="btn btn-primary" id="fm-save-btn">Save fixture</button>
+        </div>
+      </div>
+    </div>`;
+  document.body.insertAdjacentHTML('beforeend', html);
+  document.getElementById('fm-team').value = f.team;
+  document.getElementById('fm-home').value = String(f.home);
+  document.getElementById('fm-comp').value = f.competition;
+  document.getElementById('fm-save-btn').addEventListener('click', () => saveFixtureModal(isNew));
+}
+
+async function saveFixtureModal(isNew) {
+  const btn = document.getElementById('fm-save-btn');
+  btn.disabled = true; btn.textContent = 'Saving…';
+  try {
+    const id       = document.getElementById('fm-id').value.trim();
+    const opponent = document.getElementById('fm-opponent').value.trim();
+    const team     = document.getElementById('fm-team').value;
+    if (!id)       { showToast('ID is required','error'); btn.disabled=false; btn.textContent='Save fixture'; return; }
+    if (!opponent) { showToast('Opponent is required','error'); btn.disabled=false; btn.textContent='Save fixture'; return; }
+    if (!team)     { showToast('Team is required','error'); btn.disabled=false; btn.textContent='Save fixture'; return; }
+    const updated = {
+      id, team,
+      section:     sectionOf(team),
+      date:        document.getElementById('fm-date').value,
+      time:        document.getElementById('fm-time').value,
+      competition: document.getElementById('fm-comp').value,
+      home:        document.getElementById('fm-home').value === 'true',
+      opponent,
+      venue:       document.getElementById('fm-venue').value.trim()
+    };
+    let arr = [...fixturesData];
+    if (isNew) {
+      if (arr.find(x => x.id === id)) { showToast('ID already exists','error'); btn.disabled=false; btn.textContent='Save fixture'; return; }
+      arr.push(updated);
+    } else {
+      arr = arr.map(x => x.id === id ? updated : x);
+    }
+    const res = await githubPut('fixtures.json', arr, fixturesSha, `${isNew?'Add':'Update'} fixture: ${id}`);
+    fixturesSha  = res.content.sha;
+    fixturesData = arr;
+    closeModal('fixture-modal');
+    renderFixturesList();
+    showToast('Fixture saved ✓');
+  } catch(e) { showToast(e.message,'error'); btn.disabled=false; btn.textContent='Save fixture'; }
+}
+
+function editFixture(id) { const f = fixturesData.find(x => x.id === id); if (f) fixtureModal(f); }
+
+async function deleteFixture(id) {
+  if (!confirm('Delete this fixture?')) return;
+  try {
+    const arr = fixturesData.filter(x => x.id !== id);
+    const res = await githubPut('fixtures.json', arr, fixturesSha, `Delete fixture: ${id}`);
+    fixturesSha  = res.content.sha;
+    fixturesData = arr;
+    renderFixturesList();
+    showToast('Fixture deleted');
+  } catch(e) { showToast(e.message,'error'); }
+}
+
+document.getElementById('fixtures-add-btn').addEventListener('click', () => fixtureModal());
+
+// ==============================================================
+// RESULTS
+// ==============================================================
+let resultsData = [], resultsSha = '';
+
+async function loadResults() {
+  try {
+    const r = await githubGet('results.json');
+    resultsSha  = r.sha;
+    resultsData = JSON.parse(atob(r.content.replace(/\n/g,'')));
+    renderResultsList();
+  } catch(e) {
+    document.getElementById('results-list-wrap').innerHTML =
+      `<div class="empty-state"><div class="empty-state-text" style="color:var(--red);">Failed to load: ${e.message}</div></div>`;
+  }
+}
+
+function renderResultsList() {
+  const wrap = document.getElementById('results-list-wrap');
+  if (!resultsData.length) {
+    wrap.innerHTML = `<div class="empty-state"><div class="empty-state-icon">🏆</div><div class="empty-state-text">No results yet. Click <strong>+ Add result</strong> to create one.</div></div>`;
+    return;
+  }
+  const outcomeBadge = { win:'badge-green', draw:'badge-gold', loss:'badge-grey' };
+  const rows = [...resultsData].sort((a,b) => b.date.localeCompare(a.date)).map(r => `
+    <tr>
+      <td>${r.date}</td>
+      <td>${teamLabel(r.team)}</td>
+      <td>${r.home ? '<span class="badge badge-green">Home</span>' : '<span class="badge badge-grey">Away</span>'}</td>
+      <td style="font-weight:600;color:var(--grey-900);">${escHtml(r.opponent)}</td>
+      <td style="font-weight:700;font-size:15px;">${r.goalsFor} – ${r.goalsAgainst}</td>
+      <td><span class="badge ${outcomeBadge[r.outcome]||'badge-grey'}">${r.outcome}</span></td>
+      <td style="text-align:right;white-space:nowrap;">
+        <button class="btn btn-ghost btn-sm" onclick="editResult('${escAttr(r.id)}')">Edit</button>
+        <button class="btn btn-danger btn-sm" style="margin-left:4px;" onclick="deleteResult('${escAttr(r.id)}')">Delete</button>
+      </td>
+    </tr>`).join('');
+  wrap.innerHTML = `<table class="data-table">
+    <thead><tr><th>Date</th><th>Team</th><th>H/A</th><th>Opponent</th><th>Score</th><th>Outcome</th><th></th></tr></thead>
+    <tbody>${rows}</tbody>
+  </table>`;
+}
+
+function resultModal(result = null) {
+  const isNew = !result;
+  const r = result || { id:'', date:'', team:'', section:'boys', competition:'mkddl', home:true, opponent:'', goalsFor:0, goalsAgainst:0, outcome:'win', reportUrl:'' };
+  const html = `
+    <div class="modal-backdrop" id="result-modal">
+      <div class="modal">
+        <div class="modal-header">
+          <div class="modal-title">${isNew ? 'Add result' : 'Edit result'}</div>
+          <button class="modal-close" onclick="closeModal('result-modal')">✕</button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label>ID</label>
+            <input type="text" id="rm-id" value="${escAttr(r.id)}" placeholder="res-bayern-20260405" ${isNew?'':'readonly'}>
+          </div>
+          <div class="row">
+            <div class="col form-group"><label>Date</label><input type="date" id="rm-date" value="${escAttr(r.date)}"></div>
+            <div class="col form-group">
+              <label>Home / Away</label>
+              <select id="rm-home"><option value="true">Home</option><option value="false">Away</option></select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col form-group">
+              <label>Team</label>
+              <select id="rm-team"><option value="">Select…</option>${TEAM_OPTS}</select>
+            </div>
+            <div class="col form-group">
+              <label>Competition</label>
+              <select id="rm-comp">
+                <option value="mkddl">MKDDL</option>
+                <option value="chiltern">Chiltern Youth Sunday</option>
+                <option value="beds-girls">Beds Girls League</option>
+                <option value="cup">Cup</option>
+                <option value="friendly">Friendly</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group"><label>Opponent</label><input type="text" id="rm-opponent" value="${escAttr(r.opponent)}"></div>
+          <div class="row">
+            <div class="col form-group"><label>Goals for</label><input type="text" id="rm-gf" value="${r.goalsFor}"></div>
+            <div class="col form-group"><label>Goals against</label><input type="text" id="rm-ga" value="${r.goalsAgainst}"></div>
+            <div class="col form-group">
+              <label>Outcome</label>
+              <select id="rm-outcome">
+                <option value="win">Win</option>
+                <option value="draw">Draw</option>
+                <option value="loss">Loss</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group"><label>Report URL <span style="font-weight:400;color:var(--grey-500);">(optional)</span></label><input type="url" id="rm-report" value="${escAttr(r.reportUrl||'')}"></div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-ghost" onclick="closeModal('result-modal')">Cancel</button>
+          <button class="btn btn-primary" id="rm-save-btn">Save result</button>
+        </div>
+      </div>
+    </div>`;
+  document.body.insertAdjacentHTML('beforeend', html);
+  document.getElementById('rm-team').value    = r.team;
+  document.getElementById('rm-home').value    = String(r.home);
+  document.getElementById('rm-comp').value    = r.competition;
+  document.getElementById('rm-outcome').value = r.outcome;
+  document.getElementById('rm-save-btn').addEventListener('click', () => saveResultModal(isNew));
+}
+
+async function saveResultModal(isNew) {
+  const btn = document.getElementById('rm-save-btn');
+  btn.disabled = true; btn.textContent = 'Saving…';
+  try {
+    const id       = document.getElementById('rm-id').value.trim();
+    const opponent = document.getElementById('rm-opponent').value.trim();
+    const team     = document.getElementById('rm-team').value;
+    if (!id)       { showToast('ID is required','error'); btn.disabled=false; btn.textContent='Save result'; return; }
+    if (!opponent) { showToast('Opponent is required','error'); btn.disabled=false; btn.textContent='Save result'; return; }
+    if (!team)     { showToast('Team is required','error'); btn.disabled=false; btn.textContent='Save result'; return; }
+    const updated = {
+      id, team,
+      section:     sectionOf(team),
+      date:        document.getElementById('rm-date').value,
+      competition: document.getElementById('rm-comp').value,
+      home:        document.getElementById('rm-home').value === 'true',
+      opponent,
+      goalsFor:     parseInt(document.getElementById('rm-gf').value, 10) || 0,
+      goalsAgainst: parseInt(document.getElementById('rm-ga').value, 10) || 0,
+      outcome:     document.getElementById('rm-outcome').value,
+      reportUrl:   document.getElementById('rm-report').value.trim()
+    };
+    let arr = [...resultsData];
+    if (isNew) {
+      if (arr.find(x => x.id === id)) { showToast('ID already exists','error'); btn.disabled=false; btn.textContent='Save result'; return; }
+      arr.push(updated);
+    } else {
+      arr = arr.map(x => x.id === id ? updated : x);
+    }
+    const res = await githubPut('results.json', arr, resultsSha, `${isNew?'Add':'Update'} result: ${id}`);
+    resultsSha  = res.content.sha;
+    resultsData = arr;
+    closeModal('result-modal');
+    renderResultsList();
+    showToast('Result saved ✓');
+  } catch(e) { showToast(e.message,'error'); btn.disabled=false; btn.textContent='Save result'; }
+}
+
+function editResult(id) { const r = resultsData.find(x => x.id === id); if (r) resultModal(r); }
+
+async function deleteResult(id) {
+  if (!confirm('Delete this result?')) return;
+  try {
+    const arr = resultsData.filter(x => x.id !== id);
+    const res = await githubPut('results.json', arr, resultsSha, `Delete result: ${id}`);
+    resultsSha  = res.content.sha;
+    resultsData = arr;
+    renderResultsList();
+    showToast('Result deleted');
+  } catch(e) { showToast(e.message,'error'); }
+}
+
+document.getElementById('results-add-btn').addEventListener('click', () => resultModal());
+
+// ==============================================================
+// TEAMS
+// ==============================================================
+let teamsData = {}, teamsSha = '';
+
+async function loadTeams() {
+  try {
+    const r = await githubGet('teams.json');
+    teamsSha  = r.sha;
+    teamsData = JSON.parse(atob(r.content.replace(/\n/g,'')));
+    renderTeamsList();
+  } catch(e) {
+    document.getElementById('teams-list-wrap').innerHTML =
+      `<div class="empty-state"><div class="empty-state-text" style="color:var(--red);">Failed to load: ${e.message}</div></div>`;
+  }
+}
+
+function renderTeamsList() {
+  const wrap = document.getElementById('teams-list-wrap');
+  const rows = Object.entries(TEAMS).map(([slug, name]) => {
+    const t = teamsData[slug] || { manager:'', training:'', description:'', contactEmail:'' };
+    return `<tr>
+      <td style="font-weight:600;color:var(--grey-900);">${name}</td>
+      <td>${escHtml(t.manager||'TBC')}</td>
+      <td style="font-size:12px;color:var(--grey-500);">${escHtml(t.training||'TBC')}</td>
+      <td style="text-align:right;">
+        <button class="btn btn-ghost btn-sm" onclick="editTeam('${escAttr(slug)}')">Edit</button>
+      </td>
+    </tr>`;
+  }).join('');
+  wrap.innerHTML = `<table class="data-table">
+    <thead><tr><th>Team</th><th>Manager</th><th>Training</th><th></th></tr></thead>
+    <tbody>${rows}</tbody>
+  </table>`;
+}
+
+function editTeam(slug) {
+  const t = teamsData[slug] || { manager:'', training:'', description:'', contactEmail:'' };
+  const html = `
+    <div class="modal-backdrop" id="team-modal">
+      <div class="modal">
+        <div class="modal-header">
+          <div class="modal-title">Edit ${TEAMS[slug]}</div>
+          <button class="modal-close" onclick="closeModal('team-modal')">✕</button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group"><label>Manager</label><input type="text" id="tm-manager" value="${escAttr(t.manager||'')}"></div>
+          <div class="form-group"><label>Training times</label><input type="text" id="tm-training" value="${escAttr(t.training||'')}" placeholder="Tuesdays 6:30pm — Greenleas Lower School"></div>
+          <div class="form-group"><label>Description</label><textarea id="tm-desc" rows="3">${escHtml(t.description||'')}</textarea></div>
+          <div class="form-group"><label>Contact email <span style="font-weight:400;color:var(--grey-500);">(optional)</span></label><input type="email" id="tm-email" value="${escAttr(t.contactEmail||'')}"></div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-ghost" onclick="closeModal('team-modal')">Cancel</button>
+          <button class="btn btn-primary" id="tm-save-btn">Save team</button>
+        </div>
+      </div>
+    </div>`;
+  document.body.insertAdjacentHTML('beforeend', html);
+  document.getElementById('tm-save-btn').addEventListener('click', () => saveTeam(slug));
+}
+
+async function saveTeam(slug) {
+  const btn = document.getElementById('tm-save-btn');
+  btn.disabled = true; btn.textContent = 'Saving…';
+  try {
+    const updated = {
+      ...teamsData,
+      [slug]: {
+        manager:      document.getElementById('tm-manager').value.trim(),
+        training:     document.getElementById('tm-training').value.trim(),
+        description:  document.getElementById('tm-desc').value.trim(),
+        contactEmail: document.getElementById('tm-email').value.trim()
+      }
+    };
+    const res = await githubPut('teams.json', updated, teamsSha, `Update team: ${TEAMS[slug]}`);
+    teamsSha  = res.content.sha;
+    teamsData = updated;
+    closeModal('team-modal');
+    renderTeamsList();
+    showToast('Team saved ✓');
+  } catch(e) { showToast(e.message,'error'); btn.disabled=false; btn.textContent='Save team'; }
+}
+
+// ==============================================================
+// SPONSORS
+// ==============================================================
+let sponsorsData = [], sponsorsSha = '';
+
+async function loadSponsors() {
+  try {
+    const r = await githubGet('sponsors.json');
+    sponsorsSha  = r.sha;
+    sponsorsData = JSON.parse(atob(r.content.replace(/\n/g,'')));
+    renderSponsorsList();
+  } catch(e) {
+    document.getElementById('sponsors-list-wrap').innerHTML =
+      `<div class="empty-state"><div class="empty-state-text" style="color:var(--red);">Failed to load: ${e.message}</div></div>`;
+  }
+}
+
+function renderSponsorsList() {
+  const wrap = document.getElementById('sponsors-list-wrap');
+  if (!sponsorsData.length) {
+    wrap.innerHTML = `<div class="empty-state"><div class="empty-state-icon">🤝</div><div class="empty-state-text">No sponsors yet.</div></div>`;
+    return;
+  }
+  const rows = sponsorsData.map((s, i) => `
+    <tr>
+      <td style="width:60px;"><img src="../${escAttr(s.logo)}" alt="${escAttr(s.name)}" style="height:36px;object-fit:contain;" onerror="this.style.display='none'"></td>
+      <td style="font-weight:600;color:var(--grey-900);">${escHtml(s.name)}</td>
+      <td style="font-size:12px;color:var(--grey-500);">${escHtml(s.logo)}</td>
+      <td style="font-size:12px;">${s.url ? `<a href="${escAttr(s.url)}" target="_blank" rel="noopener">Link</a>` : '—'}</td>
+      <td style="text-align:right;white-space:nowrap;">
+        <button class="btn btn-ghost btn-sm" onclick="editSponsor(${i})">Edit</button>
+        <button class="btn btn-danger btn-sm" style="margin-left:4px;" onclick="deleteSponsor(${i})">Delete</button>
+      </td>
+    </tr>`).join('');
+  wrap.innerHTML = `<table class="data-table">
+    <thead><tr><th>Logo</th><th>Name</th><th>Image file</th><th>URL</th><th></th></tr></thead>
+    <tbody>${rows}</tbody>
+  </table>`;
+}
+
+function sponsorModal(idx = -1) {
+  const isNew = idx === -1;
+  const s = isNew ? { id:'', name:'', logo:'', url:'' } : sponsorsData[idx];
+  const html = `
+    <div class="modal-backdrop" id="sponsor-modal">
+      <div class="modal">
+        <div class="modal-header">
+          <div class="modal-title">${isNew ? 'Add sponsor' : 'Edit sponsor'}</div>
+          <button class="modal-close" onclick="closeModal('sponsor-modal')">✕</button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group"><label>Name</label><input type="text" id="sm-name" value="${escAttr(s.name)}"></div>
+          <div class="form-group">
+            <label>Logo image path <span style="font-weight:400;color:var(--grey-500);">(relative to site root)</span></label>
+            <input type="text" id="sm-logo" value="${escAttr(s.logo)}" placeholder="images/sponsor-name.jpg">
+          </div>
+          <div class="form-group"><label>Website URL <span style="font-weight:400;color:var(--grey-500);">(optional)</span></label><input type="url" id="sm-url" value="${escAttr(s.url||'')}"></div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-ghost" onclick="closeModal('sponsor-modal')">Cancel</button>
+          <button class="btn btn-primary" id="sp-save-btn">Save sponsor</button>
+        </div>
+      </div>
+    </div>`;
+  document.body.insertAdjacentHTML('beforeend', html);
+  document.getElementById('sp-save-btn').addEventListener('click', () => saveSponsor(isNew, idx, s.id));
+}
+
+async function saveSponsor(isNew, idx, oldId) {
+  const btn = document.getElementById('sp-save-btn');
+  btn.disabled = true; btn.textContent = 'Saving…';
+  try {
+    const name = document.getElementById('sm-name').value.trim();
+    if (!name) { showToast('Name is required','error'); btn.disabled=false; btn.textContent='Save sponsor'; return; }
+    const updated = {
+      id:   oldId || name.toLowerCase().replace(/[^a-z0-9]+/g,'-'),
+      name,
+      logo: document.getElementById('sm-logo').value.trim(),
+      url:  document.getElementById('sm-url').value.trim()
+    };
+    let arr = [...sponsorsData];
+    if (isNew) arr.push(updated); else arr[idx] = updated;
+    const res = await githubPut('sponsors.json', arr, sponsorsSha, `${isNew?'Add':'Update'} sponsor: ${name}`);
+    sponsorsSha  = res.content.sha;
+    sponsorsData = arr;
+    closeModal('sponsor-modal');
+    renderSponsorsList();
+    showToast('Sponsor saved ✓');
+  } catch(e) { showToast(e.message,'error'); btn.disabled=false; btn.textContent='Save sponsor'; }
+}
+
+function editSponsor(idx) { sponsorModal(idx); }
+
+async function deleteSponsor(idx) {
+  if (!confirm('Delete this sponsor?')) return;
+  try {
+    const arr = sponsorsData.filter((_,i) => i !== idx);
+    const res = await githubPut('sponsors.json', arr, sponsorsSha, `Delete sponsor: ${sponsorsData[idx].name}`);
+    sponsorsSha  = res.content.sha;
+    sponsorsData = arr;
+    renderSponsorsList();
+    showToast('Sponsor deleted');
+  } catch(e) { showToast(e.message,'error'); }
+}
+
+document.getElementById('sponsors-add-btn').addEventListener('click', () => sponsorModal());
+
+// ==============================================================
+// FA EMBEDS
+// ==============================================================
+let embedsData = {}, embedsSha = '';
+
+async function loadEmbeds() {
+  try {
+    const r = await githubGet('embeds.json');
+    embedsSha  = r.sha;
+    embedsData = JSON.parse(atob(r.content.replace(/\n/g,'')));
+    renderEmbeds();
+  } catch(e) {
+    document.getElementById('embeds-list-wrap').innerHTML =
+      `<div class="empty-state"><div class="empty-state-text" style="color:var(--red);">Failed to load: ${e.message}</div></div>`;
+  }
+}
+
+function renderEmbeds() {
+  const wrap = document.getElementById('embeds-list-wrap');
+  const rows = Object.entries(TEAMS).map(([slug, name]) => {
+    const e = embedsData[slug] || { fixtures:'', results:'', table:'' };
+    return `<tr>
+      <td style="font-weight:600;color:var(--grey-900);white-space:nowrap;">${name}</td>
+      <td><input type="text" class="embed-input" data-slug="${escAttr(slug)}" data-type="fixtures" value="${escAttr(e.fixtures||'')}" placeholder="lrcode" style="font-size:12px;"></td>
+      <td><input type="text" class="embed-input" data-slug="${escAttr(slug)}" data-type="results" value="${escAttr(e.results||'')}" placeholder="lrcode" style="font-size:12px;"></td>
+      <td><input type="text" class="embed-input" data-slug="${escAttr(slug)}" data-type="table" value="${escAttr(e.table||'')}" placeholder="lrcode" style="font-size:12px;"></td>
+    </tr>`;
+  }).join('');
+  wrap.innerHTML = `<table class="data-table">
+    <thead><tr><th>Team</th><th>Fixtures lrcode</th><th>Results lrcode</th><th>Table lrcode</th></tr></thead>
+    <tbody>${rows}</tbody>
+  </table>`;
+}
+
+document.getElementById('embeds-save-btn').addEventListener('click', async () => {
+  const btn = document.getElementById('embeds-save-btn');
+  btn.disabled = true; btn.textContent = 'Saving…';
+  try {
+    const updated = JSON.parse(JSON.stringify(embedsData));
+    document.querySelectorAll('.embed-input').forEach(inp => {
+      const { slug, type } = inp.dataset;
+      if (!updated[slug]) updated[slug] = { fixtures:'', results:'', table:'' };
+      updated[slug][type] = inp.value.trim();
+    });
+    const res = await githubPut('embeds.json', updated, embedsSha, 'Update FA embed codes');
+    embedsSha  = res.content.sha;
+    embedsData = updated;
+    showToast('Embed codes saved ✓');
+  } catch(e) { showToast(e.message,'error'); }
+  btn.disabled = false; btn.textContent = 'Save all';
+});
+
+// ==============================================================
+// HELPERS
+// ==============================================================
+function closeModal(id) {
+  const el = document.getElementById(id);
+  if (el) el.remove();
+}
+
+function escHtml(str) {
+  return String(str||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function escAttr(str) {
+  return String(str||'').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+// ==============================================================
+// SETTINGS — CHANGE PASSWORD
+// ==============================================================
+document.getElementById('pw-save-btn').addEventListener('click', async () => {
+  const btn     = document.getElementById('pw-save-btn');
+  const pwNew   = document.getElementById('pw-new').value;
+  const pwConf  = document.getElementById('pw-confirm').value;
+
+  if (!pwNew)          { showToast('Enter a new password', 'error'); return; }
+  if (pwNew !== pwConf){ showToast('Passwords do not match', 'error'); return; }
+  if (pwNew.length < 8){ showToast('Password must be at least 8 characters', 'error'); return; }
+
+  btn.disabled = true; btn.textContent = 'Saving…';
+  try {
+    const hash    = await sha256(pwNew);
+    const updated = { passwordHash: hash };
+    const current = await githubGet('admin-config.json');
+    await githubPut('admin-config.json', updated, current.sha, 'Update admin password hash');
+    document.getElementById('pw-new').value     = '';
+    document.getElementById('pw-confirm').value = '';
+    showToast('Password updated ✓ — use it next time you sign in');
+  } catch(e) {
+    showToast(e.message, 'error');
+  }
+  btn.disabled = false; btn.textContent = 'Save new password';
+});
+</script>
+</body>
+</html>

@@ -102,153 +102,28 @@
         <option value="">All Competitions</option>
         <option value="mkddl">MKDDL League</option>
         <option value="beds-girls">Beds Girls League</option>
+        <option value="chiltern">Chiltern Youth Sunday</option>
         <option value="cup">Cup</option>
+        <option value="friendly">Friendly</option>
       </select>
     </div>
 
     <!-- FIXTURES TAB -->
     <div id="tab-fixtures">
       <p style="font-size:12px; color:var(--grey-500); margin-bottom:16px;">
-        Fixture data is updated automatically from FA Full-Time once embed codes are configured.
-        <a href="https://fulltime.thefa.com/index.html?league=96486" target="_blank" rel="noopener" style="color:var(--green);">View MKDDL ↗</a> ·
+        <a href="https://fulltime.thefa.com/index.html?league=96486" target="_blank" rel="noopener" style="color:var(--green);">View MKDDL on FA Full-Time ↗</a> ·
         <a href="https://fulltime.thefa.com/index.html?league=530158839" target="_blank" rel="noopener" style="color:var(--green);">View Beds Girls League ↗</a>
       </p>
-
-      <!-- Date group -->
-      <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:2px; color:var(--grey-500); padding:10px 0; border-bottom:1px solid var(--grey-200); margin-bottom:4px;">
-        Sunday 12 April 2026
-      </div>
-      <table class="fixture-table" style="margin-bottom:20px;">
-        <thead>
-          <tr>
-            <th style="width:70px;">Time</th>
-            <th>Team</th>
-            <th style="width:90px; text-align:center;">Score</th>
-            <th>Opponent</th>
-            <th style="width:130px;">Competition</th>
-            <th style="width:80px;"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr data-section="boys" data-team="spartak" data-comp="mkddl">
-            <td style="font-weight:600;">10:30</td>
-            <td>
-              <div style="display:flex; align-items:center; gap:10px;">
-                <div class="fixture-team-badge" style="width:28px; height:28px; font-size:8px;"><img src="images/logo.png" alt="LGFC"></div>
-                <div>
-                  <div style="font-weight:700; font-size:13px;">U15 Spartak</div>
-                  <span class="tag tag-grey" style="font-size:10px; padding:1px 6px;">Home</span>
-                </div>
-              </div>
-            </td>
-            <td style="text-align:center;">
-              <span style="background:var(--green); color:white; font-weight:700; padding:3px 10px; border-radius:var(--radius); font-size:12px;">vs</span>
-            </td>
-            <td style="font-size:13px; color:var(--grey-700);">Opponent FC U15</td>
-            <td><span class="tag tag-grey" style="font-size:10px;">MKDDL</span></td>
-            <td><a href="team.html?team=spartak" class="btn btn-ghost btn-sm" style="font-size:11px; padding:4px 10px;">Details →</a></td>
-          </tr>
-          <tr data-section="girls" data-team="jaguars" data-comp="beds-girls">
-            <td style="font-weight:600;">10:00</td>
-            <td>
-              <div style="display:flex; align-items:center; gap:10px;">
-                <div class="fixture-team-badge" style="width:28px; height:28px; font-size:8px;"><img src="images/logo.png" alt="LGFC"></div>
-                <div>
-                  <div style="font-weight:700; font-size:13px;">Girls U13 Jaguars</div>
-                  <span class="tag tag-grey" style="font-size:10px; padding:1px 6px;">Home</span>
-                </div>
-              </div>
-            </td>
-            <td style="text-align:center;">
-              <span style="background:var(--green); color:white; font-weight:700; padding:3px 10px; border-radius:var(--radius); font-size:12px;">vs</span>
-            </td>
-            <td style="font-size:13px; color:var(--grey-700);">Opponents Girls U13</td>
-            <td><span class="tag tag-grey" style="font-size:10px;">Beds Girls</span></td>
-            <td><a href="team.html?team=jaguars" class="btn btn-ghost btn-sm" style="font-size:11px; padding:4px 10px;">Details →</a></td>
-          </tr>
-          <tr data-section="boys" data-team="bayern" data-comp="mkddl">
-            <td style="font-weight:600;">11:00</td>
-            <td>
-              <div style="display:flex; align-items:center; gap:10px;">
-                <div class="fixture-team-badge" style="width:28px; height:28px; font-size:8px;"><img src="images/logo.png" alt="LGFC"></div>
-                <div>
-                  <div style="font-weight:700; font-size:13px;">U12 Bayern</div>
-                  <span class="tag tag-grey" style="font-size:10px; padding:1px 6px;">Away</span>
-                </div>
-              </div>
-            </td>
-            <td style="text-align:center;">
-              <span style="background:var(--green); color:white; font-weight:700; padding:3px 10px; border-radius:var(--radius); font-size:12px;">vs</span>
-            </td>
-            <td style="font-size:13px; color:var(--grey-700);">Another Club U12</td>
-            <td><span class="tag tag-grey" style="font-size:10px;">MKDDL</span></td>
-            <td><a href="team.html?team=bayern" class="btn btn-ghost btn-sm" style="font-size:11px; padding:4px 10px;">Details →</a></td>
-          </tr>
-        </tbody>
-      </table>
-
-      <!-- FA Full-Time embed placeholder -->
-      <div class="embed-placeholder">
-        <strong>FA Full-Time Live Fixtures Widget</strong>
-        Replace this block with the FA Full-Time JavaScript embed code.<br>
-        Get the embed code from FA Full-Time Admin → Media → Code Snippets.<br>
-        <code>lrcode = '[your-code-here]'</code>
+      <div id="fixtures-content">
+        <div style="text-align:center; padding:40px 0; color:var(--grey-500); font-size:14px;">Loading fixtures…</div>
       </div>
     </div>
 
     <!-- RESULTS TAB (hidden by default) -->
     <div id="tab-results" style="display:none;">
-      <p style="font-size:12px; color:var(--grey-500); margin-bottom:16px;">
-        Results data updated from FA Full-Time.
-      </p>
-
-      <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:2px; color:var(--grey-500); padding:10px 0; border-bottom:1px solid var(--grey-200); margin-bottom:4px;">
-        Saturday 5 April 2026
+      <div id="results-content">
+        <div style="text-align:center; padding:40px 0; color:var(--grey-500); font-size:14px;">Loading results…</div>
       </div>
-      <table class="fixture-table" style="margin-bottom:20px;">
-        <thead>
-          <tr>
-            <th style="width:70px;">Date</th>
-            <th>Home</th>
-            <th style="width:100px; text-align:center;">Score</th>
-            <th>Away</th>
-            <th style="width:80px;">Result</th>
-            <th style="width:80px;"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr data-section="boys" data-team="bayern" data-comp="mkddl">
-            <td style="font-size:12px; color:var(--grey-500);">5 Apr</td>
-            <td style="font-weight:700; font-size:13px;">Opponent FC U12</td>
-            <td style="text-align:center;">
-              <span style="font-family:var(--font-display); font-size:18px; font-weight:800; letter-spacing:1px;">1–3</span>
-            </td>
-            <td style="font-weight:700; font-size:13px; color:var(--green);">U12 Bayern ✓</td>
-            <td><span class="tag tag-win">Win</span></td>
-            <td><a href="news.html" class="btn btn-ghost btn-sm" style="font-size:11px; padding:4px 10px;">Report →</a></td>
-          </tr>
-          <tr data-section="boys" data-team="spartak" data-comp="mkddl">
-            <td style="font-size:12px; color:var(--grey-500);">29 Mar</td>
-            <td style="font-weight:700; font-size:13px;">U15 Spartak</td>
-            <td style="text-align:center;">
-              <span style="font-family:var(--font-display); font-size:18px; font-weight:800; letter-spacing:1px;">2–2</span>
-            </td>
-            <td style="font-weight:700; font-size:13px; color:var(--grey-700);">Another FC U15</td>
-            <td><span class="tag tag-draw">Draw</span></td>
-            <td><a href="news.html" class="btn btn-ghost btn-sm" style="font-size:11px; padding:4px 10px;">Report →</a></td>
-          </tr>
-          <tr data-section="girls" data-team="lions" data-comp="beds-girls">
-            <td style="font-size:12px; color:var(--grey-500);">22 Mar</td>
-            <td style="font-weight:700; font-size:13px;">Girls U13 Lions</td>
-            <td style="text-align:center;">
-              <span style="font-family:var(--font-display); font-size:18px; font-weight:800; letter-spacing:1px;">4–0</span>
-            </td>
-            <td style="font-weight:700; font-size:13px; color:var(--grey-700);">Opponents Girls U13</td>
-            <td><span class="tag tag-win">Win</span></td>
-            <td><span style="font-size:11px; color:var(--grey-400);">—</span></td>
-          </tr>
-        </tbody>
-      </table>
     </div>
 
   </div>
@@ -281,38 +156,136 @@
 
 <script src="js/main.js"></script>
 <script>
+  var TEAM_NAMES = {
+    ajax:'U16 Ajax', borussia:'U15 Borussia', lazio:'U15 Lazio', spartak:'U15 Spartak',
+    sporting:'U15 Sporting', porto:'U13 Porto', barca:'U12 Barca', bayern:'U12 Bayern',
+    juve:'U11 Juve', roma:'U11 Roma', wanderers:'U11 Wanderers', atletico:'U10 Atletico',
+    real:'U10 Real', titans:'U9 Titans', inter:'U8 Inter',
+    lynxes:'U14 Lynxes', jaguars:'U13 Jaguars', lions:'U13 Lions', panthers:'U13 Panthers',
+    lionesses:'U12 Lionesses', bobcats:'U11 Bobcats', leopards:'U10 Leopards', meerkats:'U8 Meerkats'
+  };
+  var GIRLS = ['lynxes','jaguars','lions','panthers','lionesses','bobcats','leopards','meerkats'];
+  var COMP_LABELS = { mkddl:'MKDDL', chiltern:'Chiltern Youth Sunday', 'beds-girls':'Beds Girls', cup:'Cup', friendly:'Friendly' };
+
+  function fmtDateFull(d) {
+    return new Date(d + 'T00:00:00').toLocaleDateString('en-GB', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
+  }
+  function fmtDateShort(d) {
+    return new Date(d + 'T00:00:00').toLocaleDateString('en-GB', { day:'numeric', month:'short' });
+  }
+  function escHtml(s) {
+    return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  function renderFixtureGroup(date, rows) {
+    var rowsHtml = rows.map(function(f) {
+      var name    = TEAM_NAMES[f.team] || f.team;
+      var section = GIRLS.includes(f.team) ? 'girls' : 'boys';
+      var display = (GIRLS.includes(f.team) ? 'Girls · ' : '') + name;
+      var comp    = COMP_LABELS[f.competition] || f.competition;
+      return '<tr data-section="' + section + '" data-team="' + f.team + '" data-comp="' + f.competition + '">'
+        + '<td style="font-weight:600;">' + (f.time || '—') + '</td>'
+        + '<td><div style="display:flex;align-items:center;gap:10px;">'
+        + '<div class="fixture-team-badge" style="width:28px;height:28px;font-size:8px;"><img src="images/logo.png" alt="LGFC"></div>'
+        + '<div><div style="font-weight:700;font-size:13px;">' + escHtml(display) + '</div>'
+        + '<span class="tag tag-grey" style="font-size:10px;padding:1px 6px;">' + (f.home ? 'Home' : 'Away') + '</span>'
+        + '</div></div></td>'
+        + '<td style="text-align:center;"><span style="background:var(--green);color:white;font-weight:700;padding:3px 10px;border-radius:var(--radius);font-size:12px;">vs</span></td>'
+        + '<td style="font-size:13px;color:var(--grey-700);">' + escHtml(f.opponent) + '</td>'
+        + '<td><span class="tag tag-grey" style="font-size:10px;">' + escHtml(comp) + '</span></td>'
+        + '<td><a href="team.html?team=' + f.team + '" class="btn btn-ghost btn-sm" style="font-size:11px;padding:4px 10px;">Details →</a></td>'
+        + '</tr>';
+    }).join('');
+    return '<div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--grey-500);padding:10px 0;border-bottom:1px solid var(--grey-200);margin-bottom:4px;">'
+      + fmtDateFull(date) + '</div>'
+      + '<table class="fixture-table" style="margin-bottom:20px;">'
+      + '<thead><tr><th style="width:70px;">Time</th><th>Team</th><th style="width:90px;text-align:center;"></th><th>Opponent</th><th style="width:130px;">Competition</th><th style="width:80px;"></th></tr></thead>'
+      + '<tbody>' + rowsHtml + '</tbody></table>';
+  }
+
+  function renderResultGroup(date, rows) {
+    var rowsHtml = rows.map(function(r) {
+      var name    = TEAM_NAMES[r.team] || r.team;
+      var section = GIRLS.includes(r.team) ? 'girls' : 'boys';
+      var display = (GIRLS.includes(r.team) ? 'Girls · ' : '') + name;
+      var outcomeTag = r.outcome === 'win' ? 'tag-win' : r.outcome === 'draw' ? 'tag-draw' : 'tag-loss';
+      var reportCell = r.reportUrl
+        ? '<a href="' + escHtml(r.reportUrl) + '" class="btn btn-ghost btn-sm" style="font-size:11px;padding:4px 10px;">Report →</a>'
+        : '<span style="font-size:11px;color:var(--grey-400);">—</span>';
+      return '<tr data-section="' + section + '" data-team="' + r.team + '" data-comp="' + r.competition + '">'
+        + '<td style="font-size:12px;color:var(--grey-500);">' + fmtDateShort(r.date) + '</td>'
+        + '<td><div style="font-weight:700;font-size:13px;color:var(--green);">' + escHtml(display) + '</div>'
+        + '<span class="tag tag-grey" style="font-size:10px;padding:1px 6px;">' + (r.home ? 'Home' : 'Away') + '</span></td>'
+        + '<td style="text-align:center;font-family:var(--font-display);font-size:18px;font-weight:800;letter-spacing:1px;">' + r.goalsFor + '–' + r.goalsAgainst + '</td>'
+        + '<td style="font-size:13px;color:var(--grey-700);">' + escHtml(r.opponent) + '</td>'
+        + '<td><span class="tag ' + outcomeTag + '">' + r.outcome.charAt(0).toUpperCase() + r.outcome.slice(1) + '</span></td>'
+        + '<td>' + reportCell + '</td>'
+        + '</tr>';
+    }).join('');
+    return '<div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--grey-500);padding:10px 0;border-bottom:1px solid var(--grey-200);margin-bottom:4px;">'
+      + fmtDateFull(date) + '</div>'
+      + '<table class="fixture-table" style="margin-bottom:20px;">'
+      + '<thead><tr><th style="width:70px;">Date</th><th>Team</th><th style="width:100px;text-align:center;">Score</th><th>Opponent</th><th style="width:80px;">Result</th><th style="width:80px;"></th></tr></thead>'
+      + '<tbody>' + rowsHtml + '</tbody></table>';
+  }
+
+  var today = new Date().toISOString().slice(0, 10);
+
+  Promise.all([
+    fetch('data/fixtures.json').then(function(r) { return r.json(); }),
+    fetch('data/results.json').then(function(r) { return r.json(); })
+  ]).then(function(data) {
+    var fixtures = data[0];
+    var results  = data[1];
+
+    // Fixtures: upcoming only, grouped by date asc
+    var upcoming = fixtures.filter(function(f) { return f.date >= today; })
+      .sort(function(a,b) { return a.date.localeCompare(b.date); });
+    var fxByDate = {};
+    upcoming.forEach(function(f) { (fxByDate[f.date] = fxByDate[f.date] || []).push(f); });
+    var fxDates = Object.keys(fxByDate);
+    document.getElementById('fixtures-content').innerHTML = fxDates.length
+      ? fxDates.map(function(d) { return renderFixtureGroup(d, fxByDate[d]); }).join('')
+      : '<div style="text-align:center;padding:48px 0;color:var(--grey-500);">No upcoming fixtures scheduled — check back soon.</div>';
+
+    // Results: all, grouped by date desc
+    var sorted = results.slice().sort(function(a,b) { return b.date.localeCompare(a.date); });
+    var resByDate = {};
+    sorted.forEach(function(r) { (resByDate[r.date] = resByDate[r.date] || []).push(r); });
+    var resDates = Object.keys(resByDate).sort(function(a,b) { return b.localeCompare(a); });
+    document.getElementById('results-content').innerHTML = resDates.length
+      ? resDates.map(function(d) { return renderResultGroup(d, resByDate[d]); }).join('')
+      : '<div style="text-align:center;padding:48px 0;color:var(--grey-500);">No results yet this season.</div>';
+
+    applyFilters();
+  }).catch(function(e) {
+    var msg = '<div style="text-align:center;padding:40px;color:#c0392b;font-size:14px;">Could not load data: ' + e.message + '</div>';
+    document.getElementById('fixtures-content').innerHTML = msg;
+    document.getElementById('results-content').innerHTML  = msg;
+  });
+
   function showTab(tab, btn) {
     document.getElementById('tab-fixtures').style.display = tab === 'fixtures' ? 'block' : 'none';
     document.getElementById('tab-results').style.display  = tab === 'results'  ? 'block' : 'none';
-    document.querySelectorAll('.btn[onclick^="showTab"]').forEach(b => b.className = 'btn btn-ghost btn-sm');
+    document.querySelectorAll('.btn[onclick^="showTab"]').forEach(function(b) { b.className = 'btn btn-ghost btn-sm'; });
     btn.className = 'btn btn-primary btn-sm';
   }
-</script>
-<script>
+
   function applyFilters() {
     var section = document.getElementById('filter-section').value;
     var team    = document.getElementById('filter-team').value;
     var comp    = document.getElementById('filter-comp').value;
-
-    // Find every fixture/result table in both tabs
-    var tables = document.querySelectorAll('.fixture-table');
-    tables.forEach(function(table) {
+    document.querySelectorAll('.fixture-table').forEach(function(table) {
       var rows = table.querySelectorAll('tbody tr');
       var anyVisible = false;
       rows.forEach(function(row) {
-        var matchSection = !section || row.dataset.section === section;
-        var matchTeam    = !team    || row.dataset.team    === team;
-        var matchComp    = !comp    || row.dataset.comp    === comp;
-        var show = matchSection && matchTeam && matchComp;
+        var show = (!section || row.dataset.section === section)
+                && (!team    || row.dataset.team    === team)
+                && (!comp    || row.dataset.comp    === comp);
         row.style.display = show ? '' : 'none';
         if (show) anyVisible = true;
       });
-
-      // Hide the date-group header div that immediately precedes this table
       var header = table.previousElementSibling;
-      while (header && header.tagName === 'TABLE') {
-        header = header.previousElementSibling;
-      }
       if (header && header.tagName !== 'TABLE' && header.tagName !== 'P') {
         header.style.display = anyVisible ? '' : 'none';
       }
