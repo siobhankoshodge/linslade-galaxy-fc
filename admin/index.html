@@ -770,20 +770,20 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
 
 // ---- TEAM LABELS ----
 const TEAMS = {
-  ajax:'U16 Ajax', borussia:'U15 Borussia', lazio:'U15 Lazio', spartak:'U15 Spartak',
-  sporting:'U15 Sporting', porto:'U13 Porto', barca:'U12 Barca', bayern:'U12 Bayern',
-  juve:'U11 Juve', roma:'U11 Roma', wanderers:'U11 Wanderers', atletico:'U10 Atletico',
-  real:'U10 Real', titans:'U9 Titans', inter:'U8 Inter',
-  lynxes:'U14 Lynxes', jaguars:'U13 Jaguars', lions:'U13 Lions', panthers:'U13 Panthers',
-  lionesses:'U12 Lionesses', bobcats:'U11 Bobcats', leopards:'U10 Leopards', meerkats:'U8 Meerkats'
+  ajax:'U17 Ajax', borussia:'U16 Borussia', lazio:'U16 Lazio', spartak:'U16 Spartak',
+  sporting:'U16 Sporting', porto:'U14 Porto', barca:'U13 Barca', bayern:'U13 Bayern',
+  juve:'U12 Juve', roma:'U12 Roma', wanderers:'U12 Wanderers', atletico:'U11 Atletico',
+  real:'U11 Real', titans:'U10 Titans', inter:'U9 Inter',
+  lynxes:'U15 Lynxes', jaguars:'U14 Jaguars', lions:'U14 Lions', panthers:'U14 Panthers',
+  lionesses:'U13 Lionesses', bobcats:'U12 Bobcats', leopards:'U11 Leopards', meerkats:'U9 Meerkats'
 };
 
 const TEAM_OPTS = Object.entries(TEAMS).map(([v,l]) => `<option value="${v}">${l}</option>`).join('');
-const SECTION_BOYS  = ['ajax','borussia','lazio','spartak','sporting','porto','barca','bayern','juve','roma','wanderers','atletico','real','titans','inter'];
+const SECTION_MIXED = ['ajax','borussia','lazio','spartak','sporting','porto','barca','bayern','juve','roma','wanderers','atletico','real','titans','inter'];
 const SECTION_GIRLS = ['lynxes','jaguars','lions','panthers','lionesses','bobcats','leopards','meerkats'];
 
 function teamLabel(slug) { return TEAMS[slug] || slug; }
-function sectionOf(slug) { return SECTION_GIRLS.includes(slug) ? 'girls' : 'boys'; }
+function sectionOf(slug) { return SECTION_GIRLS.includes(slug) ? 'girls' : 'mixed'; }
 
 // ---- INIT ----
 function initAdmin() {
@@ -1031,7 +1031,7 @@ function renderFixturesList() {
 
 function fixtureModal(fixture = null) {
   const isNew = !fixture;
-  const f = fixture || { id:'', date:'', time:'', team:'', section:'boys', competition:'mkddl', home:true, opponent:'', venue:'' };
+  const f = fixture || { id:'', date:'', time:'', team:'', section:'mixed', competition:'mkddl', home:true, opponent:'', venue:'' };
   const html = `
     <div class="modal-backdrop" id="fixture-modal">
       <div class="modal">
@@ -1183,7 +1183,7 @@ function renderResultsList() {
 
 function resultModal(result = null) {
   const isNew = !result;
-  const r = result || { id:'', date:'', team:'', section:'boys', competition:'mkddl', home:true, opponent:'', goalsFor:0, goalsAgainst:0, outcome:'win', reportUrl:'' };
+  const r = result || { id:'', date:'', team:'', section:'mixed', competition:'mkddl', home:true, opponent:'', goalsFor:0, goalsAgainst:0, outcome:'win', reportUrl:'' };
   const html = `
     <div class="modal-backdrop" id="result-modal">
       <div class="modal">
