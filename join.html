@@ -8,12 +8,12 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Linslade Galaxy FC">
   <meta property="og:title" content="Join the Club | Linslade Galaxy FC">
-  <meta property="og:description" content="Join Linslade Galaxy FC. Find the right team for your child and make an enquiry. Mixed and girls teams from U9 to U17.">
+  <meta property="og:description" content="Join Linslade Galaxy FC. Find the right team for your child and make an enquiry. Mixed and girls teams from U7 to U17.">
   <meta property="og:image" content="https://siobhankoshodge.github.io/linslade-galaxy-fc/images/herokit.png">
   <meta property="og:url" content="https://siobhankoshodge.github.io/linslade-galaxy-fc/join.html">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Join the Club | Linslade Galaxy FC">
-  <meta name="twitter:description" content="Join Linslade Galaxy FC. Find the right team for your child and make an enquiry. Mixed and girls teams from U9 to U17.">
+  <meta name="twitter:description" content="Join Linslade Galaxy FC. Find the right team for your child and make an enquiry. Mixed and girls teams from U7 to U17.">
   <meta name="twitter:image" content="https://siobhankoshodge.github.io/linslade-galaxy-fc/images/herokit.png">
   <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
   <link rel="stylesheet" href="css/style.css">
@@ -74,7 +74,7 @@
         <div style="font-size:22px; flex-shrink:0;">ℹ️</div>
         <div>
           <div style="font-weight:700; font-size:14px; color:var(--green-dark); margin-bottom:4px;">Age groups explained</div>
-          <div style="font-size:13px; color:var(--grey-700); line-height:1.7;">Teams are based on school year. U8 = school years 3–4, U9 = year 4, U10 = year 5, U11 = year 6, U12 = year 7, U13 = year 8, U14 = year 9, U15 = year 10, U16 = year 11. If you're unsure which age group applies, just ask us.</div>
+          <div style="font-size:13px; color:var(--grey-700); line-height:1.7;">Teams are based on school year. U7 = year 2, U8 = year 3, U9 = year 4, U10 = year 5, U11 = year 6, U12 = year 7, U13 = year 8, U14 = year 9, U15 = year 10, U16 = year 11, and U17 = year 12. If you're unsure which age group applies, just ask us.</div>
         </div>
       </div>
     </div>
@@ -86,7 +86,7 @@
   <div class="container">
     <div class="accent-bar"></div>
     <h2 style="margin-bottom:8px;">Find a Team</h2>
-    <p style="color:var(--grey-600); margin-bottom:32px;">We have 23 teams across mixed and girls sections. Click a team for more detail.</p>
+    <p style="color:var(--grey-600); margin-bottom:32px;">We have 25 teams across mixed and girls sections. Click a team for more detail.</p>
 
     <!-- Mixed -->
     <h3 style="font-size:14px; font-weight:700; text-transform:uppercase; letter-spacing:2px; color:var(--grey-500); margin-bottom:16px; padding-bottom:8px; border-bottom:2px solid var(--green);">Mixed Teams</h3>
@@ -212,6 +212,16 @@
         </div>
       </a>
 
+      <a href="team.html?team=napoli" class="card" style="padding:16px; text-decoration:none; display:flex; align-items:center; gap:12px;">
+        <div class="fixture-team-badge" style="width:32px; height:32px; font-size:8px; flex-shrink:0;"><img src="images/logo.png" alt="LGFC"></div>
+        <div><div style="font-weight:700; font-size:13px; color:var(--grey-900);">U8 Napoli</div><div style="font-size:11px; color:var(--grey-500); margin-top:2px;">MKDDL</div></div>
+      </a>
+
+      <a href="team.html?team=dynamo" class="card" style="padding:16px; text-decoration:none; display:flex; align-items:center; gap:12px;">
+        <div class="fixture-team-badge" style="width:32px; height:32px; font-size:8px; flex-shrink:0;"><img src="images/logo.png" alt="LGFC"></div>
+        <div><div style="font-weight:700; font-size:13px; color:var(--grey-900);">U7 Dynamo</div><div style="font-size:11px; color:var(--grey-500); margin-top:2px;">MKDDL</div></div>
+      </a>
+
     </div>
 
     <!-- Girls -->
@@ -286,6 +296,17 @@
   </div>
 </section>
 
+<section class="coach-banner-section">
+  <div class="container">
+    <div class="coach-banner">
+      <div>
+        <h2>Help make grassroots football happen</h2>
+        <p>Our teams only exist because volunteers give their time. Could you help coach a team?</p>
+      </div>
+      <a href="coach.html" class="btn btn-white">Become a Coach →</a>
+    </div>
+  </div>
+</section>
 <!-- Enquiry form -->
 <section class="section" style="background:white;" id="enquire">
   <div class="container">
@@ -296,7 +317,10 @@
         <h2 style="font-size:26px; margin-bottom:8px;">Make an Enquiry</h2>
         <p style="color:var(--grey-600); margin-bottom:24px;">Tell us a little about your child and we'll be in touch within 48 hours.</p>
         <div class="card" style="padding:28px;">
-          <form action="https://formspree.io/f/placeholder" method="POST">
+          <form action="https://formspree.io/f/maqroydl" method="POST">
+            <input type="hidden" name="form_source" value="Join the Club page">
+            <input type="hidden" name="subject" value="New LGFC player enquiry — {{ section }}">
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" aria-hidden="true">
             <div class="form-group">
               <label for="parent-name">Parent / Guardian Name</label>
               <input type="text" id="parent-name" name="parent_name" placeholder="e.g. Jane Smith" required>
@@ -330,7 +354,7 @@
               <select id="team-interest" name="team_interest">
                 <option value="">— Not sure yet —</option>
                 <optgroup label="Mixed Teams">
-                  <option>U16 Ajax</option>
+                  <option>U17 Ajax</option>
                   <option>U16 Borussia</option>
                   <option>U16 Lazio</option>
                   <option>U16 Spartak</option>
@@ -345,6 +369,8 @@
                   <option>U11 Real</option>
                   <option>U10 Titans</option>
                   <option>U9 Inter</option>
+                  <option>U8 Napoli</option>
+                  <option>U7 Dynamo</option>
                 </optgroup>
                 <optgroup label="Girls Teams">
                   <option>U15 Lynxes</option>
@@ -414,7 +440,10 @@
       <div class="footer-col"><h4>Football</h4><a href="teams.html">Teams</a><a href="fixtures.html">Fixtures</a><a href="news.html">News</a></div>
       <div class="footer-col"><h4>Links</h4>
         <a href="https://fulltime.thefa.com/index.html?league=96486" target="_blank" rel="noopener">MKDDL Leagues</a>
+        <a href="https://fulltime.thefa.com/index.html?psSelectedSeason=196173019&psSelectedDivision=6399394&psSelectedCompetition=0&psSelectedLeague=96486" target="_blank" rel="noopener">MKDDL Division Link</a>
+        <a href="https://fulltime.thefa.com/index.html?psSelectedSeason=545941745&psSelectedDivision=157533766&psSelectedCompetition=0&psSelectedLeague=32913" target="_blank" rel="noopener">Chiltern Youth Sunday Link</a>
         <a href="https://fulltime.thefa.com/index.html?league=530158839" target="_blank" rel="noopener">Beds Girls League</a>
+        <a href="http://www.cedarsupper.org.uk/Cedars-3G-Artificial-Grass-Pitch/" target="_blank" rel="noopener">Cedars 3G Pitch</a>
         <a href="contact.html">Contact Us</a>
       </div>
     </div>

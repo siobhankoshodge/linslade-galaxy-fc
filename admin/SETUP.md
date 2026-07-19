@@ -95,7 +95,7 @@ You can change the password again at any time from the Settings tab.
 | **News** | Add, edit and delete news articles. Set which article is featured on the homepage. |
 | **Fixtures** | Add, edit and delete upcoming fixtures for any team. |
 | **Results** | Add, edit and delete match results for any team. |
-| **Teams** | Edit the manager name, training times and description for each of the 23 teams. |
+| **Teams** | Edit the manager name, training times and description for each of the 25 teams. |
 | **Sponsors** | Add, edit and delete club sponsors. |
 | **FA Embeds** | Enter FA Full-Time lrcodes once provided by MKDDL and Beds Girls League secretaries. |
 

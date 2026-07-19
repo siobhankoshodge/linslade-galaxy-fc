@@ -53,7 +53,10 @@
         <div class="accent-bar"></div>
         <h2 style="font-size:26px; margin-bottom:20px;">Send us a message</h2>
         <div class="card" style="padding:28px;">
-          <form action="https://formspree.io/f/placeholder" method="POST">
+          <form action="https://formspree.io/f/maqroydl" method="POST">
+            <input type="hidden" name="form_source" value="Contact page">
+            <input type="hidden" name="subject" value="New LGFC contact enquiry — {{ enquiry_type }}">
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" aria-hidden="true">
             <div class="form-group">
               <label for="name">Your Name</label>
               <input type="text" id="name" name="name" placeholder="e.g. Jane Smith" required>
@@ -65,6 +68,15 @@
             <div class="form-group">
               <label for="phone">Phone Number <span style="font-weight:400; text-transform:none; letter-spacing:0;">(optional)</span></label>
               <input type="tel" id="phone" name="phone" placeholder="e.g. 07700 900000">
+            </div>
+            <div class="form-group">
+              <label for="enquiry-type">Enquiry Type</label>
+              <select id="enquiry-type" name="enquiry_type" required>
+                <option value="">— Select —</option>
+                <option value="Mixed">Mixed teams</option>
+                <option value="Girls">Girls teams</option>
+                <option value="General">General enquiry / Not sure</option>
+              </select>
             </div>
             <div class="form-group">
               <label for="message">Your Message</label>
@@ -141,6 +153,17 @@
   </div>
 </section>
 
+<section class="coach-banner-section">
+  <div class="container">
+    <div class="coach-banner">
+      <div>
+        <h2>Help make grassroots football happen</h2>
+        <p>Our teams only exist because volunteers give their time. Could you help coach a team?</p>
+      </div>
+      <a href="coach.html" class="btn btn-white">Become a Coach →</a>
+    </div>
+  </div>
+</section>
 <footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
@@ -155,6 +178,9 @@
       <div class="footer-col"><h4>Football</h4><a href="teams.html">Teams</a><a href="fixtures.html">Fixtures</a></div>
       <div class="footer-col"><h4>Links</h4>
         <a href="https://fulltime.thefa.com/index.html?league=96486" target="_blank" rel="noopener">MKDDL Leagues</a>
+        <a href="https://fulltime.thefa.com/index.html?psSelectedSeason=196173019&psSelectedDivision=6399394&psSelectedCompetition=0&psSelectedLeague=96486" target="_blank" rel="noopener">MKDDL Division Link</a>
+        <a href="https://fulltime.thefa.com/index.html?psSelectedSeason=545941745&psSelectedDivision=157533766&psSelectedCompetition=0&psSelectedLeague=32913" target="_blank" rel="noopener">Chiltern Youth Sunday Link</a>
+        <a href="http://www.cedarsupper.org.uk/Cedars-3G-Artificial-Grass-Pitch/" target="_blank" rel="noopener">Cedars 3G Pitch</a>
         <a href="contact.html">Contact Us</a>
       </div>
     </div>

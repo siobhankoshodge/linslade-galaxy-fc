@@ -1,6 +1,4 @@
 [
-  { "id": "calibre-one", "name": "Calibre One", "logo": "images/calibrE.jpg", "url": "" },
-  { "id": "freeflow",    "name": "FreeFlow",    "logo": "images/freeflow.jpg", "url": "" },
-  { "id": "stangate",    "name": "Stangate HR", "logo": "images/stangate.jpg", "url": "" },
-  { "id": "gartec",      "name": "Gartec",      "logo": "images/gartec.jpg",   "url": "" }
+  { "id": "meerkats", "name": "Meerkats", "logo": "images/sponsors/meerkats.png", "url": "" },
+  { "id": "unite-the-union", "name": "Unite the Union — Beds & Herts District Branch LE/7349E", "logo": "images/sponsors/unite-the-union.png", "url": "" }
 ]

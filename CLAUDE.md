@@ -37,9 +37,9 @@ Static HTML site — no framework, no build step, vanilla JS only.
 
 Terminology: mixed (not boys) for the 15 non-girls teams. Girls section has 8 teams.
 
-## All 23 teams
+## All 25 teams
 
-### Mixed (15) — MKDDL / Chiltern Youth Sunday
+### Mixed (17) — MKDDL / Chiltern Youth Sunday
 | Slug | Name |
 |---|---|
 | ajax | U17 Ajax |
@@ -57,6 +57,8 @@ Terminology: mixed (not boys) for the 15 non-girls teams. Girls section has 8 te
 | real | U11 Real |
 | titans | U10 Titans |
 | inter | U9 Inter |
+| napoli | U8 Napoli |
+| dynamo | U7 Dynamo |
 
 ### Girls (8) — Bedfordshire FA Girls Football League
 | Slug | Name |
@@ -86,6 +88,6 @@ Terminology: mixed (not boys) for the 15 non-girls teams. Girls section has 8 te
   - MKDDL: Philip needs admin role from MKDDL secretary
   - Beds Girls League: Nicholas Snelson — nicholas.snelson@bedfordshirefa.com
   - Chiltern Youth Sunday (lazio, titans): contact league secretary
-- **Formspree:** contact.html and join.html endpoints are placeholders — need real Formspree account
+- **Formspree:** Contact, Join and Become a Coach forms use endpoint `https://formspree.io/f/maqroydl`; all notifications go to the single email configured in Formspree
 - **Custom domain:** linsladegalaxyfc.co.uk pending — once live, update OG image URLs in all `<head>` tags
-- **Team profiles:** All 23 teams in `teams.json` still have TBC for manager/training/description
+- **Team profiles:** All 25 teams in `teams.json` still have TBC for manager/training/description

@@ -773,13 +773,13 @@ const TEAMS = {
   ajax:'U17 Ajax', borussia:'U16 Borussia', lazio:'U16 Lazio', spartak:'U16 Spartak',
   sporting:'U16 Sporting', porto:'U14 Porto', barca:'U13 Barca', bayern:'U13 Bayern',
   juve:'U12 Juve', roma:'U12 Roma', wanderers:'U12 Wanderers', atletico:'U11 Atletico',
-  real:'U11 Real', titans:'U10 Titans', inter:'U9 Inter',
+  real:'U11 Real', titans:'U10 Titans', inter:'U9 Inter', napoli:'U8 Napoli', dynamo:'U7 Dynamo',
   lynxes:'U15 Lynxes', jaguars:'U14 Jaguars', lions:'U14 Lions', panthers:'U14 Panthers',
   lionesses:'U13 Lionesses', bobcats:'U12 Bobcats', leopards:'U11 Leopards', meerkats:'U9 Meerkats'
 };
 
 const TEAM_OPTS = Object.entries(TEAMS).map(([v,l]) => `<option value="${v}">${l}</option>`).join('');
-const SECTION_MIXED = ['ajax','borussia','lazio','spartak','sporting','porto','barca','bayern','juve','roma','wanderers','atletico','real','titans','inter'];
+const SECTION_MIXED = ['ajax','borussia','lazio','spartak','sporting','porto','barca','bayern','juve','roma','wanderers','atletico','real','titans','inter','napoli','dynamo'];
 const SECTION_GIRLS = ['lynxes','jaguars','lions','panthers','lionesses','bobcats','leopards','meerkats'];
 
 function teamLabel(slug) { return TEAMS[slug] || slug; }
@@ -1463,8 +1463,11 @@ function sponsorModal(idx = -1) {
         <div class="modal-body">
           <div class="form-group"><label>Name</label><input type="text" id="sm-name" value="${escAttr(s.name)}"></div>
           <div class="form-group">
-            <label>Logo image path <span style="font-weight:400;color:var(--grey-500);">(relative to site root)</span></label>
-            <input type="text" id="sm-logo" value="${escAttr(s.logo)}" placeholder="images/sponsor-name.jpg">
+            <label>Sponsor logo <span style="font-weight:400;color:var(--grey-500);">(PNG, JPG or WebP)</span></label>
+            <input type="hidden" id="sm-logo" value="${escAttr(s.logo)}">
+            ${s.logo ? `<div style="margin-bottom:10px;padding:12px;background:var(--grey-100);border-radius:4px;"><img src="../${escAttr(s.logo)}" alt="Current logo" style="max-height:80px;max-width:220px;object-fit:contain;"></div>` : ''}
+            <input type="file" id="sm-logo-file" accept="image/png,image/jpeg,image/webp">
+            <div style="font-size:11px;color:var(--grey-500);margin-top:6px;">Leave empty when editing to keep the current logo.</div>
           </div>
           <div class="form-group"><label>Website URL <span style="font-weight:400;color:var(--grey-500);">(optional)</span></label><input type="url" id="sm-url" value="${escAttr(s.url||'')}"></div>
         </div>
@@ -1484,10 +1487,19 @@ async function saveSponsor(isNew, idx, oldId) {
   try {
     const name = document.getElementById('sm-name').value.trim();
     if (!name) { showToast('Name is required','error'); btn.disabled=false; btn.textContent='Save sponsor'; return; }
+    let logo = document.getElementById('sm-logo').value.trim();
+    const logoFile = document.getElementById('sm-logo-file').files[0];
+    if (logoFile) {
+      if (logoFile.size > 5 * 1024 * 1024) throw new Error('Logo must be smaller than 5 MB');
+      btn.textContent = 'Uploading logo…';
+      const safeName = await uploadImage(logoFile, 'images/sponsors');
+      logo = 'images/sponsors/' + safeName;
+    }
+    if (!logo) { showToast('Please choose a sponsor logo','error'); btn.disabled=false; btn.textContent='Save sponsor'; return; }
     const updated = {
       id:   oldId || name.toLowerCase().replace(/[^a-z0-9]+/g,'-'),
       name,
-      logo: document.getElementById('sm-logo').value.trim(),
+      logo,
       url:  document.getElementById('sm-url').value.trim()
     };
     let arr = [...sponsorsData];
@@ -1572,7 +1584,7 @@ document.getElementById('embeds-save-btn').addEventListener('click', async () =>
 // ==============================================================
 // IMAGE UPLOAD
 // ==============================================================
-async function uploadImage(file) {
+async function uploadImage(file, folder = 'images') {
   // Sanitise filename: lowercase, non-alphanumeric → hyphens, keep extension
   const ext      = file.name.split('.').pop().toLowerCase().replace('jpg','jpg') ;
   const base     = file.name.replace(/\.[^.]+$/, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
@@ -1589,7 +1601,7 @@ async function uploadImage(file) {
   // Check if file already exists in /images/ (need SHA to update)
   let sha;
   try {
-    const r = await fetch(`https://api.github.com/repos/${REPO}/contents/images/${safeName}`, {
+    const r = await fetch(`https://api.github.com/repos/${REPO}/contents/${folder}/${safeName}`, {
       headers: { Authorization: 'token ' + getPAT(), Accept: 'application/vnd.github.v3+json' }
     });
     if (r.ok) { const d = await r.json(); sha = d.sha; }
@@ -1599,7 +1611,7 @@ async function uploadImage(file) {
   const body = { message: `Upload image: ${safeName}`, content: base64, branch: BRANCH };
   if (sha) body.sha = sha;
 
-  const r = await fetch(`https://api.github.com/repos/${REPO}/contents/images/${safeName}`, {
+  const r = await fetch(`https://api.github.com/repos/${REPO}/contents/${folder}/${safeName}`, {
     method: 'PUT',
     headers: {
       Authorization: 'token ' + getPAT(),
