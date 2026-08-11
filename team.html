@@ -127,8 +127,8 @@
     <div class="team-tab-nav">
       <button class="team-tab-btn active" onclick="showTeamTab('overview', this)">Overview</button>
       <button class="team-tab-btn" onclick="showTeamTab('fixtures', this)">Fixtures</button>
-      <button class="team-tab-btn" onclick="showTeamTab('table', this)">League Table</button>
-      <button class="team-tab-btn" onclick="showTeamTab('reports', this)">Match Reports</button>
+      <button class="team-tab-btn" id="table-tab-btn" onclick="showTeamTab('table', this)">League Table</button>
+      <button class="team-tab-btn" id="reports-tab-btn" onclick="showTeamTab('reports', this)">Match Reports</button>
       <button class="team-tab-btn" onclick="showTeamTab('gallery', this)">Gallery</button>
     </div>
 
@@ -180,7 +180,7 @@
             </div>
           </div>
 
-          <div class="card" style="overflow:hidden;">
+          <div class="card" id="last-result-card" style="overflow:hidden;">
             <div style="background:var(--grey-900); padding:12px 16px;">
               <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:rgba(255,255,255,0.7);">Last Result</div>
             </div>
@@ -378,6 +378,18 @@
   var slug = getParam('team');
   var team = teams[slug];
   if (team) {
+    var ageMatch = team.name.match(/^U(\d+)/i);
+    var isNonCompetitive = ageMatch && Number(ageMatch[1]) <= 11;
+
+    if (isNonCompetitive) {
+      document.getElementById('stats-bar').style.display = 'none';
+      document.getElementById('last-result-card').style.display = 'none';
+      document.getElementById('table-tab-btn').style.display = 'none';
+      document.getElementById('reports-tab-btn').style.display = 'none';
+      document.getElementById('tab-table').style.display = 'none';
+      document.getElementById('tab-reports').style.display = 'none';
+    }
+
     document.title = team.name + ' | Linslade Galaxy FC';
     document.getElementById('team-name').textContent = team.name;
     document.getElementById('breadcrumb-team').textContent = team.name;
@@ -424,10 +436,10 @@
           + '</div>';
       }
 
-      // --- Last result sidebar ---
-      var pastResults = results.filter(function(r) { return r.team === slug; })
+      // --- Last result sidebar (competitive age groups only) ---
+      var pastResults = isNonCompetitive ? [] : results.filter(function(r) { return r.team === slug; })
         .sort(function(a,b) { return b.date.localeCompare(a.date); });
-      if (pastResults.length) {
+      if (!isNonCompetitive && pastResults.length) {
         var r = pastResults[0];
         var outcomeColor = r.outcome === 'win' ? 'var(--green)' : r.outcome === 'draw' ? 'var(--gold-dark,#8a6800)' : '#c0392b';
         document.getElementById('last-result').innerHTML =
