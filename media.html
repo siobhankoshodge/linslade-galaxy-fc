@@ -63,7 +63,24 @@
       letter-spacing: 0.5px;
       text-transform: uppercase;
     }
-  </style>
+    .club-moments-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 12px;
+    }
+    .club-moment {
+      grid-column: span 4;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--grey-100);
+      box-shadow: var(--shadow-sm);
+      aspect-ratio: 4/3;
+    }
+    .club-moment:nth-child(1), .club-moment:nth-child(5) { grid-column: span 6; }
+    .club-moment img { width:100%; height:100%; object-fit:cover; display:block; }
+    @media (max-width: 720px) {
+      .club-moment, .club-moment:nth-child(1), .club-moment:nth-child(5) { grid-column: span 12; }
+    }  </style>
 </head>
 <body>
 
@@ -119,6 +136,23 @@
         <div class="media-thumb"><img src="images/download.jpg" alt="U15 Spartak in penalties drama" loading="lazy"></div>
         <div class="media-story-copy"><div class="media-story-date">Club news</div><h3>U15 Spartak in Penalties Drama</h3><span>Read story →</span></div>
       </a>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:white;">
+  <div class="container">
+    <div class="accent-bar"></div>
+    <h2 style="margin-bottom:4px;">Club Moments</h2>
+    <p style="color:var(--grey-600); font-size:14px; margin-bottom:24px;">Celebrating our teams, players and volunteers across Linslade Galaxy FC.</p>
+    <div class="club-moments-grid">
+      <figure class="club-moment"><img src="images/club-gallery/tournament-celebration.jpg" alt="Young Linslade Galaxy players celebrating a tournament win" loading="lazy"></figure>
+      <figure class="club-moment"><img src="images/club-gallery/team-trophy-presentation.jpg" alt="Linslade Galaxy team and coaches with trophies" loading="lazy"></figure>
+      <figure class="club-moment"><img src="images/club-gallery/cup-winners.jpg" alt="Linslade Galaxy players celebrating with a cup and medals" loading="lazy"></figure>
+      <figure class="club-moment"><img src="images/club-gallery/team-at-goal.jpg" alt="Linslade Galaxy team gathered in front of the goal" loading="lazy"></figure>
+      <figure class="club-moment"><img src="images/club-gallery/medal-celebration.jpg" alt="Linslade Galaxy players celebrating with medals and a trophy" loading="lazy"></figure>
+      <figure class="club-moment"><img src="images/club-gallery/young-player-awards.jpg" alt="Young Linslade Galaxy players holding their awards" loading="lazy"></figure>
+      <figure class="club-moment"><img src="images/club-gallery/club-awards-display.jpg" alt="Linslade Galaxy FC awards display and club banner" loading="lazy"></figure>
     </div>
   </div>
 </section>
