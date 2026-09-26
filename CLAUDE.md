@@ -42,7 +42,7 @@ Terminology: mixed (not boys) for the 15 non-girls teams. Girls section has 8 te
 ### Mixed (17) — MKDDL / Chiltern Youth Sunday
 | Slug | Name |
 |---|---|
-| ajax | U17 Ajax |
+| ajax | U18 Ajax |
 | borussia | U16 Borussia |
 | lazio | U16 Lazio |
 | spartak | U16 Spartak |

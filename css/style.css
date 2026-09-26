@@ -619,7 +619,7 @@ h3 { font-size: 24px; }
 /* --- PAGE HEADER --- */
 .page-header {
   background: var(--grey-900);
-  background-image: url('../images/herokit.png');
+  background-image: url('../images/herokit.jpg');
   background-size: cover;
   background-position: center 30%;
   padding: 48px 0;
@@ -1082,3 +1082,23 @@ h3 { font-size: 24px; }
 
 .form-submit-status { margin-top:12px; font-size:13px; text-align:center; color:var(--green-dark); }
 .form-submit-status.error { color:#b42318; }
+
+/* Accessibility */
+:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+}
+.nav-toggle:focus-visible,
+.btn:focus-visible,
+a:focus-visible {
+  border-radius: 3px;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

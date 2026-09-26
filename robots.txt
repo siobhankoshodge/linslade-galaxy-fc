@@ -1,3 +1,4 @@
 User-agent: *
 Disallow: /admin/
-Disallow: /data/
+
+Sitemap: https://spontaneous-sunflower-a85279.netlify.app/sitemap.xml

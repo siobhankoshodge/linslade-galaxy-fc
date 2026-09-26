@@ -769,18 +769,17 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
 });
 
 // ---- TEAM LABELS ----
-const TEAMS = {
-  ajax:'U17 Ajax', borussia:'U16 Borussia', lazio:'U16 Lazio', spartak:'U16 Spartak',
-  sporting:'U16 Sporting', porto:'U14 Porto', barca:'U13 Barca', bayern:'U13 Bayern',
-  juve:'U12 Juve', roma:'U12 Roma', wanderers:'U12 Wanderers', atletico:'U11 Atletico',
-  real:'U11 Real', titans:'U10 Titans', inter:'U9 Inter', napoli:'U8 Napoli', dynamo:'U7 Dynamo',
-  lynxes:'U15 Lynxes', jaguars:'U14 Jaguars', lions:'U14 Lions', panthers:'U14 Panthers',
-  lionesses:'U13 Lionesses', bobcats:'U12 Bobcats', leopards:'U11 Leopards', meerkats:'U9 Meerkats'
+const TEAMS = {  ajax:'U18 Ajax', borussia:'U16 Borussia', lazio:'U16 Lazio', spartak:'U16 Spartak',
+  porto:'U14 Porto', barca:'U13 Barca', bayern:'U13 Bayern',
+  juve:'U12 Juve', wanderers:'U12 Wanderers', atletico:'U11 Atletico', real:'U11 Real', rojas:'U11 Rojas',
+  titans:'U10 Titans', inter:'U9 Inter', dynamo:'U7 Dynamo',
+  pumas:'U14 Pumas', jaguars:'U14 Jaguars', lions:'U14 Lions', panthers:'U14 Panthers',
+  lionesses:'U13 Lionesses', tigers:'U13 Tigers', bobcats:'U12 Bobcats', leopards:'U11 Leopards', meerkats:'U9 Meerkats'
 };
 
 const TEAM_OPTS = Object.entries(TEAMS).map(([v,l]) => `<option value="${v}">${l}</option>`).join('');
-const SECTION_MIXED = ['ajax','borussia','lazio','spartak','sporting','porto','barca','bayern','juve','roma','wanderers','atletico','real','titans','inter','napoli','dynamo'];
-const SECTION_GIRLS = ['lynxes','jaguars','lions','panthers','lionesses','bobcats','leopards','meerkats'];
+const SECTION_MIXED = ['ajax','borussia','lazio','spartak','porto','barca','bayern','juve','wanderers','atletico','real','rojas','titans','inter','dynamo'];
+const SECTION_GIRLS = ['pumas','jaguars','lions','panthers','lionesses','tigers','bobcats','leopards','meerkats'];
 
 function teamLabel(slug) { return TEAMS[slug] || slug; }
 function sectionOf(slug) { return SECTION_GIRLS.includes(slug) ? 'girls' : 'mixed'; }
@@ -1063,7 +1062,7 @@ function fixtureModal(fixture = null) {
               <label>Competition</label>
               <select id="fm-comp">
                 <option value="mkddl">MKDDL</option>
-                <option value="chiltern">Chiltern Youth Sunday</option>
+                <option value="chiltern">Chiltern Youth Football League</option>
                 <option value="beds-girls">Beds Girls League</option>
                 <option value="bysl">Beds Youth Saturday League</option>
                 <option value="cup">Cup</option>
@@ -1213,7 +1212,7 @@ function resultModal(result = null) {
               <label>Competition</label>
               <select id="rm-comp">
                 <option value="mkddl">MKDDL</option>
-                <option value="chiltern">Chiltern Youth Sunday</option>
+                <option value="chiltern">Chiltern Youth Football League</option>
                 <option value="beds-girls">Beds Girls League</option>
                 <option value="bysl">Beds Youth Saturday League</option>
                 <option value="cup">Cup</option>
@@ -1354,13 +1353,14 @@ function renderTeamsList() {
       <td style="font-weight:600;color:var(--grey-900);">${name}</td>
       <td>${escHtml(t.manager||'TBC')}</td>
       <td style="font-size:12px;color:var(--grey-500);">${escHtml(t.training||'TBC')}</td>
+      <td>${escHtml(t.matchday||'TBC')}</td>
       <td style="text-align:right;">
         <button class="btn btn-ghost btn-sm" onclick="editTeam('${escAttr(slug)}')">Edit</button>
       </td>
     </tr>`;
   }).join('');
   wrap.innerHTML = `<table class="data-table">
-    <thead><tr><th>Team</th><th>Manager</th><th>Training</th><th></th></tr></thead>
+    <thead><tr><th>Team</th><th>Manager</th><th>Training</th><th>Matchday</th><th></th></tr></thead>
     <tbody>${rows}</tbody>
   </table>`;
 }
@@ -1377,6 +1377,7 @@ function editTeam(slug) {
         <div class="modal-body">
           <div class="form-group"><label>Manager</label><input type="text" id="tm-manager" value="${escAttr(t.manager||'')}"></div>
           <div class="form-group"><label>Training times</label><input type="text" id="tm-training" value="${escAttr(t.training||'')}" placeholder="Tuesdays 6:30pm — Greenleas Lower School"></div>
+          <div class="form-group"><label>Matchday</label><input type="text" id="tm-matchday" value="${escAttr(t.matchday||'')}" placeholder="Saturday"></div>
           <div class="form-group"><label>Description</label><textarea id="tm-desc" rows="3">${escHtml(t.description||'')}</textarea></div>
           <div class="form-group"><label>Contact email <span style="font-weight:400;color:var(--grey-500);">(optional)</span></label><input type="email" id="tm-email" value="${escAttr(t.contactEmail||'')}"></div>
         </div>
@@ -1399,6 +1400,7 @@ async function saveTeam(slug) {
       [slug]: {
         manager:      document.getElementById('tm-manager').value.trim(),
         training:     document.getElementById('tm-training').value.trim(),
+        matchday:     document.getElementById('tm-matchday').value.trim(),
         description:  document.getElementById('tm-desc').value.trim(),
         contactEmail: document.getElementById('tm-email').value.trim()
       }

@@ -4,8 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>News | Linslade Galaxy FC</title>
+  <link rel="canonical" href="https://spontaneous-sunflower-a85279.netlify.app/article.html">
+  <meta property="og:url" content="https://spontaneous-sunflower-a85279.netlify.app/article.html">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Linslade Galaxy FC">
+  <meta name="description" content="News, match reports and club updates from Linslade Galaxy FC.">
+  <meta property="og:title" content="News | Linslade Galaxy FC">
+  <meta property="og:description" content="News, match reports and club updates from Linslade Galaxy FC.">
+  <meta property="og:image" content="https://spontaneous-sunflower-a85279.netlify.app/images/herokit.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="News | Linslade Galaxy FC">
+  <meta name="twitter:description" content="News, match reports and club updates from Linslade Galaxy FC.">
+  <meta name="twitter:image" content="https://spontaneous-sunflower-a85279.netlify.app/images/herokit.jpg">
   <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
   <link rel="stylesheet" href="css/style.css">
   <style>
@@ -35,13 +45,13 @@
       <div class="nav-logo-img"><img src="images/logo.png" alt="LGFC" onerror="this.parentElement.innerHTML='<span style=\'font-size:10px;color:rgba(255,255,255,0.7);font-weight:700;\'>LGFC</span>'"></div>
       <span class="nav-logo-text">Linslade Galaxy FC</span>
     </a>
-    <div class="nav-links">
+    <div class="nav-links" id="site-navigation">
       <a href="index.html">Home</a><a href="club.html">Club</a><a href="teams.html">Teams</a>
       <a href="fixtures.html">Fixtures &amp; Results</a><a href="news.html" class="active">News</a>
       <a href="media.html">Media</a><a href="contact.html">Contact</a>
       <a href="join.html" class="nav-cta">Join the Club</a>
     </div>
-    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="site-navigation"><span></span><span></span><span></span></button>
   </div>
 </nav>
 
@@ -90,37 +100,36 @@
       <div class="footer-col"><h4>Club</h4><a href="club.html">About Us</a><a href="join.html">Join</a></div>
       <div class="footer-col"><h4>Football</h4><a href="teams.html">Teams</a><a href="fixtures.html">Fixtures</a><a href="news.html">News</a></div>
       <div class="footer-col"><h4>Links</h4>
-        <a href="https://fulltime.thefa.com/index.html?league=96486" target="_blank" rel="noopener">MKDDL Leagues</a>
-        <a href="https://fulltime.thefa.com/index.html?psSelectedSeason=196173019&psSelectedDivision=6399394&psSelectedCompetition=0&psSelectedLeague=96486" target="_blank" rel="noopener">MKDDL Division Link</a>
-        <a href="https://fulltime.thefa.com/index.html?psSelectedSeason=545941745&psSelectedDivision=157533766&psSelectedCompetition=0&psSelectedLeague=32913" target="_blank" rel="noopener">Chiltern Youth Sunday Link</a>
+        <a href="https://fulltime.thefa.com/index.html?league=96486" target="_blank" rel="noopener">MKDDL</a>
+        <a href="https://fulltime.thefa.com/index.html?league=32913" target="_blank" rel="noopener">Beds Youth Saturday League</a>
         <a href="https://fulltime.thefa.com/index.html?league=530158839" target="_blank" rel="noopener">Beds Girls League</a>
-        <a href="http://www.cedarsupper.org.uk/Cedars-3G-Artificial-Grass-Pitch/" target="_blank" rel="noopener">Cedars 3G Pitch</a>
+        <a href="https://www.cedarsupper.org.uk/Cedars-3G-Artificial-Grass-Pitch/" target="_blank" rel="noopener">Cedars 3G Pitch</a>
         <a href="contact.html">Contact Us</a>
       </div>
     </div>
     <div class="footer-bottom">
       <span>© 2026/27 Linslade Galaxy FC.</span>
-      <span><a href="club.html#policies" style="color:rgba(255,255,255,0.4);text-decoration:none;margin-left:16px;">Privacy</a></span>
+      <span><a href="privacy.html" style="color:rgba(255,255,255,0.4);text-decoration:none;margin-left:16px;">Privacy</a></span>
     </div>
   </div>
 </footer>
 
 <script src="js/main.js"></script>
 <script>
-  var TEAM_NAMES = {
-    ajax:'U17 Ajax', borussia:'U16 Borussia', lazio:'U16 Lazio', spartak:'U16 Spartak',
-    sporting:'U16 Sporting', porto:'U14 Porto', barca:'U13 Barca', bayern:'U13 Bayern',
-    juve:'U12 Juve', roma:'U12 Roma', wanderers:'U12 Wanderers', atletico:'U11 Atletico',
-    real:'U11 Real', titans:'U10 Titans', inter:'U9 Inter', napoli:'U8 Napoli', dynamo:'U7 Dynamo',
-    lynxes:'U15 Lynxes', jaguars:'U14 Jaguars', lions:'U14 Lions', panthers:'U14 Panthers',
-    lionesses:'U13 Lionesses', bobcats:'U12 Bobcats', leopards:'U11 Leopards', meerkats:'U9 Meerkats'
+  var TEAM_NAMES = {  ajax:'U18 Ajax', borussia:'U16 Borussia', lazio:'U16 Lazio', spartak:'U16 Spartak',
+  porto:'U14 Porto', barca:'U13 Barca', bayern:'U13 Bayern',
+  juve:'U12 Juve', wanderers:'U12 Wanderers', atletico:'U11 Atletico', real:'U11 Real', rojas:'U11 Rojas',
+  titans:'U10 Titans', inter:'U9 Inter', dynamo:'U7 Dynamo',
+  pumas:'U14 Pumas', jaguars:'U14 Jaguars', lions:'U14 Lions', panthers:'U14 Panthers',
+  lionesses:'U13 Lionesses', tigers:'U13 Tigers', bobcats:'U12 Bobcats', leopards:'U11 Leopards', meerkats:'U9 Meerkats'
   };
-  var GIRLS = ['lynxes','jaguars','lions','panthers','lionesses','bobcats','leopards','meerkats'];
-  var MIXED = ['ajax','borussia','lazio','spartak','sporting','porto','barca','bayern','juve','roma','wanderers','atletico','real','titans','inter'];
+  var GIRLS = ['pumas','jaguars','lions','panthers','lionesses','tigers','bobcats','leopards','meerkats'];
+  var MIXED = ['ajax','borussia','lazio','spartak','porto','barca','bayern','juve','wanderers','atletico','real','rojas','titans','inter','dynamo'];
   var CAT_LABELS = { 'match-report':'Match Report','club-news':'Club News','tournament':'Tournament','announcement':'Announcement' };
   var CAT_TAGS   = { 'match-report':'tag-grey','club-news':'tag-grey','tournament':'tag-gold','announcement':'tag-grey' };
 
   function escHtml(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  function setMeta(selector, value) { var el = document.querySelector(selector); if (el && value) el.setAttribute('content', value); }
 
   function fmtDate(d) {
     return new Date(d + 'T00:00:00').toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' });
@@ -151,8 +160,22 @@
           return;
         }
 
-        // Meta tags
+        // Page title and sharing metadata
+        var pageUrl = window.location.href.split('#')[0];
+        var description = a.summary || (a.body ? a.body.slice(0, 155) : 'News from Linslade Galaxy FC.');
         document.title = a.title + ' | Linslade Galaxy FC';
+        document.querySelector('link[rel="canonical"]').setAttribute('href', pageUrl);
+        setMeta('meta[name="description"]', description);
+        setMeta('meta[property="og:title"]', a.title + ' | Linslade Galaxy FC');
+        setMeta('meta[property="og:description"]', description);
+        setMeta('meta[property="og:url"]', pageUrl);
+        setMeta('meta[name="twitter:title"]', a.title + ' | Linslade Galaxy FC');
+        setMeta('meta[name="twitter:description"]', description);
+        if (a.image) {
+          var shareImage = new URL('images/' + a.image, window.location.href).href;
+          setMeta('meta[property="og:image"]', shareImage);
+          setMeta('meta[name="twitter:image"]', shareImage);
+        }
 
         // Header
         document.getElementById('breadcrumb-title').textContent = a.title;

@@ -1,152 +1,170 @@
 {
   "ajax": {
-    "manager": "",
-    "training": "",
-    "description": "U17 Ajax compete in the MKDDL.",
-    "contactEmail": ""
+    "manager": "Stuart Cooper",
+    "training": "Thursday, 8pm at Cedars 3G",
+    "description": "U18 Ajax compete in the MKDDL.",
+    "contactEmail": "",
+    "matchday": "Saturday"
   },
   "borussia": {
-    "manager": "",
-    "training": "",
+    "manager": "Max Saunders",
+    "training": "Thursday, 8pm at Cedars 3G",
     "description": "U16 Borussia compete in the MKDDL.",
-    "contactEmail": ""
+    "contactEmail": "",
+    "matchday": "Saturday"
   },
   "lazio": {
-    "manager": "",
-    "training": "",
-    "description": "U16 Lazio compete in the Chiltern Youth Sunday league.",
-    "contactEmail": ""
+    "manager": "Peter Hamer",
+    "training": "No regular training session",
+    "description": "U16 Lazio compete in the M&S Water Services Chiltern Youth Football League, Under 16 Division 1.",
+    "contactEmail": "",
+    "matchday": "Sunday"
   },
   "spartak": {
-    "manager": "",
-    "training": "",
+    "manager": "Steve Shotton",
+    "training": "Tuesday, 8pm at Cedars 3G",
     "description": "U16 Spartak compete in the MKDDL.",
-    "contactEmail": ""
-  },
-  "sporting": {
-    "manager": "",
-    "training": "",
-    "description": "U16 Sporting compete in the MKDDL.",
-    "contactEmail": ""
+    "contactEmail": "",
+    "matchday": "Saturday"
   },
   "porto": {
-    "manager": "",
-    "training": "",
+    "manager": "Andrew Manning",
+    "training": "Thursday, 8pm at Cedars 3G",
     "description": "U14 Porto compete in the MKDDL.",
-    "contactEmail": ""
+    "contactEmail": "",
+    "matchday": "Saturday"
   },
   "barca": {
-    "manager": "",
-    "training": "",
+    "manager": "Ryan O'Shea",
+    "training": "Thursday, 7pm at Cedars 3G",
     "description": "U13 Barca compete in the MKDDL.",
-    "contactEmail": ""
+    "contactEmail": "",
+    "matchday": "Saturday"
   },
   "bayern": {
-    "manager": "",
-    "training": "",
+    "manager": "Jamie Kane",
+    "training": "Thursday, 7pm at Cedars 3G",
     "description": "U13 Bayern compete in the MKDDL.",
-    "contactEmail": ""
+    "contactEmail": "",
+    "matchday": "Saturday"
   },
   "juve": {
-    "manager": "",
-    "training": "",
+    "manager": "Matt Barker",
+    "training": "Thursday, 7pm at Cedars 3G",
     "description": "U12 Juve compete in the MKDDL.",
-    "contactEmail": ""
-  },
-  "roma": {
-    "manager": "",
-    "training": "",
-    "description": "U12 Roma compete in the MKDDL.",
-    "contactEmail": ""
+    "contactEmail": "",
+    "matchday": "Saturday"
   },
   "wanderers": {
-    "manager": "",
-    "training": "",
+    "manager": "Vishal Rawal",
+    "training": "Tuesday, 7pm at Cedars 3G",
     "description": "U12 Wanderers compete in the MKDDL.",
-    "contactEmail": ""
+    "contactEmail": "",
+    "matchday": "Saturday"
   },
   "atletico": {
-    "manager": "",
-    "training": "",
+    "manager": "Rupesha Majithia",
+    "training": "Monday, 6pm at Cedars 3G",
     "description": "U11 Atletico compete in the MKDDL.",
-    "contactEmail": ""
+    "contactEmail": "",
+    "matchday": "Saturday"
   },
   "real": {
-    "manager": "",
-    "training": "",
+    "manager": "Billy Perry",
+    "training": "Monday, 7pm at Cedars 3G",
     "description": "U11 Real compete in the MKDDL.",
-    "contactEmail": ""
+    "contactEmail": "",
+    "matchday": "Saturday"
   },
   "titans": {
-    "manager": "",
-    "training": "",
-    "description": "U10 Titans compete in the Chiltern Youth Sunday league.",
-    "contactEmail": ""
+    "manager": "Vishal Rawal",
+    "training": "No regular training session",
+    "description": "U10 Titans compete in BMSL TT Couriers, U10 Wales.",
+    "contactEmail": "",
+    "matchday": "Sunday"
   },
   "inter": {
-    "manager": "",
-    "training": "",
+    "manager": "Dave Oatley",
+    "training": "Monday, 6pm at Cedars 3G",
     "description": "U9 Inter compete in the MKDDL.",
-    "contactEmail": ""
-  },
-  "napoli": {
-    "manager": "",
-    "training": "",
-    "description": "U8 Napoli compete in the MKDDL.",
-    "contactEmail": ""
+    "contactEmail": "",
+    "matchday": "Saturday"
   },
   "dynamo": {
-    "manager": "",
-    "training": "",
+    "manager": "Bradley",
+    "training": "Monday, 6pm at Cedars 3G",
     "description": "U7 Dynamo compete in the MKDDL.",
-    "contactEmail": ""
-  },
-  "lynxes": {
-    "manager": "",
-    "training": "",
-    "description": "U15 Lynxes compete in the Beds Girls League, Division 2.",
-    "contactEmail": ""
+    "contactEmail": "",
+    "matchday": "Saturday"
   },
   "jaguars": {
-    "manager": "",
-    "training": "",
+    "manager": "Simon Moyes",
+    "training": "Friday, 7pm at Cedars 3G",
     "description": "U14 Jaguars compete in the Beds Girls League, Division 1.",
-    "contactEmail": ""
+    "contactEmail": "",
+    "matchday": "Saturday"
   },
   "lions": {
-    "manager": "",
-    "training": "",
+    "manager": "James Cusack",
+    "training": "Friday, 7pm at Cedars 3G",
     "description": "U14 Lions compete in the Beds Girls League, Division 1.",
-    "contactEmail": ""
+    "contactEmail": "",
+    "matchday": "Saturday"
   },
   "panthers": {
-    "manager": "",
-    "training": "",
+    "manager": "Chris Tompkins",
+    "training": "Friday, 7pm at Cedars 3G",
     "description": "U14 Panthers compete in the Beds Girls League, Division 3.",
-    "contactEmail": ""
+    "contactEmail": "",
+    "matchday": "Saturday"
   },
   "lionesses": {
-    "manager": "",
-    "training": "",
+    "manager": "Darren Cowley",
+    "training": "Friday, 7pm at Cedars 3G",
     "description": "U13 Lionesses compete in the Beds Girls League, Division 3.",
-    "contactEmail": ""
+    "contactEmail": "",
+    "matchday": "Saturday"
   },
   "bobcats": {
-    "manager": "",
-    "training": "",
+    "manager": "Martin Theobald",
+    "training": "Thursday, 7pm at Cedars 3G",
     "description": "U12 Bobcats compete in the Beds Girls League, Development section.",
-    "contactEmail": ""
+    "contactEmail": "",
+    "matchday": "Saturday"
   },
   "leopards": {
-    "manager": "",
-    "training": "",
+    "manager": "Amy Higham",
+    "training": "Friday, 6pm at Cedars 3G",
     "description": "U11 Leopards compete in the Beds Girls League, Development section.",
-    "contactEmail": ""
+    "contactEmail": "",
+    "matchday": "Saturday"
   },
   "meerkats": {
-    "manager": "",
-    "training": "",
+    "manager": "Andrew Bowen",
+    "training": "Friday, 6pm at Cedars 3G",
     "description": "U9 Meerkats compete in the Beds Girls League, Development section.",
-    "contactEmail": ""
+    "contactEmail": "",
+    "matchday": "Saturday"
+  },
+  "rojas": {
+    "manager": "Steve Martin",
+    "training": "No regular training session",
+    "description": "U11 Rojas compete in BMSL TT Couriers, U11 Scotland MS1.",
+    "contactEmail": "",
+    "matchday": "Sunday"
+  },
+  "tigers": {
+    "manager": "Robin Osborn",
+    "training": "Tuesday, 7pm at Cedars 3G",
+    "description": "U13 Tigers compete in the Bedfordshire FA Girls Football League, U13 Division 3.",
+    "contactEmail": "",
+    "matchday": "Saturday"
+  },
+  "pumas": {
+    "manager": "Dominic Brackley",
+    "training": "No regular training session",
+    "description": "U14 Pumas compete in the M&S Water Services Chiltern Youth Football League, Under 14 Division 3.",
+    "contactEmail": "",
+    "matchday": "Sunday"
   }
 }

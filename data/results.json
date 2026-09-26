@@ -1,5 +1,18 @@
 [
   {
+    "id": "result-20260926-ajax",
+    "date": "2026-09-26",
+    "team": "ajax",
+    "section": "mixed",
+    "competition": "bysl",
+    "home": false,
+    "opponent": "AFC Oakley U18 Ravens",
+    "goalsFor": 0,
+    "goalsAgainst": 2,
+    "outcome": "loss",
+    "reportUrl": ""
+  },
+  {
     "id": "result-20260926-bayern-1",
     "date": "2026-09-26",
     "team": "bayern",

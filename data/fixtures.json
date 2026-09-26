@@ -33,17 +33,6 @@
     "venue": "CEDARS UPPER SCHOOL"
   },
   {
-    "id": "bysl-20260926-ajax-1",
-    "team": "ajax",
-    "section": "mixed",
-    "date": "2026-09-26",
-    "time": "09:30",
-    "competition": "bysl",
-    "home": false,
-    "opponent": "AFC Oakley U18 Ravens",
-    "venue": "BIDDENHAM INTERNATIONAL SCHOOL AND SPORTS COLLEGE #2 Adult 11v11 (temporary)"
-  },
-  {
     "id": "beds-girls-20260926-bobcats-1",
     "team": "bobcats",
     "section": "girls",
@@ -360,7 +349,7 @@
     "competition": "bysl",
     "home": true,
     "opponent": "Barton Rovers Youth U18 (Sat) Whites",
-    "venue": "Linslade Galaxy U17 Ajax"
+    "venue": "Linslade Galaxy U18 Ajax"
   },
   {
     "id": "beds-girls-20261010-bobcats-3",

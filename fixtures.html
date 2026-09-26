@@ -5,16 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Linslade Galaxy FC fixtures and results — all teams, all competitions.">
   <title>Fixtures &amp; Results | Linslade Galaxy FC</title>
+  <link rel="canonical" href="https://spontaneous-sunflower-a85279.netlify.app/fixtures.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Linslade Galaxy FC">
   <meta property="og:title" content="Fixtures and Results | Linslade Galaxy FC">
   <meta property="og:description" content="Upcoming fixtures and latest results for all Linslade Galaxy FC teams.">
-  <meta property="og:image" content="https://siobhankoshodge.github.io/linslade-galaxy-fc/images/herokit.png">
-  <meta property="og:url" content="https://siobhankoshodge.github.io/linslade-galaxy-fc/fixtures.html">
+  <meta property="og:image" content="https://spontaneous-sunflower-a85279.netlify.app/images/herokit.jpg">
+  <meta property="og:url" content="https://spontaneous-sunflower-a85279.netlify.app/fixtures.html">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Fixtures and Results | Linslade Galaxy FC">
   <meta name="twitter:description" content="Upcoming fixtures and latest results for all Linslade Galaxy FC teams.">
-  <meta name="twitter:image" content="https://siobhankoshodge.github.io/linslade-galaxy-fc/images/herokit.png">
+  <meta name="twitter:image" content="https://spontaneous-sunflower-a85279.netlify.app/images/herokit.jpg">
   <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -28,7 +29,7 @@
       </div>
       <span class="nav-logo-text">Linslade Galaxy FC</span>
     </a>
-    <div class="nav-links">
+    <div class="nav-links" id="site-navigation">
       <a href="index.html">Home</a>
       <a href="club.html">Club</a>
       <a href="teams.html">Teams</a>
@@ -38,7 +39,7 @@
       <a href="contact.html">Contact</a>
       <a href="join.html" class="nav-cta">Join the Club</a>
     </div>
-    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="site-navigation"><span></span><span></span><span></span></button>
   </div>
 </nav>
 
@@ -70,33 +71,10 @@
       <select class="filter-select" id="filter-team" onchange="applyFilters()">
         <option value="">All Teams</option>
         <optgroup label="Mixed Teams">
-          <option value="ajax">U17 Ajax</option>
-          <option value="borussia">U16 Borussia</option>
-          <option value="lazio">U16 Lazio</option>
-          <option value="spartak">U16 Spartak</option>
-          <option value="sporting">U16 Sporting</option>
-          <option value="porto">U14 Porto</option>
-          <option value="barca">U13 Barca</option>
-          <option value="bayern">U13 Bayern</option>
-          <option value="juve">U12 Juve</option>
-          <option value="roma">U12 Roma</option>
-          <option value="wanderers">U12 Wanderers</option>
-          <option value="atletico">U11 Atletico</option>
-          <option value="real">U11 Real</option>
-          <option value="titans">U10 Titans</option>
-          <option value="inter">U9 Inter</option>
-          <option value="napoli">U8 Napoli</option>
-          <option value="dynamo">U7 Dynamo</option>
+          <option value="ajax">U18 Ajax</option><option value="borussia">U16 Borussia</option><option value="lazio">U16 Lazio</option><option value="spartak">U16 Spartak</option><option value="porto">U14 Porto</option><option value="barca">U13 Barca</option><option value="bayern">U13 Bayern</option><option value="juve">U12 Juve</option><option value="wanderers">U12 Wanderers</option><option value="atletico">U11 Atletico</option><option value="real">U11 Real</option><option value="rojas">U11 Rojas</option><option value="titans">U10 Titans</option><option value="inter">U9 Inter</option><option value="dynamo">U7 Dynamo</option>
         </optgroup>
         <optgroup label="Girls Teams">
-          <option value="lynxes">U15 Lynxes</option>
-          <option value="jaguars">U14 Jaguars</option>
-          <option value="lions">U14 Lions</option>
-          <option value="panthers">U14 Panthers</option>
-          <option value="lionesses">U13 Lionesses</option>
-          <option value="bobcats">U12 Bobcats</option>
-          <option value="leopards">U11 Leopards</option>
-          <option value="meerkats">U9 Meerkats</option>
+          <option value="pumas">U14 Pumas</option><option value="jaguars">U14 Jaguars</option><option value="lions">U14 Lions</option><option value="panthers">U14 Panthers</option><option value="lionesses">U13 Lionesses</option><option value="tigers">U13 Tigers</option><option value="bobcats">U12 Bobcats</option><option value="leopards">U11 Leopards</option><option value="meerkats">U9 Meerkats</option>
         </optgroup>
       </select>
       <select class="filter-select" id="filter-comp" onchange="applyFilters()">
@@ -104,7 +82,7 @@
         <option value="mkddl">MKDDL League</option>
         <option value="beds-girls">Beds Girls League</option>
         <option value="bysl">Beds Youth Saturday League</option>
-        <option value="chiltern">Chiltern Youth Sunday</option>
+        <option value="chiltern">Chiltern Youth Football League</option>
         <option value="cup">Cup</option>
         <option value="friendly">Friendly</option>
       </select>
@@ -144,33 +122,31 @@
       <div class="footer-col"><h4>Club</h4><a href="club.html">About Us</a><a href="join.html">Join</a></div>
       <div class="footer-col"><h4>Football</h4><a href="teams.html">Teams</a><a href="fixtures.html">Fixtures</a><a href="news.html">News</a></div>
       <div class="footer-col"><h4>Links</h4>
-        <a href="https://fulltime.thefa.com/index.html?league=96486" target="_blank" rel="noopener">MKDDL Leagues</a>
-        <a href="https://fulltime.thefa.com/index.html?psSelectedSeason=196173019&psSelectedDivision=6399394&psSelectedCompetition=0&psSelectedLeague=96486" target="_blank" rel="noopener">MKDDL Division Link</a>
-        <a href="https://fulltime.thefa.com/index.html?psSelectedSeason=545941745&psSelectedDivision=157533766&psSelectedCompetition=0&psSelectedLeague=32913" target="_blank" rel="noopener">Chiltern Youth Sunday Link</a>
+        <a href="https://fulltime.thefa.com/index.html?league=96486" target="_blank" rel="noopener">MKDDL</a>
+        <a href="https://fulltime.thefa.com/index.html?league=32913" target="_blank" rel="noopener">Beds Youth Saturday League</a>
         <a href="https://fulltime.thefa.com/index.html?league=530158839" target="_blank" rel="noopener">Beds Girls League</a>
-        <a href="http://www.cedarsupper.org.uk/Cedars-3G-Artificial-Grass-Pitch/" target="_blank" rel="noopener">Cedars 3G Pitch</a>
+        <a href="https://www.cedarsupper.org.uk/Cedars-3G-Artificial-Grass-Pitch/" target="_blank" rel="noopener">Cedars 3G Pitch</a>
         <a href="contact.html">Contact Us</a>
       </div>
     </div>
     <div class="footer-bottom">
       <span>© 2026/27 Linslade Galaxy FC.</span>
-      <span><a href="club.html#policies" style="color:rgba(255,255,255,0.4);text-decoration:none;margin-left:16px;">Privacy</a></span>
+      <span><a href="privacy.html" style="color:rgba(255,255,255,0.4);text-decoration:none;margin-left:16px;">Privacy</a></span>
     </div>
   </div>
 </footer>
 
 <script src="js/main.js"></script>
 <script>
-  var TEAM_NAMES = {
-    ajax:'U17 Ajax', borussia:'U16 Borussia', lazio:'U16 Lazio', spartak:'U16 Spartak',
-    sporting:'U16 Sporting', porto:'U14 Porto', barca:'U13 Barca', bayern:'U13 Bayern',
-    juve:'U12 Juve', roma:'U12 Roma', wanderers:'U12 Wanderers', atletico:'U11 Atletico',
-    real:'U11 Real', titans:'U10 Titans', inter:'U9 Inter', napoli:'U8 Napoli', dynamo:'U7 Dynamo',
-    lynxes:'U15 Lynxes', jaguars:'U14 Jaguars', lions:'U14 Lions', panthers:'U14 Panthers',
-    lionesses:'U13 Lionesses', bobcats:'U12 Bobcats', leopards:'U11 Leopards', meerkats:'U9 Meerkats'
+  var TEAM_NAMES = {  ajax:'U18 Ajax', borussia:'U16 Borussia', lazio:'U16 Lazio', spartak:'U16 Spartak',
+  porto:'U14 Porto', barca:'U13 Barca', bayern:'U13 Bayern',
+  juve:'U12 Juve', wanderers:'U12 Wanderers', atletico:'U11 Atletico', real:'U11 Real', rojas:'U11 Rojas',
+  titans:'U10 Titans', inter:'U9 Inter', dynamo:'U7 Dynamo',
+  pumas:'U14 Pumas', jaguars:'U14 Jaguars', lions:'U14 Lions', panthers:'U14 Panthers',
+  lionesses:'U13 Lionesses', tigers:'U13 Tigers', bobcats:'U12 Bobcats', leopards:'U11 Leopards', meerkats:'U9 Meerkats'
   };
-  var GIRLS = ['lynxes','jaguars','lions','panthers','lionesses','bobcats','leopards','meerkats'];
-  var COMP_LABELS = { mkddl:'MKDDL', chiltern:'Chiltern Youth Sunday', 'beds-girls':'Beds FA Girls League', bysl:'Beds Youth Saturday League', cup:'Cup', friendly:'Friendly' };
+  var GIRLS = ['pumas','jaguars','lions','panthers','lionesses','tigers','bobcats','leopards','meerkats'];
+  var COMP_LABELS = { mkddl:'MKDDL', chiltern:'Chiltern Youth Football League', 'beds-girls':'Beds FA Girls League', bysl:'Beds Youth Saturday League', cup:'Cup', friendly:'Friendly' };
 
   function fmtDateFull(d) {
     return new Date(d + 'T00:00:00').toLocaleDateString('en-GB', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
