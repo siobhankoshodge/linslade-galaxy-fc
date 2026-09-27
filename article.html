@@ -75,6 +75,7 @@
       <div style="max-width:740px; margin:0 auto;">
         <img id="article-hero" class="article-hero" src="" alt="" style="display:none;">
         <div id="article-body" class="article-body"></div>
+        <a id="article-external-link" class="btn btn-primary" href="#" target="_blank" rel="noopener noreferrer" style="display:none; margin-top:20px;">Read the original article</a>
         <hr style="border:none; border-top:1px solid var(--grey-200); margin:36px 0;">
         <a href="news.html" style="color:var(--green); font-weight:700; font-size:14px; text-decoration:none;">← Back to all news</a>
       </div>
@@ -206,6 +207,13 @@
 
         // Body
         document.getElementById('article-body').innerHTML = renderBody(a.body || a.summary || '');
+
+        var externalLink = document.getElementById('article-external-link');
+        if (a.externalUrl) {
+          externalLink.href = a.externalUrl;
+          externalLink.textContent = a.externalLabel || 'Read the original article';
+          externalLink.style.display = 'inline-flex';
+        }
 
         // Show content
         document.getElementById('article-loading').style.display = 'none';
