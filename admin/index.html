@@ -483,7 +483,6 @@
     <button class="tab-btn" data-tab="results">Results</button>
     <button class="tab-btn" data-tab="teams">Teams</button>
     <button class="tab-btn" data-tab="sponsors">Sponsors</button>
-    <button class="tab-btn" data-tab="embeds">FA Embeds</button>
     <button class="tab-btn" data-tab="settings">Settings</button>
   </nav>
 
@@ -563,25 +562,6 @@
           <div class="empty-state">
             <div class="empty-state-icon">🤝</div>
             <div class="empty-state-text">Loading sponsors…</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- FA EMBEDS -->
-    <div class="tab-panel" id="tab-embeds">
-      <div class="panel-header">
-        <div class="panel-title">FA Embeds</div>
-        <button class="btn btn-primary" id="embeds-save-btn">Save all</button>
-      </div>
-      <div class="alert alert-info" style="margin-bottom:20px;">
-        Enter the FA Full-Time <strong>lrcode</strong> for each team's fixtures, results, and league table widgets. Leave blank if not yet provided by the league secretary.
-      </div>
-      <div class="card">
-        <div id="embeds-list-wrap">
-          <div class="empty-state">
-            <div class="empty-state-icon">📋</div>
-            <div class="empty-state-text">Loading embed codes…</div>
           </div>
         </div>
       </div>
@@ -791,7 +771,6 @@ function initAdmin() {
   loadResults();
   loadTeams();
   loadSponsors();
-  loadEmbeds();
 }
 
 // ==============================================================
@@ -1376,7 +1355,7 @@ function editTeam(slug) {
         </div>
         <div class="modal-body">
           <div class="form-group"><label>Manager</label><input type="text" id="tm-manager" value="${escAttr(t.manager||'')}"></div>
-          <div class="form-group"><label>Training times</label><input type="text" id="tm-training" value="${escAttr(t.training||'')}" placeholder="Tuesdays 6:30pm — Greenleas Lower School"></div>
+          <div class="form-group"><label>Training times</label><input type="text" id="tm-training" value="${escAttr(t.training||'')}" placeholder="Tuesdays 6:30pm — Cedars Upper School"></div>
           <div class="form-group"><label>Matchday</label><input type="text" id="tm-matchday" value="${escAttr(t.matchday||'')}" placeholder="Saturday"></div>
           <div class="form-group"><label>Description</label><textarea id="tm-desc" rows="3">${escHtml(t.description||'')}</textarea></div>
           <div class="form-group"><label>Contact email <span style="font-weight:400;color:var(--grey-500);">(optional)</span></label><input type="email" id="tm-email" value="${escAttr(t.contactEmail||'')}"></div>
@@ -1532,58 +1511,6 @@ async function deleteSponsor(idx) {
 }
 
 document.getElementById('sponsors-add-btn').addEventListener('click', () => sponsorModal());
-
-// ==============================================================
-// FA EMBEDS
-// ==============================================================
-let embedsData = {}, embedsSha = '';
-
-async function loadEmbeds() {
-  try {
-    const r = await githubGet('embeds.json');
-    embedsSha  = r.sha;
-    embedsData = JSON.parse(atob(r.content.replace(/\n/g,'')));
-    renderEmbeds();
-  } catch(e) {
-    document.getElementById('embeds-list-wrap').innerHTML =
-      `<div class="empty-state"><div class="empty-state-text" style="color:var(--red);">Failed to load: ${e.message}</div></div>`;
-  }
-}
-
-function renderEmbeds() {
-  const wrap = document.getElementById('embeds-list-wrap');
-  const rows = Object.entries(TEAMS).map(([slug, name]) => {
-    const e = embedsData[slug] || { fixtures:'', results:'', table:'' };
-    return `<tr>
-      <td style="font-weight:600;color:var(--grey-900);white-space:nowrap;">${name}</td>
-      <td><input type="text" class="embed-input" data-slug="${escAttr(slug)}" data-type="fixtures" value="${escAttr(e.fixtures||'')}" placeholder="lrcode" style="font-size:12px;"></td>
-      <td><input type="text" class="embed-input" data-slug="${escAttr(slug)}" data-type="results" value="${escAttr(e.results||'')}" placeholder="lrcode" style="font-size:12px;"></td>
-      <td><input type="text" class="embed-input" data-slug="${escAttr(slug)}" data-type="table" value="${escAttr(e.table||'')}" placeholder="lrcode" style="font-size:12px;"></td>
-    </tr>`;
-  }).join('');
-  wrap.innerHTML = `<table class="data-table">
-    <thead><tr><th>Team</th><th>Fixtures lrcode</th><th>Results lrcode</th><th>Table lrcode</th></tr></thead>
-    <tbody>${rows}</tbody>
-  </table>`;
-}
-
-document.getElementById('embeds-save-btn').addEventListener('click', async () => {
-  const btn = document.getElementById('embeds-save-btn');
-  btn.disabled = true; btn.textContent = 'Saving…';
-  try {
-    const updated = JSON.parse(JSON.stringify(embedsData));
-    document.querySelectorAll('.embed-input').forEach(inp => {
-      const { slug, type } = inp.dataset;
-      if (!updated[slug]) updated[slug] = { fixtures:'', results:'', table:'' };
-      updated[slug][type] = inp.value.trim();
-    });
-    const res = await githubPut('embeds.json', updated, embedsSha, 'Update FA embed codes');
-    embedsSha  = res.content.sha;
-    embedsData = updated;
-    showToast('Embed codes saved ✓');
-  } catch(e) { showToast(e.message,'error'); }
-  btn.disabled = false; btn.textContent = 'Save all';
-});
 
 // ==============================================================
 // IMAGE UPLOAD

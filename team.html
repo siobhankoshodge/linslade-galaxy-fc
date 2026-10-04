@@ -201,16 +201,8 @@
     <!-- FIXTURES TAB -->
     <div id="tab-fixtures" style="display:none;">
       <p style="font-size:12px; color:var(--grey-500); margin-bottom:16px;">
-        Fixture data is updated automatically from FA Full-Time once embed codes are configured.
+        This site is regularly updated from published FA Full-Time information.
       </p>
-
-      <!-- FA Full-Time embed placeholder -->
-      <div class="embed-placeholder">
-        <strong>FA Full-Time Fixtures Widget — this team</strong><br>
-        Replace this block with the FA Full-Time JavaScript embed code for this team's division.<br>
-        Get the embed code from FA Full-Time Admin → Media → Code Snippets.<br>
-        <code>lrcode = '[team-specific-code]'</code>
-      </div>
 
       <!-- Static sample (remove once embed is live) -->
       <table class="fixture-table" style="margin-top:20px;">
@@ -223,7 +215,7 @@
             <th style="width:130px;">Competition</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="team-fixtures-body">
           <tr>
             <td style="font-weight:600; color:var(--grey-500);">—</td>
             <td style="color:var(--grey-500); font-size:13px;" colspan="4">No upcoming fixtures — check back soon or view on FA Full-Time.</td>
@@ -235,43 +227,10 @@
     <!-- LEAGUE TABLE TAB -->
     <div id="tab-table" style="display:none;">
       <p style="font-size:12px; color:var(--grey-500); margin-bottom:16px;">
-        League table from FA Full-Time. Configure embed codes to show live data.
+        League information is regularly updated from published FA Full-Time information.
       </p>
-
-      <!-- FA Full-Time table embed placeholder -->
-      <div class="embed-placeholder">
-        <strong>FA Full-Time League Table Widget — this team's division</strong><br>
-        Replace this block with the FA Full-Time table embed code.<br>
-        <code>lrcode = '[division-table-code]'</code>
-      </div>
-
-      <!-- Static placeholder table -->
-      <table class="fixture-table" style="margin-top:20px;">
-        <thead>
-          <tr>
-            <th style="width:30px;">#</th>
-            <th>Club</th>
-            <th style="width:40px; text-align:center;">P</th>
-            <th style="width:40px; text-align:center;">W</th>
-            <th style="width:40px; text-align:center;">D</th>
-            <th style="width:40px; text-align:center;">L</th>
-            <th style="width:50px; text-align:center;">GD</th>
-            <th style="width:50px; text-align:center;">Pts</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr style="background:var(--green-light);">
-            <td style="font-weight:700;">—</td>
-            <td style="font-weight:700; color:var(--green);">Linslade Galaxy</td>
-            <td style="text-align:center;">—</td>
-            <td style="text-align:center;">—</td>
-            <td style="text-align:center;">—</td>
-            <td style="text-align:center;">—</td>
-            <td style="text-align:center;">—</td>
-            <td style="text-align:center; font-weight:700;">—</td>
-          </tr>
-        </tbody>
-      </table>
+      <a id="fa-team-page-link" href="#" target="_blank" rel="noopener" class="btn btn-outline" style="display:none;">View this team on FA Full-Time ↗</a>
+      <p id="fa-team-page-missing" style="font-size:13px; color:var(--grey-500);">No current FA Full-Time team page has been confirmed.</p>
     </div>
 
     <!-- MATCH REPORTS TAB -->
@@ -295,7 +254,7 @@
           <div class="footer-logo"><img src="images/logo.png" alt="LGFC" onerror="this.style.display='none'"></div>
           <span class="footer-logo-text">Linslade Galaxy FC</span>
         </div>
-        <p>Greenleas Lower School<br>Derwent Road, Linslade<br>Bedfordshire LU7 2AB</p>
+        <p>Cedars Upper School<br>Mentmore Road, Linslade<br>Bedfordshire LU7 2AE</p>
       </div>
       <div class="footer-col"><h4>Club</h4><a href="club.html">About Us</a><a href="join.html">Join</a></div>
       <div class="footer-col"><h4>Football</h4><a href="teams.html">Teams</a><a href="fixtures.html">Fixtures</a><a href="news.html">News</a></div>
@@ -317,7 +276,7 @@
 <script src="js/main.js"></script>
 <script>
   // Team data — add manager/training/description per team as club provides details
-  // divCode = FA Full-Time division ID for embed widgets
+  // divCode is retained for existing team metadata compatibility.
   const teams = {
     'ajax':      { name:'U18 Ajax',       section:'Mixed', league:'MKDDL',                 division:'',           divCode:'1470292'   },
     'borussia':  { name:'U16 Borussia',   section:'Mixed', league:'MKDDL',                 division:'',           divCode:'633041458' },
@@ -401,17 +360,17 @@
 
     var today = new Date().toISOString().slice(0, 10);
 
-    // Fetch teams.json, embeds.json, fixtures.json, results.json in parallel
+    // Fetch team, fixture and result data in parallel
     Promise.all([
       fetch('data/teams.json').then(function(r) { return r.json(); }),
-      fetch('data/embeds.json').then(function(r) { return r.json(); }),
       fetch('data/fixtures.json').then(function(r) { return r.json(); }),
-      fetch('data/results.json').then(function(r) { return r.json(); })
+      fetch('data/results.json').then(function(r) { return r.json(); }),
+      fetch('data/team-sources.json').then(function(r) { return r.json(); })
     ]).then(function(data) {
       var teamsData  = data[0];
-      var embedsData = data[1];
-      var fixtures   = data[2];
-      var results    = data[3];
+      var fixtures   = data[1];
+      var results    = data[2];
+      var teamSources = data[3];
 
       // --- Teams: description, manager, training ---
       var td = teamsData[slug] || {};
@@ -460,6 +419,31 @@
           + '</div>';
       }
 
+      // --- Fixtures tab ---
+      var fixturesBody = document.getElementById('team-fixtures-body');
+      if (upcoming.length) {
+        fixturesBody.innerHTML = upcoming.map(function(f) {
+          var homeTeam = f.home ? team.name : f.opponent;
+          var awayTeam = f.home ? f.opponent : team.name;
+          return '<tr>'
+            + '<td style="font-weight:600;">' + escHtml(f.time || 'TBC') + '</td>'
+            + '<td><strong>' + escHtml(homeTeam) + '</strong><br><span style="font-size:11px;color:var(--grey-500);">' + fmtDate(f.date) + '</span></td>'
+            + '<td style="text-align:center;font-weight:700;">v</td>'
+            + '<td><strong>' + escHtml(awayTeam) + '</strong>' + (f.venue ? '<br><span style="font-size:11px;color:var(--grey-500);">📍 ' + escHtml(f.venue) + '</span>' : '') + '</td>'
+            + '<td>' + escHtml(COMP[f.competition] || f.competition) + '</td>'
+            + '</tr>';
+        }).join('');
+      }
+
+      // --- Official team source ---
+      var source = teamSources[slug] || {};
+      if (source.url) {
+        var sourceLink = document.getElementById('fa-team-page-link');
+        sourceLink.href = source.url;
+        sourceLink.style.display = 'inline-flex';
+        document.getElementById('fa-team-page-missing').style.display = 'none';
+      }
+
       // --- Last result sidebar (competitive age groups only) ---
       var pastResults = teamResults
         .slice()
@@ -478,29 +462,6 @@
           + ' <span style="font-size:11px;color:var(--grey-500);">· ' + (r.home ? 'Home' : 'Away') + '</span></div>';
       }
 
-      // --- FA embeds (fixtures tab, table tab) ---
-      var emb = embedsData[slug] || {};
-      var fxEl  = document.querySelector('#tab-fixtures .embed-placeholder');
-      var tbEl  = document.querySelector('#tab-table .embed-placeholder');
-
-      if (fxEl) {
-        if (emb.fixtures) {
-          fxEl.innerHTML = '<strong>FA Full-Time Fixtures Widget</strong><br>'
-            + '<a href="https://fulltime.thefa.com/divisionFixtures.html?division=' + encodeURIComponent(emb.fixtures) + '" target="_blank" rel="noopener" style="color:var(--green);">View fixtures on FA Full-Time ↗</a>'
-            + '<br><span style="font-size:12px;color:var(--grey-500);">lrcode: ' + escHtml(emb.fixtures) + '</span>';
-        } else {
-          fxEl.innerHTML = '<strong>FA Full-Time Fixtures Widget</strong> — code pending from league secretary.';
-        }
-      }
-      if (tbEl) {
-        if (emb.table) {
-          tbEl.innerHTML = '<strong>FA Full-Time League Table Widget</strong><br>'
-            + '<a href="https://fulltime.thefa.com/divisionStandings.html?division=' + encodeURIComponent(emb.table) + '" target="_blank" rel="noopener" style="color:var(--green);">View table on FA Full-Time ↗</a>'
-            + '<br><span style="font-size:12px;color:var(--grey-500);">lrcode: ' + escHtml(emb.table) + '</span>';
-        } else {
-          tbEl.innerHTML = '<strong>FA Full-Time League Table Widget</strong> — code pending from league secretary.';
-        }
-      }
     }).catch(function(e) {
       console.warn('Team data load error:', e.message);
       // Fall back to generic description if fetch fails

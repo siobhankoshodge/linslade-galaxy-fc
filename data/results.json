@@ -1,5 +1,57 @@
 [
   {
+    "id": "result-20261003-borussia",
+    "date": "2026-10-03",
+    "team": "borussia",
+    "section": "mixed",
+    "competition": "mkddl",
+    "home": false,
+    "opponent": "Real Bedford Wixams U16 Cobras",
+    "goalsFor": 1,
+    "goalsAgainst": 3,
+    "outcome": "loss",
+    "reportUrl": ""
+  },
+  {
+    "id": "result-20261003-porto",
+    "date": "2026-10-03",
+    "team": "porto",
+    "section": "mixed",
+    "competition": "mkddl",
+    "home": false,
+    "opponent": "Cranfield Colts U14 Eagles",
+    "goalsFor": 1,
+    "goalsAgainst": 5,
+    "outcome": "loss",
+    "reportUrl": ""
+  },
+  {
+    "id": "result-20261003-lionesses",
+    "date": "2026-10-03",
+    "team": "lionesses",
+    "section": "girls",
+    "competition": "beds-girls",
+    "home": true,
+    "opponent": "Bromham United AFC Bluebirds",
+    "goalsFor": 2,
+    "goalsAgainst": 6,
+    "outcome": "loss",
+    "reportUrl": ""
+  },
+  {
+    "id": "result-20261003-tigers",
+    "date": "2026-10-03",
+    "team": "tigers",
+    "section": "girls",
+    "competition": "beds-girls",
+    "home": false,
+    "opponent": "Stony Stratford Town Pumas",
+    "goalsFor": 0,
+    "goalsAgainst": 1,
+    "outcome": "loss",
+    "reportUrl": ""
+  },
+  {
     "id": "result-20261003-ajax",
     "date": "2026-10-03",
     "team": "ajax",

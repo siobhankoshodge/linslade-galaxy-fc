@@ -373,6 +373,68 @@ h3 { font-size: 24px; }
   color: var(--grey-500);
 }
 
+/* --- CLUB SECTION ROUTES --- */
+.club-sections-section { background: white; }
+.team-section-nav {
+  background: var(--grey-100);
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.section-paths {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.section-path-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 210px;
+  padding: 30px;
+  color: var(--grey-900);
+  background: white;
+  border: 2px solid var(--grey-200);
+  border-top: 5px solid var(--green);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+
+.section-path-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--green);
+  box-shadow: var(--shadow-md);
+}
+
+.section-path-label {
+  margin-bottom: 8px;
+  color: var(--green);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.section-path-card h2,
+.section-path-card h3 {
+  margin-bottom: 10px;
+  font-size: 28px;
+}
+
+.section-path-card p {
+  margin-bottom: 24px;
+  color: var(--grey-600);
+  line-height: 1.6;
+}
+
+.section-path-link {
+  margin-top: auto;
+  color: var(--green);
+  font-size: 13px;
+  font-weight: 700;
+}
+
 /* --- FIXTURE CARD --- */
 .fixture-card {
   background: white;
@@ -1069,7 +1131,7 @@ h3 { font-size: 24px; }
   .hero-content { padding: 40px 0; }
   .stats-bar-inner { grid-template-columns: 1fr 1fr; }
   .stat-item:nth-child(2) { border-right: none; }
-  .grid-2, .grid-3, .grid-sidebar { grid-template-columns: 1fr; }
+  .grid-2, .grid-3, .grid-sidebar, .section-paths { grid-template-columns: 1fr; }
   .cta-band-inner { flex-direction: column; }
   .coach-banner { flex-direction: column; align-items: flex-start; }
   .cta-band-actions { flex-direction: column; width: 100%; }
