@@ -55,17 +55,6 @@
     "venue": "EMMAUS VILLAGE CARLTON"
   },
   {
-    "id": "beds-girls-20260926-lions-1",
-    "team": "lions",
-    "section": "girls",
-    "date": "2026-09-26",
-    "time": "10:30",
-    "competition": "beds-girls",
-    "home": false,
-    "opponent": "City Colts Belles",
-    "venue": "Brooklands Community Sports Pavilion (11v11 J)"
-  },
-  {
     "id": "beds-girls-20260926-meerkats-1",
     "team": "meerkats",
     "section": "girls",
@@ -196,17 +185,6 @@
     "home": false,
     "opponent": "EB Lions AFC U12 (Sat)",
     "venue": "EDLESBOROUGH GREEN & PAVILION"
-  },
-  {
-    "id": "bysl-20261003-ajax-2",
-    "team": "ajax",
-    "section": "mixed",
-    "date": "2026-10-03",
-    "time": "10:30",
-    "competition": "bysl",
-    "home": false,
-    "opponent": "Ampthill Town U18",
-    "venue": "LAWRENCE PARK (QUEENSMEN FOOTBALL CLUB)"
   },
   {
     "id": "beds-girls-20261003-bobcats-2",

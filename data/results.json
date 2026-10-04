@@ -1,5 +1,57 @@
 [
   {
+    "id": "result-20261003-ajax",
+    "date": "2026-10-03",
+    "team": "ajax",
+    "section": "mixed",
+    "competition": "bysl",
+    "home": false,
+    "opponent": "Ampthill Town U18",
+    "goalsFor": 1,
+    "goalsAgainst": 6,
+    "outcome": "loss",
+    "reportUrl": ""
+  },
+  {
+    "id": "result-20260926-lions",
+    "date": "2026-09-26",
+    "team": "lions",
+    "section": "girls",
+    "competition": "beds-girls",
+    "home": false,
+    "opponent": "City Colts Belles",
+    "goalsFor": 3,
+    "goalsAgainst": 1,
+    "outcome": "win",
+    "reportUrl": ""
+  },
+  {
+    "id": "result-20260926-tigers",
+    "date": "2026-09-26",
+    "team": "tigers",
+    "section": "girls",
+    "competition": "beds-girls",
+    "home": false,
+    "opponent": "Kempston Rovers Girls & Ladies Leopards",
+    "goalsFor": 2,
+    "goalsAgainst": 1,
+    "outcome": "win",
+    "reportUrl": ""
+  },
+  {
+    "id": "result-20260919-tigers",
+    "date": "2026-09-19",
+    "team": "tigers",
+    "section": "girls",
+    "competition": "beds-girls",
+    "home": false,
+    "opponent": "Lancot FC Lionesses",
+    "goalsFor": 0,
+    "goalsAgainst": 1,
+    "outcome": "loss",
+    "reportUrl": ""
+  },
+  {
     "id": "result-20260926-ajax",
     "date": "2026-09-26",
     "team": "ajax",
@@ -33,8 +85,8 @@
     "competition": "beds-girls",
     "home": false,
     "opponent": "Kempston Rovers Girls & Ladies Leopards",
-    "goalsFor": 8,
-    "goalsAgainst": 0,
+    "goalsFor": 10,
+    "goalsAgainst": 1,
     "outcome": "win",
     "reportUrl": ""
   },
