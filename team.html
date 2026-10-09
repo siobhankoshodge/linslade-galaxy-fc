@@ -401,7 +401,11 @@
 
       // --- Next fixture sidebar ---
       var upcoming = fixtures.filter(function(f) { return f.team === slug && f.date >= today; })
-        .sort(function(a,b) { return a.date.localeCompare(b.date); });
+        .sort(function(a,b) {
+          return a.date.localeCompare(b.date)
+            || (a.time || '99:99').localeCompare(b.time || '99:99')
+            || (a.opponent || '').localeCompare(b.opponent || '');
+        });
       if (upcoming.length) {
         var f = upcoming[0];
         var COMP = { mkddl:'MKDDL', chiltern:'Chiltern Youth Football League', 'beds-girls':'Beds Girls', cup:'Cup', friendly:'Friendly' };

@@ -219,9 +219,13 @@
     var fixtures = data[0];
     var results  = data[1];
 
-    // Fixtures: upcoming only, grouped by date asc
+    // Fixtures: upcoming only, ordered by date and kickoff time
     var upcoming = fixtures.filter(function(f) { return f.date >= today; })
-      .sort(function(a,b) { return a.date.localeCompare(b.date); });
+      .sort(function(a,b) {
+        return a.date.localeCompare(b.date)
+          || (a.time || '99:99').localeCompare(b.time || '99:99')
+          || (a.team || '').localeCompare(b.team || '');
+      });
     var fxByDate = {};
     upcoming.forEach(function(f) { (fxByDate[f.date] = fxByDate[f.date] || []).push(f); });
     var fxDates = Object.keys(fxByDate);
