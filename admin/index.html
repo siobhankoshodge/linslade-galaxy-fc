@@ -419,8 +419,6 @@
     .col { flex: 1; min-width: 0; }
     .col-auto { flex: 0 0 auto; }
 
-    /* ---- PAT STEP ---- */
-    #pat-step { display: none; }
   </style>
 </head>
 <body>
@@ -436,7 +434,6 @@
       </div>
     </div>
 
-    <!-- Step 1: password -->
     <div id="password-step">
       <div class="login-title">Sign in</div>
       <p class="login-subtitle">Enter the admin password to continue.</p>
@@ -446,19 +443,6 @@
         <input type="password" id="login-password" placeholder="Admin password" autocomplete="current-password">
       </div>
       <button class="btn btn-primary btn-full" id="login-btn">Continue</button>
-    </div>
-
-    <!-- Step 2: GitHub PAT -->
-    <div id="pat-step">
-      <div class="login-title">GitHub token</div>
-      <p class="login-subtitle">Enter your GitHub Personal Access Token. This is used to save changes to the site and is kept only in your browser session.</p>
-      <div id="pat-error" class="alert alert-error" style="display:none;"></div>
-      <div class="form-group">
-        <label for="login-pat">Personal Access Token</label>
-        <input type="password" id="login-pat" placeholder="github_pat_...">
-        <div class="form-hint">Needs <strong>Contents: Read &amp; write</strong> permission on the linslade-galaxy-fc repo.</div>
-      </div>
-      <button class="btn btn-primary btn-full" id="pat-btn">Enter admin</button>
     </div>
   </div>
 </div>
@@ -573,30 +557,17 @@
         <div class="panel-title">Settings</div>
       </div>
 
-      <!-- Change password -->
       <div class="card card-body" style="margin-bottom:20px;">
-        <div style="font-size:15px; font-weight:700; color:var(--grey-900); margin-bottom:4px;">Change admin password</div>
+        <div style="font-size:15px; font-weight:700; color:var(--grey-900); margin-bottom:4px;">Admin password</div>
         <p style="font-size:13px; color:var(--grey-500); margin-bottom:16px;">
-          This updates the password used to log in to this admin panel. The new hash is saved to <code>data/admin-config.json</code> in the repository.
+          The admin password is managed securely in Netlify and is not stored in the website files. Ask Siobhan if it needs to be changed.
         </p>
-        <div class="form-group">
-          <label>New password</label>
-          <input type="password" id="pw-new" placeholder="Enter new password">
-        </div>
-        <div class="form-group">
-          <label>Confirm new password</label>
-          <input type="password" id="pw-confirm" placeholder="Confirm new password">
-        </div>
-        <button class="btn btn-primary" id="pw-save-btn">Save new password</button>
       </div>
 
-      <!-- PAT info -->
       <div class="card card-body">
-        <div style="font-size:15px; font-weight:700; color:var(--grey-900); margin-bottom:4px;">GitHub token</div>
+        <div style="font-size:15px; font-weight:700; color:var(--grey-900); margin-bottom:4px;">Secure publishing</div>
         <p style="font-size:13px; color:var(--grey-500); margin-bottom:0;">
-          Your GitHub Personal Access Token is stored only in this browser session and is never saved to the repo.
-          It is cleared automatically when you sign out or close the browser tab.
-          If you need a new token, sign out and enter one at the login screen.
+          Changes are saved through the club's protected website service. Administrators do not need a GitHub account or token.
         </p>
       </div>
     </div>
@@ -611,17 +582,9 @@
 'use strict';
 
 // ---- CONFIG ----
-const REPO   = 'siobhankoshodge/linslade-galaxy-fc';
-const BRANCH = 'main';
-const API    = `https://api.github.com/repos/${REPO}/contents/data/`;
+const ADMIN_API = '/.netlify/functions/admin-api';
 
 // ---- UTILS ----
-async function sha256(str) {
-  const buf  = new TextEncoder().encode(str);
-  const hash = await crypto.subtle.digest('SHA-256', buf);
-  return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2,'0')).join('');
-}
-
 function b64encode(str) {
   return btoa(unescape(encodeURIComponent(str)));
 }
@@ -634,37 +597,34 @@ function showToast(msg, type = 'success') {
   t._timer = setTimeout(() => { t.className = ''; }, 3200);
 }
 
-function getPAT() { return sessionStorage.getItem('lgfc_pat') || ''; }
+function getSession() { return sessionStorage.getItem('lgfc_admin_session') || ''; }
+
+async function adminRequest(payload, includeSession = true) {
+  const headers = { 'Content-Type': 'application/json' };
+  if (includeSession && getSession()) headers.Authorization = 'Bearer ' + getSession();
+  const r = await fetch(ADMIN_API, { method: 'POST', headers, body: JSON.stringify(payload) });
+  const data = await r.json().catch(() => ({}));
+  if (!r.ok) {
+    if (r.status === 401 && includeSession) sessionStorage.removeItem('lgfc_admin_session');
+    throw new Error(data.error || `Admin request failed: ${r.status}`);
+  }
+  return data;
+}
+
+async function githubGetPath(path) {
+  return adminRequest({ action: 'get', path });
+}
+
+async function githubPutPath(path, content, sha, message) {
+  return adminRequest({ action: 'put', path, content, sha, message });
+}
 
 async function githubGet(file) {
-  const r = await fetch(API + file, {
-    headers: { Authorization: 'token ' + getPAT(), Accept: 'application/vnd.github.v3+json' }
-  });
-  if (!r.ok) throw new Error(`GET ${file} failed: ${r.status}`);
-  return r.json();
+  return githubGetPath('data/' + file);
 }
 
 async function githubPut(file, data, sha, message) {
-  const body = JSON.stringify({
-    message,
-    content: b64encode(JSON.stringify(data, null, 2)),
-    sha,
-    branch: BRANCH
-  });
-  const r = await fetch(API + file, {
-    method: 'PUT',
-    headers: {
-      Authorization: 'token ' + getPAT(),
-      Accept: 'application/vnd.github.v3+json',
-      'Content-Type': 'application/json'
-    },
-    body
-  });
-  if (!r.ok) {
-    const err = await r.json().catch(() => ({}));
-    throw new Error(err.message || `PUT ${file} failed: ${r.status}`);
-  }
-  return r.json();
+  return githubPutPath('data/' + file, b64encode(JSON.stringify(data, null, 2)), sha, message);
 }
 
 // ---- LOGIN ----
@@ -679,19 +639,11 @@ document.getElementById('login-btn').addEventListener('click', async () => {
   if (!pw) { err.textContent = 'Please enter the admin password.'; err.style.display = 'block'; return; }
 
   try {
-    const cfgResp = await fetch('../data/admin-config.json');
-    if (!cfgResp.ok) throw new Error('Could not load admin config.');
-    const cfg  = await cfgResp.json();
-    const hash = await sha256(pw);
-
-    if (hash !== cfg.passwordHash) {
-      err.textContent = 'Incorrect password.';
-      err.style.display = 'block';
-      return;
-    }
-
-    document.getElementById('password-step').style.display = 'none';
-    document.getElementById('pat-step').style.display = 'block';
+    const result = await adminRequest({ action: 'login', password: pw }, false);
+    sessionStorage.setItem('lgfc_admin_session', result.session);
+    loginScreen.style.display = 'none';
+    adminShell.style.display  = 'flex';
+    initAdmin();
   } catch (e) {
     err.textContent = e.message;
     err.style.display = 'block';
@@ -702,39 +654,8 @@ document.getElementById('login-password').addEventListener('keydown', e => {
   if (e.key === 'Enter') document.getElementById('login-btn').click();
 });
 
-document.getElementById('pat-btn').addEventListener('click', async () => {
-  const pat = document.getElementById('login-pat').value.trim();
-  const err = document.getElementById('pat-error');
-  err.style.display = 'none';
-
-  if (!pat) { err.textContent = 'Please enter your GitHub token.'; err.style.display = 'block'; return; }
-
-  // Quick PAT validation — try to read a data file
-  try {
-    const r = await fetch(API + 'news.json', {
-      headers: { Authorization: 'token ' + pat, Accept: 'application/vnd.github.v3+json' }
-    });
-    if (r.status === 401) { err.textContent = 'Invalid token — check it and try again.'; err.style.display = 'block'; return; }
-    if (r.status === 403) { err.textContent = 'Token lacks permission. It needs Contents: Read & write.'; err.style.display = 'block'; return; }
-    if (!r.ok && r.status !== 404) throw new Error('GitHub API error: ' + r.status);
-  } catch (e) {
-    err.textContent = 'Could not reach GitHub API. Check your connection.';
-    err.style.display = 'block';
-    return;
-  }
-
-  sessionStorage.setItem('lgfc_pat', pat);
-  loginScreen.style.display = 'none';
-  adminShell.style.display  = 'flex';
-  initAdmin();
-});
-
-document.getElementById('login-pat').addEventListener('keydown', e => {
-  if (e.key === 'Enter') document.getElementById('pat-btn').click();
-});
-
 document.getElementById('logout-btn').addEventListener('click', () => {
-  sessionStorage.removeItem('lgfc_pat');
+  sessionStorage.removeItem('lgfc_admin_session');
   location.reload();
 });
 
@@ -1541,30 +1462,11 @@ async function uploadImage(file, folder = 'images') {
   // Check if file already exists in /images/ (need SHA to update)
   let sha;
   try {
-    const r = await fetch(`https://api.github.com/repos/${REPO}/contents/${folder}/${safeName}`, {
-      headers: { Authorization: 'token ' + getPAT(), Accept: 'application/vnd.github.v3+json' }
-    });
-    if (r.ok) { const d = await r.json(); sha = d.sha; }
+    const existing = await githubGetPath(`${folder}/${safeName}`);
+    sha = existing.sha;
   } catch(_) { /* new file — no SHA needed */ }
 
-  // Upload
-  const body = { message: `Upload image: ${safeName}`, content: base64, branch: BRANCH };
-  if (sha) body.sha = sha;
-
-  const r = await fetch(`https://api.github.com/repos/${REPO}/contents/${folder}/${safeName}`, {
-    method: 'PUT',
-    headers: {
-      Authorization: 'token ' + getPAT(),
-      Accept: 'application/vnd.github.v3+json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(body)
-  });
-
-  if (!r.ok) {
-    const err = await r.json().catch(() => ({}));
-    throw new Error(err.message || 'Image upload failed: ' + r.status);
-  }
+  await githubPutPath(`${folder}/${safeName}`, base64, sha, `Upload image: ${safeName}`);
 
   return safeName;
 }
@@ -1585,32 +1487,6 @@ function escAttr(str) {
   return String(str||'').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
 }
 
-// ==============================================================
-// SETTINGS — CHANGE PASSWORD
-// ==============================================================
-document.getElementById('pw-save-btn').addEventListener('click', async () => {
-  const btn     = document.getElementById('pw-save-btn');
-  const pwNew   = document.getElementById('pw-new').value;
-  const pwConf  = document.getElementById('pw-confirm').value;
-
-  if (!pwNew)          { showToast('Enter a new password', 'error'); return; }
-  if (pwNew !== pwConf){ showToast('Passwords do not match', 'error'); return; }
-  if (pwNew.length < 8){ showToast('Password must be at least 8 characters', 'error'); return; }
-
-  btn.disabled = true; btn.textContent = 'Saving…';
-  try {
-    const hash    = await sha256(pwNew);
-    const updated = { passwordHash: hash };
-    const current = await githubGet('admin-config.json');
-    await githubPut('admin-config.json', updated, current.sha, 'Update admin password hash');
-    document.getElementById('pw-new').value     = '';
-    document.getElementById('pw-confirm').value = '';
-    showToast('Password updated ✓ — use it next time you sign in');
-  } catch(e) {
-    showToast(e.message, 'error');
-  }
-  btn.disabled = false; btn.textContent = 'Save new password';
-});
 </script>
 </body>
 </html>
