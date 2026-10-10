@@ -194,6 +194,11 @@
             </div>
           </div>
 
+          <figure class="card" id="team-photo-card" style="display:none; overflow:hidden; margin:0;">
+            <img id="team-photo" src="" alt="" style="display:block; width:100%; height:auto;">
+            <figcaption id="team-photo-caption" style="padding:10px 16px; font-size:12px; color:var(--grey-500);"></figcaption>
+          </figure>
+
         </div>
       </div>
     </div>
@@ -381,6 +386,13 @@
         td.description || (team.name + ' compete in the ' + team.league + divDesc + '.');
       document.getElementById('team-manager').textContent = td.manager || 'TBC';
       document.getElementById('team-training').textContent = td.training || 'Contact the club for the current training time and location.';
+      if (td.photo) {
+        var teamPhoto = document.getElementById('team-photo');
+        teamPhoto.src = td.photo;
+        teamPhoto.alt = team.name + ' team photo';
+        document.getElementById('team-photo-caption').textContent = team.name;
+        document.getElementById('team-photo-card').style.display = 'block';
+      }
 
       // --- Team sponsors ---
       var teamSponsors = sponsors.filter(function(s) {
