@@ -1,5 +1,44 @@
 [
   {
+    "id": "result-20261010-spartak",
+    "date": "2026-10-10",
+    "team": "spartak",
+    "section": "mixed",
+    "competition": "cup",
+    "home": false,
+    "opponent": "EB Lions AFC U16 (Sat)",
+    "goalsFor": 8,
+    "goalsAgainst": 1,
+    "outcome": "win",
+    "reportUrl": ""
+  },
+  {
+    "id": "result-20261010-lionesses",
+    "date": "2026-10-10",
+    "team": "lionesses",
+    "section": "girls",
+    "competition": "beds-girls",
+    "home": false,
+    "opponent": "Luton Town Ladies Youth Lancasters",
+    "goalsFor": 0,
+    "goalsAgainst": 2,
+    "outcome": "loss",
+    "reportUrl": ""
+  },
+  {
+    "id": "result-20261010-tigers",
+    "date": "2026-10-10",
+    "team": "tigers",
+    "section": "girls",
+    "competition": "beds-girls",
+    "home": true,
+    "opponent": "Milton Keynes Irish Whites",
+    "goalsFor": 1,
+    "goalsAgainst": 3,
+    "outcome": "loss",
+    "reportUrl": ""
+  },
+  {
     "id": "result-20261003-borussia",
     "date": "2026-10-03",
     "team": "borussia",

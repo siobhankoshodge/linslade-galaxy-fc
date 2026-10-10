@@ -5,7 +5,7 @@
     "section": "mixed",
     "date": "2026-10-18",
     "time": "14:00",
-    "competition": "chiltern",
+    "competition": "cup",
     "home": true,
     "opponent": "Stotfold Junior U16 Whites (RC)",
     "venue": "Linslade Galaxy U14 Lazio"
@@ -577,7 +577,7 @@
     "section": "girls",
     "date": "2026-10-17",
     "time": "10:30",
-    "competition": "beds-girls",
+    "competition": "cup",
     "home": false,
     "opponent": "Luton Town Ladies Youth U14 Wanderers",
     "venue": "Luton Town Ladies U13 Wanderers"
@@ -588,7 +588,7 @@
     "section": "girls",
     "date": "2026-10-17",
     "time": "10:30",
-    "competition": "beds-girls",
+    "competition": "cup",
     "home": true,
     "opponent": "Leighton United U14 Vixens Blues",
     "venue": "Linslade Galaxy U13 (Girls) Lions"
@@ -610,7 +610,7 @@
     "section": "girls",
     "date": "2026-10-17",
     "time": "10:30",
-    "competition": "beds-girls",
+    "competition": "cup",
     "home": false,
     "opponent": "NN United U14 Girls",
     "venue": "NN29 Titans U13 Girls"
@@ -748,15 +748,15 @@
     "venue": ""
   },
   {
-    "id": "mkddl-20261031-juve-38",
+    "id": "cup-20261031-juve",
     "team": "juve",
     "section": "mixed",
     "date": "2026-10-31",
     "time": "09:00",
-    "competition": "mkddl",
-    "home": true,
-    "opponent": "Leighton Corinthian Juniors U12 Lions",
-    "venue": "CEDARS UPPER SCHOOL"
+    "competition": "cup",
+    "home": false,
+    "opponent": "Halse United U12 White",
+    "venue": "Halse United U11"
   },
   {
     "id": "mkddl-20261031-real-35",
@@ -781,15 +781,15 @@
     "venue": "TIDDENFOOT LEISURE CENTRE (CLOSED)"
   },
   {
-    "id": "mkddl-20261031-wanderers-37",
+    "id": "cup-20261031-wanderers",
     "team": "wanderers",
     "section": "mixed",
     "date": "2026-10-31",
     "time": "09:00",
-    "competition": "mkddl",
+    "competition": "cup",
     "home": false,
-    "opponent": "Dunstable FC U11 Lions Tardelli (Sat)",
-    "venue": "CREASEY PARK COMMUNITY FOOTBALL CENTRE"
+    "opponent": "Silverstone Football Club U12 Racers",
+    "venue": "SILVERSTONE VILLAGE PLAYING FIELD"
   },
   {
     "id": "beds-girls-20261031-bobcats-6",
@@ -869,15 +869,15 @@
     "venue": ""
   },
   {
-    "id": "mkddl-20261107-barca-50",
+    "id": "cup-20261107-barca",
     "team": "barca",
     "section": "mixed",
     "date": "2026-11-07",
     "time": "09:00",
-    "competition": "mkddl",
-    "home": true,
-    "opponent": "Walnut Tree FC U13",
-    "venue": "CEDARS UPPER SCHOOL"
+    "competition": "cup",
+    "home": false,
+    "opponent": "Willen U13 Panthers",
+    "venue": "WILLEN PAVILION"
   },
   {
     "id": "mkddl-20261107-bayern-49",
@@ -924,15 +924,15 @@
     "venue": "EDLESBOROUGH GREEN & PAVILION"
   },
   {
-    "id": "mkddl-20261107-porto-51",
+    "id": "cup-20261107-porto",
     "team": "porto",
     "section": "mixed",
     "date": "2026-11-07",
-    "time": "09:00",
-    "competition": "mkddl",
-    "home": true,
-    "opponent": "Stoke Hammond Youth U14 Warriors",
-    "venue": "CEDARS UPPER SCHOOL"
+    "time": "10:30",
+    "competition": "cup",
+    "home": false,
+    "opponent": "Luton Celtic Youth U14",
+    "venue": "Luton Celtic Youth U13"
   },
   {
     "id": "mkddl-20261107-real-45",
@@ -973,10 +973,21 @@
     "section": "mixed",
     "date": "2026-11-07",
     "time": "10:30",
-    "competition": "mkddl",
+    "competition": "cup",
     "home": true,
     "opponent": "AFC Oakley U16 (Sat) Tornadoes",
     "venue": "Linslade Galaxy U14 Borussia"
+  },
+  {
+    "id": "cup-20261107-spartak",
+    "team": "spartak",
+    "section": "mixed",
+    "date": "2026-11-07",
+    "time": "10:30",
+    "competition": "cup",
+    "home": true,
+    "opponent": "Biggleswade FC U16",
+    "venue": "Linslade Galaxy U13 Spartak"
   },
   {
     "id": "beds-girls-20261107-jaguars-5",
