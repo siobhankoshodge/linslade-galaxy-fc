@@ -69,7 +69,6 @@ Terminology: mixed (not boys) for the 15 non-girls teams. Girls section has 8 te
 | panthers | U14 Panthers |
 | lionesses | U13 Lionesses |
 | bobcats | U12 Bobcats |
-| leopards | U11 Leopards |
 | meerkats | U9 Meerkats |
 
 ## Key conventions

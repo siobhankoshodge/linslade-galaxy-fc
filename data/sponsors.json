@@ -1,4 +1,7 @@
 [
-  { "id": "meerkats", "name": "Meerkats", "logo": "images/sponsors/meerkats.jpg", "url": "" },
-  { "id": "unite-the-union", "name": "Unite the Union — Beds & Herts District Branch LE/7349E", "logo": "images/sponsors/unite-the-union.png", "url": "" }
+  { "id": "meerkats", "name": "Meerkats", "logo": "images/sponsors/meerkats.jpg", "url": "", "team": "meerkats", "teamLabel": "U9 Meerkats" },
+  { "id": "unite-the-union", "name": "Unite the Union — Beds & Herts District Branch LE/7349E", "logo": "images/sponsors/unite-the-union.png", "url": "https://www.unitetheunion.org/", "team": "meerkats", "teamLabel": "U9 Meerkats" },
+  { "id": "control-flow-technologies", "name": "Control Flow Technologies", "logo": "images/sponsors/control-flow-technologies.jpg", "url": "https://www.controlflow.co.uk/", "team": "lionesses", "teamLabel": "U13 Lionesses" },
+  { "id": "goodwin-financial-services", "name": "Goodwin Financial Services", "logo": "images/sponsors/goodwin-financial-services.png", "url": "https://goodwin-financial.co.uk", "team": "bobcats", "teamLabel": "U12 Bobcats" },
+  { "id": "bevis-marks", "name": "Bevis Marks Private Finance", "logo": "https://cdn.prod.website-files.com/6674518ef914845fefceb9c8/667eba6f4a4ea08ef13812f3_logo%20with%20gold.webp", "url": "https://www.bevismarks.co.uk/", "teams": ["tigers", "lions", "jaguars"], "teamLabel": "U13 Tigers, U14 Lions & U14 Jaguars" }
 ]

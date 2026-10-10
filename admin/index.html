@@ -754,12 +754,12 @@ const TEAMS = {  ajax:'U18 Ajax', borussia:'U16 Borussia', lazio:'U16 Lazio', sp
   juve:'U12 Juve', wanderers:'U12 Wanderers', atletico:'U11 Atletico', real:'U11 Real', rojas:'U11 Rojas',
   titans:'U10 Titans', inter:'U9 Inter', dynamo:'U7 Dynamo',
   pumas:'U14 Pumas', jaguars:'U14 Jaguars', lions:'U14 Lions', panthers:'U14 Panthers',
-  lionesses:'U13 Lionesses', tigers:'U13 Tigers', bobcats:'U12 Bobcats', leopards:'U11 Leopards', meerkats:'U9 Meerkats'
+  lionesses:'U13 Lionesses', tigers:'U13 Tigers', bobcats:'U12 Bobcats', meerkats:'U9 Meerkats'
 };
 
 const TEAM_OPTS = Object.entries(TEAMS).map(([v,l]) => `<option value="${v}">${l}</option>`).join('');
 const SECTION_MIXED = ['ajax','borussia','lazio','spartak','porto','barca','bayern','juve','wanderers','atletico','real','rojas','titans','inter','dynamo'];
-const SECTION_GIRLS = ['pumas','jaguars','lions','panthers','lionesses','tigers','bobcats','leopards','meerkats'];
+const SECTION_GIRLS = ['pumas','jaguars','lions','panthers','lionesses','tigers','bobcats','meerkats'];
 
 function teamLabel(slug) { return TEAMS[slug] || slug; }
 function sectionOf(slug) { return SECTION_GIRLS.includes(slug) ? 'girls' : 'mixed'; }
@@ -1418,8 +1418,9 @@ function renderSponsorsList() {
   }
   const rows = sponsorsData.map((s, i) => `
     <tr>
-      <td style="width:60px;"><img src="../${escAttr(s.logo)}" alt="${escAttr(s.name)}" style="height:36px;object-fit:contain;" onerror="this.style.display='none'"></td>
+      <td style="width:60px;"><img src="${escAttr(/^https?:\/\//i.test(s.logo) ? s.logo : '../' + s.logo)}" alt="${escAttr(s.name)}" style="height:36px;object-fit:contain;" onerror="this.style.display='none'"></td>
       <td style="font-weight:600;color:var(--grey-900);">${escHtml(s.name)}</td>
+      <td style="font-size:12px;color:var(--grey-500);">${escHtml(s.teamLabel || 'Club-wide')}</td>
       <td style="font-size:12px;color:var(--grey-500);">${escHtml(s.logo)}</td>
       <td style="font-size:12px;">${s.url ? `<a href="${escAttr(s.url)}" target="_blank" rel="noopener">Link</a>` : '—'}</td>
       <td style="text-align:right;white-space:nowrap;">
@@ -1428,7 +1429,7 @@ function renderSponsorsList() {
       </td>
     </tr>`).join('');
   wrap.innerHTML = `<table class="data-table">
-    <thead><tr><th>Logo</th><th>Name</th><th>Image file</th><th>URL</th><th></th></tr></thead>
+    <thead><tr><th>Logo</th><th>Name</th><th>Team</th><th>Image file</th><th>URL</th><th></th></tr></thead>
     <tbody>${rows}</tbody>
   </table>`;
 }
@@ -1445,10 +1446,11 @@ function sponsorModal(idx = -1) {
         </div>
         <div class="modal-body">
           <div class="form-group"><label>Name</label><input type="text" id="sm-name" value="${escAttr(s.name)}"></div>
+          <div class="form-group"><label>Teams <span style="font-weight:400;color:var(--grey-500);">(optional — hold Ctrl to select more than one)</span></label><select id="sm-team" multiple size="6">${TEAM_OPTS}</select></div>
           <div class="form-group">
             <label>Sponsor logo <span style="font-weight:400;color:var(--grey-500);">(PNG, JPG or WebP)</span></label>
             <input type="hidden" id="sm-logo" value="${escAttr(s.logo)}">
-            ${s.logo ? `<div style="margin-bottom:10px;padding:12px;background:var(--grey-100);border-radius:4px;"><img src="../${escAttr(s.logo)}" alt="Current logo" style="max-height:80px;max-width:220px;object-fit:contain;"></div>` : ''}
+            ${s.logo ? `<div style="margin-bottom:10px;padding:12px;background:var(--grey-100);border-radius:4px;"><img src="${escAttr(/^https?:\/\//i.test(s.logo) ? s.logo : '../' + s.logo)}" alt="Current logo" style="max-height:80px;max-width:220px;object-fit:contain;"></div>` : ''}
             <input type="file" id="sm-logo-file" accept="image/png,image/jpeg,image/webp">
             <div style="font-size:11px;color:var(--grey-500);margin-top:6px;">Leave empty when editing to keep the current logo.</div>
           </div>
@@ -1461,6 +1463,10 @@ function sponsorModal(idx = -1) {
       </div>
     </div>`;
   document.body.insertAdjacentHTML('beforeend', html);
+  const selectedTeams = s.teams || (s.team ? [s.team] : []);
+  Array.from(document.getElementById('sm-team').options).forEach(option => {
+    option.selected = selectedTeams.includes(option.value);
+  });
   document.getElementById('sp-save-btn').addEventListener('click', () => saveSponsor(isNew, idx, s.id));
 }
 
@@ -1479,11 +1485,14 @@ async function saveSponsor(isNew, idx, oldId) {
       logo = 'images/sponsors/' + safeName;
     }
     if (!logo) { showToast('Please choose a sponsor logo','error'); btn.disabled=false; btn.textContent='Save sponsor'; return; }
+    const sponsorTeams = Array.from(document.getElementById('sm-team').selectedOptions).map(option => option.value);
     const updated = {
       id:   oldId || name.toLowerCase().replace(/[^a-z0-9]+/g,'-'),
       name,
       logo,
-      url:  document.getElementById('sm-url').value.trim()
+      url:  document.getElementById('sm-url').value.trim(),
+      teams: sponsorTeams,
+      teamLabel: sponsorTeams.map(teamLabel).join(', ')
     };
     let arr = [...sponsorsData];
     if (isNew) arr.push(updated); else arr[idx] = updated;

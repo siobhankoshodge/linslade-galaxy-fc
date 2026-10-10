@@ -166,6 +166,11 @@
             <div id="team-training" style="font-size:14px; color:var(--grey-700); line-height:1.7;">Training time and location TBC.</div>
           </div>
 
+          <div class="card" id="team-sponsor-card" style="padding:20px; display:none;">
+            <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--green); margin-bottom:14px;">Team Sponsor</div>
+            <div id="team-sponsor-content" style="display:flex; flex-wrap:wrap; gap:20px; align-items:center;"></div>
+          </div>
+
         </div>
 
         <!-- Next fixture + latest result -->
@@ -295,7 +300,6 @@
     'lionesses': { name:'U13 Lionesses',  section:'Girls', league:'Beds Girls League',     division:'Division 3', divCode:'859001286' },
     'tigers':    { name:'U13 Tigers',     section:'Girls', league:'Beds Girls League',     division:'Division 3', divCode:''          },
     'bobcats':   { name:'U12 Bobcats',    section:'Girls', league:'Beds Girls League',     division:'Development',divCode:'151103714' },
-    'leopards':  { name:'U11 Leopards',   section:'Girls', league:'Beds Girls League',     division:'Development',divCode:'196964928' },
     'meerkats':  { name:'U9 Meerkats',    section:'Girls', league:'Beds Girls League',     division:'Development',divCode:'353193343' },
   };
 
@@ -360,12 +364,14 @@
       fetch('data/teams.json').then(function(r) { return r.json(); }),
       fetch('data/fixtures.json').then(function(r) { return r.json(); }),
       fetch('data/results.json').then(function(r) { return r.json(); }),
-      fetch('data/team-sources.json').then(function(r) { return r.json(); })
+      fetch('data/team-sources.json').then(function(r) { return r.json(); }),
+      fetch('data/sponsors.json').then(function(r) { return r.json(); })
     ]).then(function(data) {
       var teamsData  = data[0];
       var fixtures   = data[1];
       var results    = data[2];
       var teamSources = data[3];
+      var sponsors = data[4];
 
       // --- Teams: description, manager, training ---
       var td = teamsData[slug] || {};
@@ -375,6 +381,19 @@
         td.description || (team.name + ' compete in the ' + team.league + divDesc + '.');
       document.getElementById('team-manager').textContent = td.manager || 'TBC';
       document.getElementById('team-training').textContent = td.training || 'Contact the club for the current training time and location.';
+
+      // --- Team sponsors ---
+      var teamSponsors = sponsors.filter(function(s) {
+        return s.team === slug || (Array.isArray(s.teams) && s.teams.indexOf(slug) !== -1);
+      });
+      if (teamSponsors.length) {
+        var sponsorCard = document.getElementById('team-sponsor-card');
+        document.getElementById('team-sponsor-content').innerHTML = teamSponsors.map(function(s) {
+          var image = '<img src="' + escHtml(s.logo) + '" alt="' + escHtml(s.name) + '" style="max-width:220px;max-height:90px;object-fit:contain;">';
+          return s.url ? '<a href="' + escHtml(s.url) + '" target="_blank" rel="noopener" aria-label="Visit ' + escHtml(s.name) + '">' + image + '</a>' : image;
+        }).join('');
+        sponsorCard.style.display = 'block';
+      }
 
       // --- Season statistics (competitive age groups only) ---
       var teamResults = isNonCompetitive ? [] : results.filter(function(r) { return r.team === slug; });

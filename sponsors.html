@@ -123,6 +123,7 @@
           + '<div style="height:160px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;">'
           + (sponsor.url ? '<a href="' + escapeHtml(sponsor.url) + '" target="_blank" rel="noopener">' + logo + '</a>' : logo)
           + '</div><h2 style="font-size:22px;margin:0;">' + escapeHtml(sponsor.name) + '</h2>'
+          + (sponsor.teamLabel ? '<p style="font-size:13px;color:var(--green);font-weight:700;margin:8px 0 0;">Team sponsor · ' + escapeHtml(sponsor.teamLabel) + '</p>' : '')
           + (sponsor.url ? '<a href="' + escapeHtml(sponsor.url) + '" target="_blank" rel="noopener" class="news-card-link" style="margin-top:12px;">Visit website →</a>' : '')
           + '</article>';
       }).join('');
