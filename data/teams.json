@@ -136,7 +136,16 @@
     "manager": "Andrew Bowen",
     "training": "Friday, 6pm at Cedars 3G",
     "description": "U9 Meerkats compete in the Beds Girls League, Development section.",
-    "photo": "images/teams/meerkats-team.jpg",
+    "photos": [
+      {
+        "src": "images/teams/meerkats-team.jpg",
+        "caption": "U9 Meerkats"
+      },
+      {
+        "src": "images/teams/meerkats-away-strip.jpg",
+        "caption": "U9 Meerkats in their away strip"
+      }
+    ],
     "contactEmail": "",
     "matchday": "Saturday"
   },

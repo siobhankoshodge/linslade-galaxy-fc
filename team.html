@@ -194,10 +194,7 @@
             </div>
           </div>
 
-          <figure class="card" id="team-photo-card" style="display:none; overflow:hidden; margin:0;">
-            <img id="team-photo" src="" alt="" style="display:block; width:100%; height:auto;">
-            <figcaption id="team-photo-caption" style="padding:10px 16px; font-size:12px; color:var(--grey-500);"></figcaption>
-          </figure>
+          <div id="team-photos" style="display:none; flex-direction:column; gap:16px;"></div>
 
         </div>
       </div>
@@ -386,12 +383,18 @@
         td.description || (team.name + ' compete in the ' + team.league + divDesc + '.');
       document.getElementById('team-manager').textContent = td.manager || 'TBC';
       document.getElementById('team-training').textContent = td.training || 'Contact the club for the current training time and location.';
-      if (td.photo) {
-        var teamPhoto = document.getElementById('team-photo');
-        teamPhoto.src = td.photo;
-        teamPhoto.alt = team.name + ' team photo';
-        document.getElementById('team-photo-caption').textContent = team.name;
-        document.getElementById('team-photo-card').style.display = 'block';
+      var teamPhotos = Array.isArray(td.photos) ? td.photos : (td.photo ? [{ src: td.photo, caption: team.name }] : []);
+      if (teamPhotos.length) {
+        var teamPhotosContainer = document.getElementById('team-photos');
+        teamPhotosContainer.innerHTML = teamPhotos.map(function(photo, index) {
+          var src = typeof photo === 'string' ? photo : photo.src;
+          var caption = typeof photo === 'string' ? team.name : (photo.caption || team.name);
+          return '<figure class="card" style="overflow:hidden; margin:0;">' +
+            '<img src="' + escHtml(src) + '" alt="' + escHtml(team.name + ' team photo ' + (index + 1)) + '" style="display:block; width:100%; height:auto;">' +
+            '<figcaption style="padding:10px 16px; font-size:12px; color:var(--grey-500);">' + escHtml(caption) + '</figcaption>' +
+            '</figure>';
+        }).join('');
+        teamPhotosContainer.style.display = 'flex';
       }
 
       // --- Team sponsors ---
