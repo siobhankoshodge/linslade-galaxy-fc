@@ -1,5 +1,44 @@
 [
   {
+    "id": "result-20261018-lazio",
+    "date": "2026-10-18",
+    "team": "lazio",
+    "section": "mixed",
+    "competition": "cup",
+    "home": true,
+    "opponent": "Stotfold Junior U16 Whites (RC)",
+    "goalsFor": 1,
+    "goalsAgainst": 1,
+    "outcome": "loss",
+    "reportUrl": ""
+  },
+  {
+    "id": "result-20261017-jaguars",
+    "date": "2026-10-17",
+    "team": "jaguars",
+    "section": "girls",
+    "competition": "cup",
+    "home": false,
+    "opponent": "Luton Town Ladies Youth U14 Wanderers",
+    "goalsFor": 2,
+    "goalsAgainst": 8,
+    "outcome": "loss",
+    "reportUrl": ""
+  },
+  {
+    "id": "result-20261017-panthers",
+    "date": "2026-10-17",
+    "team": "panthers",
+    "section": "girls",
+    "competition": "cup",
+    "home": false,
+    "opponent": "NN United U14 Girls",
+    "goalsFor": 0,
+    "goalsAgainst": 0,
+    "outcome": "win",
+    "reportUrl": ""
+  },
+  {
     "id": "result-20261010-spartak",
     "date": "2026-10-10",
     "team": "spartak",

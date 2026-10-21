@@ -587,7 +587,7 @@
     "team": "lions",
     "section": "girls",
     "date": "2026-10-17",
-    "time": "10:30",
+    "time": "09:30",
     "competition": "cup",
     "home": true,
     "opponent": "Leighton United U14 Vixens Blues",
@@ -752,11 +752,11 @@
     "team": "juve",
     "section": "mixed",
     "date": "2026-10-31",
-    "time": "09:00",
+    "time": "10:00",
     "competition": "cup",
     "home": false,
     "opponent": "Halse United U12 White",
-    "venue": "Halse United U11"
+    "venue": "BRACKLEY JUNIOR SCHOOL"
   },
   {
     "id": "mkddl-20261031-real-35",
@@ -1276,15 +1276,15 @@
     "venue": ""
   },
   {
-    "id": "mkddl-20261121-spartak-69",
+    "id": "cup-20261121-spartak",
     "team": "spartak",
     "section": "mixed",
     "date": "2026-11-21",
     "time": "09:00",
-    "competition": "mkddl",
-    "home": true,
-    "opponent": "Willen U16 Rockets",
-    "venue": "TIDDENFOOT LEISURE CENTRE (CLOSED)"
+    "competition": "cup",
+    "home": false,
+    "opponent": "GLK United U16 Gold",
+    "venue": "DUSTON SPORTS CENTRE"
   },
   {
     "id": "mkddl-20261121-wanderers-65",
