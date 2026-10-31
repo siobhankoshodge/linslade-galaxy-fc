@@ -1276,10 +1276,32 @@
     "venue": ""
   },
   {
-    "id": "cup-20261121-spartak",
+    "id": "cup-20261121-lions",
+    "team": "lions",
+    "section": "girls",
+    "date": "2026-11-21",
+    "time": "10:30",
+    "competition": "cup",
+    "home": false,
+    "opponent": "Luton Town Ladies Youth U14 Hatters",
+    "venue": "Luton Town Ladies Youth U14 Hatters"
+  },
+  {
+    "id": "cup-20261121-panthers",
+    "team": "panthers",
+    "section": "girls",
+    "date": "2026-11-21",
+    "time": "10:30",
+    "competition": "cup",
+    "home": false,
+    "opponent": "Woburn & Wavendon U14 Lionesses Clarets",
+    "venue": "Woburn & Wavendon U13 (Lionesses) Claret"
+  },
+  {
+    "id": "cup-20261128-spartak",
     "team": "spartak",
     "section": "mixed",
-    "date": "2026-11-21",
+    "date": "2026-11-28",
     "time": "09:00",
     "competition": "cup",
     "home": false,
