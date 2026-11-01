@@ -1,5 +1,18 @@
 [
   {
+    "id": "result-20261031-wanderers",
+    "date": "2026-10-31",
+    "team": "wanderers",
+    "section": "mixed",
+    "competition": "cup",
+    "home": false,
+    "opponent": "Silverstone Football Club U12 Racers",
+    "goalsFor": 3,
+    "goalsAgainst": 4,
+    "outcome": "loss",
+    "reportUrl": ""
+  },
+  {
     "id": "result-20261031-juve",
     "date": "2026-10-31",
     "team": "juve",
