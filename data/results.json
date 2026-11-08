@@ -1,5 +1,57 @@
 [
   {
+    "id": "result-20261107-spartak",
+    "date": "2026-11-07",
+    "team": "spartak",
+    "section": "mixed",
+    "competition": "cup",
+    "home": true,
+    "opponent": "Biggleswade FC U16",
+    "goalsFor": 5,
+    "goalsAgainst": 1,
+    "outcome": "win",
+    "reportUrl": ""
+  },
+  {
+    "id": "result-20261107-porto",
+    "date": "2026-11-07",
+    "team": "porto",
+    "section": "mixed",
+    "competition": "cup",
+    "home": false,
+    "opponent": "Luton Celtic Youth U14",
+    "goalsFor": 4,
+    "goalsAgainst": 3,
+    "outcome": "win",
+    "reportUrl": ""
+  },
+  {
+    "id": "result-20261107-barca",
+    "date": "2026-11-07",
+    "team": "barca",
+    "section": "mixed",
+    "competition": "cup",
+    "home": false,
+    "opponent": "Willen U13 Panthers",
+    "goalsFor": 1,
+    "goalsAgainst": 4,
+    "outcome": "loss",
+    "reportUrl": ""
+  },
+  {
+    "id": "result-20261107-lionesses",
+    "date": "2026-11-07",
+    "team": "lionesses",
+    "section": "girls",
+    "competition": "beds-girls",
+    "home": true,
+    "opponent": "Ashwell Academicals",
+    "goalsFor": 1,
+    "goalsAgainst": 0,
+    "outcome": "win",
+    "reportUrl": ""
+  },
+  {
     "id": "result-20261031-wanderers",
     "date": "2026-10-31",
     "team": "wanderers",
@@ -7,8 +59,8 @@
     "competition": "cup",
     "home": false,
     "opponent": "Silverstone Football Club U12 Racers",
-    "goalsFor": 3,
-    "goalsAgainst": 4,
+    "goalsFor": 2,
+    "goalsAgainst": 2,
     "outcome": "loss",
     "reportUrl": ""
   },
