@@ -1595,6 +1595,17 @@
     "venue": "VANDYKE UPPER SCHOOL (9v9)"
   },
   {
+    "id": "beds-girls-20261205-panthers-10",
+    "team": "panthers",
+    "section": "girls",
+    "date": "2026-12-05",
+    "time": "10:30",
+    "competition": "beds-girls",
+    "home": false,
+    "opponent": "Shefford Saints Reds",
+    "venue": "Shefford Sports Club (11v11 J)"
+  },
+  {
     "id": "mkddl-20261212-barca-89",
     "team": "barca",
     "section": "mixed",
