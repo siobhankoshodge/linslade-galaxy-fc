@@ -37,7 +37,7 @@
     "team": "tigers",
     "section": "girls",
     "date": "2026-11-21",
-    "time": "10:30",
+    "time": "09:30",
     "competition": "beds-girls",
     "home": true,
     "opponent": "Deanshanger Colts & Girls",
@@ -1291,7 +1291,7 @@
     "team": "panthers",
     "section": "girls",
     "date": "2026-11-21",
-    "time": "10:30",
+    "time": "11:30",
     "competition": "cup",
     "home": false,
     "opponent": "Woburn & Wavendon U14 Lionesses Clarets",
@@ -1306,7 +1306,7 @@
     "competition": "cup",
     "home": false,
     "opponent": "GLK United U16 Gold",
-    "venue": "DUSTON SPORTS CENTRE"
+    "venue": "ASHTON COMMUNITY SPORTS CLUB"
   },
   {
     "id": "mkddl-20261121-wanderers-65",
@@ -1335,7 +1335,7 @@
     "team": "lionesses",
     "section": "girls",
     "date": "2026-11-21",
-    "time": "10:30",
+    "time": "09:30",
     "competition": "beds-girls",
     "home": false,
     "opponent": "Stotfold Junior Turquoise",
@@ -1416,6 +1416,17 @@
     "competition": "mkddl",
     "home": true,
     "opponent": "Dunstable FC U11 Lions Tardelli (Sat)",
+    "venue": "CEDARS UPPER SCHOOL"
+  },
+  {
+    "id": "cup-20261128-juve",
+    "team": "juve",
+    "section": "mixed",
+    "date": "2026-11-28",
+    "time": "09:00",
+    "competition": "cup",
+    "home": true,
+    "opponent": "Towcester Town U12 Foxes",
     "venue": "CEDARS UPPER SCHOOL"
   },
   {
@@ -2143,6 +2154,17 @@
     "home": true,
     "opponent": "Sandy FC",
     "venue": "VANDYKE UPPER SCHOOL (11v11 J #2)"
+  },
+  {
+    "id": "friendly-20270123-panthers",
+    "team": "panthers",
+    "section": "girls",
+    "date": "2027-01-23",
+    "time": "10:30",
+    "competition": "friendly",
+    "home": false,
+    "opponent": "Kempston Rovers Girls & Ladies Leopards",
+    "venue": "Hillgrounds Playing Fields (11v11 J)"
   },
   {
     "id": "mkddl-20270123-borussia-117",
