@@ -1408,17 +1408,6 @@
     "venue": ""
   },
   {
-    "id": "mkddl-20261128-juve-73",
-    "team": "juve",
-    "section": "mixed",
-    "date": "2026-11-28",
-    "time": "09:00",
-    "competition": "mkddl",
-    "home": true,
-    "opponent": "Dunstable FC U11 Lions Tardelli (Sat)",
-    "venue": "CEDARS UPPER SCHOOL"
-  },
-  {
     "id": "cup-20261128-juve",
     "team": "juve",
     "section": "mixed",
@@ -1427,17 +1416,6 @@
     "competition": "cup",
     "home": true,
     "opponent": "Towcester Town U12 Foxes",
-    "venue": "CEDARS UPPER SCHOOL"
-  },
-  {
-    "id": "mkddl-20261128-porto-77",
-    "team": "porto",
-    "section": "mixed",
-    "date": "2026-11-28",
-    "time": "09:00",
-    "competition": "mkddl",
-    "home": true,
-    "opponent": "Brickhill Wanderers U14",
     "venue": "CEDARS UPPER SCHOOL"
   },
   {
@@ -1450,17 +1428,6 @@
     "home": false,
     "opponent": "Crawley Green Youth U14 (Sat) Raptors",
     "venue": "Crawley Green Youth U13 (Sat) Raptors"
-  },
-  {
-    "id": "mkddl-20261128-spartak-78",
-    "team": "spartak",
-    "section": "mixed",
-    "date": "2026-11-28",
-    "time": "09:00",
-    "competition": "mkddl",
-    "home": true,
-    "opponent": "Tattenhoe Youth U16 Lions",
-    "venue": "TIDDENFOOT LEISURE CENTRE (CLOSED)"
   },
   {
     "id": "mkddl-20261128-wanderers-74",
@@ -2143,17 +2110,6 @@
     "home": true,
     "opponent": "Kempston Rovers Girls & Ladies Leopards",
     "venue": "VANDYKE UPPER SCHOOL (11v11 J)"
-  },
-  {
-    "id": "beds-girls-20270123-panthers-12",
-    "team": "panthers",
-    "section": "girls",
-    "date": "2027-01-23",
-    "time": "10:30",
-    "competition": "beds-girls",
-    "home": true,
-    "opponent": "Sandy FC",
-    "venue": "VANDYKE UPPER SCHOOL (11v11 J #2)"
   },
   {
     "id": "friendly-20270123-panthers",
