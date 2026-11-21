@@ -1,5 +1,31 @@
 [
   {
+    "id": "result-20261121-lions",
+    "date": "2026-11-21",
+    "team": "lions",
+    "section": "girls",
+    "competition": "cup",
+    "home": false,
+    "opponent": "Luton Town Ladies Youth U14 Hatters",
+    "goalsFor": 3,
+    "goalsAgainst": 1,
+    "outcome": "win",
+    "reportUrl": ""
+  },
+  {
+    "id": "result-20261121-tigers",
+    "date": "2026-11-21",
+    "team": "tigers",
+    "section": "girls",
+    "competition": "beds-girls",
+    "home": true,
+    "opponent": "Deanshanger Colts & Girls",
+    "goalsFor": 1,
+    "goalsAgainst": 2,
+    "outcome": "loss",
+    "reportUrl": "article.html?id=2026-11-21-tigers-cup-match-report"
+  },
+  {
     "id": "result-20261114-lionesses",
     "date": "2026-11-14",
     "team": "lionesses",
