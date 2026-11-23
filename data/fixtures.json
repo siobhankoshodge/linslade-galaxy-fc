@@ -1430,15 +1430,15 @@
     "venue": "VANDYKE UPPER SCHOOL (9v9)"
   },
   {
-    "id": "beds-girls-20261128-panthers-9",
+    "id": "cup-20261128-panthers",
     "team": "panthers",
     "section": "girls",
     "date": "2026-11-28",
     "time": "10:30",
-    "competition": "beds-girls",
-    "home": true,
-    "opponent": "Stotfold Junior Lilacs",
-    "venue": "VANDYKE UPPER SCHOOL (11v11 J #2)"
+    "competition": "cup",
+    "home": false,
+    "opponent": "Woburn & Wavendon U14 Lionesses Clarets",
+    "venue": "Woburn & Wavendon U13 (Lionesses) Claret"
   },
   {
     "id": "mkddl-20261205-barca-83",
